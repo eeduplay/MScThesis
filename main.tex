@@ -1,0 +1,108 @@
+\PassOptionsToPackage{dvipsnames}{xcolor}
+\documentclass[11pt,a4paper]{report}
+
+\usepackage[left=3cm, right=3cm, top=3cm, bottom=3cm]{geometry}
+\usepackage{setspace}
+\usepackage{layout}
+\usepackage{parskip}
+\usepackage{XCharter}
+\usepackage[T1]{fontenc}
+\usepackage[usefilenames,RMstyle={Text,Semibold},SSstyle={Text,Semibold},TTstyle={Text,Semibold},DefaultFeatures={Ligatures=Common}]{plex-otf}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{pdfpages}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{amsmath}
+% \usepackage{expl3}
+% \usepackage{calc}
+\usepackage[version=4]{mhchem}
+\usepackage{siunitx}
+\usepackage{bm}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[sf,bf]{titlesec}
+\usepackage{colortbl}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{booktabs}
+\usepackage{gensymb}
+\usepackage[font=itshape]{quoting}
+\usepackage{wrapfig}
+\usepackage{fancyhdr}
+\usepackage{lipsum}
+\usepackage{soul}
+\usepackage[style=ieee, citestyle=numeric-comp]{biblatex}
+% \usepackage{datetime}
+\usepackage{nameref}
+\usepackage{hyperref}
+
+% \input{titlesec.tex}
+\addbibresource{ref.bib}
+
+\title{PlexCharterReport}
+\author{First Last}
+\date{0000-00-00}
+
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{\thechapter.\ #1}}{}}
+\renewcommand{\sectionmark}[1]{\markright{\MakeUppercase{\thesection.\ #1}}}
+
+\fancypagestyle{fancy}{
+    \fancyhf{}
+    \fancyhfinit{\sffamily}
+    \lhead{\leftmark}
+    \rhead{\rightmark}
+    \lfoot{AE5050}
+    \rfoot{\thepage}
+}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\sffamily \thepage}
+    
+}
+
+\pagestyle{fancy}
+    
+\input{lstStyle.tex}
+\input{customenvs.tex}
+
+\sisetup{detect-all}
+
+\begin{document}
+    \setlength{\parindent}{0pt}
+    \setlength{\headheight}{13.6pt}
+    \input{title.tex}
+
+    \newpage
+    % \layout*
+    \pagenumbering{roman}
+
+    \input{chapters/0_0_preface.tex}
+
+    \tableofcontents
+
+    % \listoffigures
+    % \addcontentsline{toc}{chapter}{List of Figures}
+
+    % \listoftables
+    % \addcontentsline{toc}{chapter}{List of Tables}
+
+    \input{chapters/0_1_nomenclature.tex}
+
+    \newpage
+    \input{chapters/0_2_abstract.tex}
+
+    \newpage
+    \pagenumbering{arabic}
+
+    \input{chapters/unnumberedchapter.tex}
+    
+    \clearpage
+    % \printbibliography[heading=bibintoc, title={References}, block=ragged]
+    % \newpage
+    % \appendix
+\end{document}

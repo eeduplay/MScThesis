@@ -1,0 +1,13 @@
+{
+    "latex-workshop.latex.recipe.default": "latexmk (xelatex)",
+    "cSpell.enabled": true,
+    "cSpell.language": "en-US",
+    "cSpell.words": [
+        "PPPL",
+        "Tokamak"
+    ],
+    "cSpell.ignoreWords": [
+        "LEED",
+        "NSTX"
+    ]
+}

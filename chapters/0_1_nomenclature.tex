@@ -1,0 +1,102 @@
+\chapter*{Nomenclature}
+\setlength{\columnsep}{1cm}
+\newenvironment{nomtable}
+    {
+        \centering
+        \tabularx{\columnwidth}{r>{\raggedright\arraybackslash}X}
+    }
+    {
+        \endtabularx
+    }
+\newenvironment{nomlist}
+    {
+        \begin{itemize}[leftmargin=1.5cm]
+            \raggedright
+            \setlength{\parsep}{0pt}
+            \setlength{\itemsep}{-4pt}
+    }
+    {
+        \end{itemize}
+    }
+\addcontentsline{toc}{chapter}{Nomenclature}
+\markboth{\MakeUppercase{Nomenclature}}{}
+\begin{multicols*}{2}
+    % \setlength{\columnseprule}{1pt}
+    \section*{Abbreviations}
+
+    \begin{nomlist}
+        \item[AEC   ] Atomic Energy Commission
+        \item[AIAA  ] American Institute of Aeronautics and Astronautics
+        \item[CFD   ] Computational Fluid Dynamics
+        \item[CFL   ] Courant--Friedrichs--Lewy
+        \item[DE    ] Directed-Energy 
+        \item[DOE   ] (US) Department of Energy
+        \item[FTCS  ] Forward Time Centered Space
+        \item[HET   ] Hall-Effect Thruster
+        \item[ITER  ] International Thermonuclear Experimental Reactor
+        \item[LEP   ] Laser-Electric Propulsion
+        \item[LSC   ] Laser-Supported Combustion
+        \item[LSP   ] Laser-Sustained Plasma
+        \item[LTP   ] Laser-Thermal Propulsion
+        \item[NSTX] National Spherical Torus eXperiment
+        \item[OOP] Object-Oriented Programming
+        \item[OTV]  Orbital Transfer Vehicle 
+        \item[PDE] Partial Differential Equation
+        \item[PPPL  ] Princeton Plasma Physics Laboratory
+        \item[SOR   ] Successive Over-Relaxation
+        \item[TUD   ] Technische Universiteit Delft
+    \end{nomlist}
+
+    \section*{Latin symbols}
+    \begin{nomlist}
+        \item[$C$]             Courant number
+        \item[$c_p$]           Specific heat of enthalpy
+        \item[$D$]             Diameter
+        \item[$d$]             Distance
+        \item[$g_0$]           Standard gravity (9.80665~\unit{m/s^2}) 
+        \item[$h$          ]   Enthalpy
+        \item[$I$          ]   Local laser flux [W/m$^2$]
+        \item[$I_\text{sp}$]   Specific impulse [s]
+        \item[$k_L$        ]   Radiation absorption factor [1/m]
+        \item[$m$]             Mass
+        \item[$\mathcal{M}$]   Molar mass
+        \item[$p$          ]   Pressure
+        \item[$R$]             Gas constant
+        \item[$r$          ]   Radial coordinate
+        \item[$T$          ]   Temperature
+        \item[$t$          ]   Time
+        \item[$u$          ]   Axial velocity
+        \item[$v$]             Velocity 
+        \item[$z$          ]   Axial coordinate
+    \end{nomlist}
+
+    \section*{Greek symbols}
+    \begin{nomlist}
+        \item[$\alpha$]    Ionization mole fraction
+        \item[$\beta$]     Dissociation mole fraction
+        \item[$\theta$]    Azimuthal coordinate
+        \item[$\kappa$]    Conductivity
+        \item[$\lambda$]   Wavelength
+        \item[$\rho$  ]    Density
+        \item[$\phi$  ]    Radiation emission [W/m$^3$]
+    \end{nomlist}
+
+    \section*{Subscripts}
+    \begin{nomlist}
+        \item[c]   Thrust chamber
+        \item[e]   Laser emitter
+        \item[ex]  Exhaust
+        \item[f]   Focusing length
+        \item[g]   Specific (gas constant)
+        \item[$i$] index along $x$ or $z$
+        \item[$j$] index along $y$ or $r$
+        \item[r]   Laser receiver
+        \item[u]   Universal (gas constant)
+    \end{nomlist}
+
+    % \section*{Superscripts}
+    % \begin{nomlist}
+    %     \item[$n$]  time index
+    % \end{nomlist}
+
+\end{multicols*}
