@@ -5,22 +5,32 @@
 \usepackage{setspace}
 \usepackage{layout}
 \usepackage{parskip}
-\usepackage{XCharter}
+\usepackage{amsmath}
 \usepackage[T1]{fontenc}
-\usepackage[usefilenames,RMstyle={Text,Semibold},SSstyle={Text,Semibold},TTstyle={Text,Semibold},DefaultFeatures={Ligatures=Common}]{plex-otf}
+\usepackage{fontspec}
+\setmainfont{XCharter}
+\usepackage{unicode-math}
+\setmathfont{XCharter-Math.otf}
+\setsansfont{IBMPlexSans}[
+    Extension = .otf,
+    UprightFont = *-regular,
+    BoldFont = *-SemiBold,
+    ItalicFont = *-Italic,
+    BoldItalicFont = *-SemiBoldItalic,
+    Scale = MatchLowercase
+]
+\setmonofont{IBMPlexMono}[Scale=MatchLowercase]
 \usepackage{multicol}
 \usepackage{multirow}
 \usepackage{pdfpages}
 \usepackage{graphicx}
 \usepackage{tabularx}
-\usepackage{amsmath}
 % \usepackage{expl3}
 % \usepackage{calc}
 \usepackage[version=4]{mhchem}
 \usepackage{siunitx}
 \usepackage{bm}
 \usepackage{xcolor}
-\usepackage{amssymb}
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage[sf,bf]{titlesec}
