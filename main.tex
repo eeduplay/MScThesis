@@ -13,7 +13,7 @@
 \setmathfont{XCharter-Math.otf}
 \setsansfont{IBMPlexSans}[
     Extension = .otf,
-    UprightFont = *-regular,
+    UprightFont = *-Regular,
     BoldFont = *-SemiBold,
     ItalicFont = *-Italic,
     BoldItalicFont = *-SemiBoldItalic,
@@ -44,7 +44,10 @@
 \usepackage{fancyhdr}
 \usepackage{lipsum}
 \usepackage{soul}
-\usepackage[style=ieee, citestyle=numeric-comp]{biblatex}
+\usepackage[
+    style=ieee,
+    citestyle=numeric-comp,
+    urldate=iso8601]{biblatex}
 % \usepackage{datetime}
 \usepackage{nameref}
 \usepackage{hyperref}
@@ -112,7 +115,11 @@
     \input{chapters/unnumberedchapter.tex}
     
     \clearpage
-    % \printbibliography[heading=bibintoc, title={References}, block=ragged]
+    % \printbibliography[
+    %     heading=bibintoc,
+    %     title={References},
+    %     block=ragged
+    %     ]
     % \newpage
     % \appendix
 \end{document}
