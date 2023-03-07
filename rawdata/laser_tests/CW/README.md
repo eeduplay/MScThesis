@@ -16,3 +16,6 @@ The data collected here is used for the following purposes:
   output power
 - determine the minimum power setpoint
 - determine the transient power characteristics (i.e. rise time)
+
+Each CSV file has a metadata section from rows 1 to 17, a column header on 
+row 18, a blank line, then raw power data in Watts from row 20 onward.
