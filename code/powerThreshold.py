@@ -3,19 +3,22 @@ import matplotlib.pyplot as plt
 import CoolProp.CoolProp as cp
 from conversions import *
 from PIL import Image
+from enum import Enum
 
-argon = {
-    'p2Ph': 26*(1e5**2)*1000,  # Pa^2 W
-    'Pr': 240  # W
-}
+class Gas(Enum):
+    Argon = {
+        'p2Ph': 26*(1e5**2)*1000,  # Pa^2 W
+        'Pr': 240  # W
+    }
+    Xenon = {
+        'p2Ph': 7.7*(1e5**2)*1000,
+        'Pr': 7  # W
+    }
 
-xenon = {
-    'p2Ph': 7.7*(1e5**2)*1000,
-    'Pr': 7  # W
-}
 
 def threshold_power(pressure, gas):
-    return gas['p2Ph']*pressure**-2 + gas['Pr']
+    gasprops = gas.value
+    return gasprops['p2Ph']*pressure**-2 + gasprops['Pr']
 
 if __name__ == '__main__':
     ps = np.linspace(3e5, 20e5)
@@ -27,7 +30,7 @@ if __name__ == '__main__':
     # plt.imshow(zimakovData, 
     #     extent=(0, 16e5, 1e2, 1e4)
     #     )
-    plt.semilogy(ps, threshold_power(ps, argon), label='Empirical Formula')
+    plt.semilogy(ps, threshold_power(ps, Gas.Argon), label='Empirical Formula')
     plt.semilogy(zimakovData[:,0]*1e5, zimakovData[:,1], 'o', label='Experimental Data')
     plt.xlabel('Pressure $p$ [Pa]')
     plt.ylabel('Laser threshold power $P_t$ [W]')

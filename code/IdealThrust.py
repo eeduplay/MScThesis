@@ -14,3 +14,6 @@ def Aratio_ideal(gamma, pback, pc):
     GAMMA = getGAMMA(gamma)
     pressureRatio = pback/pc
     return GAMMA**2/(pressureRatio**(1/gamma)*cf_ideal(gamma, pback, pc))
+
+def mass_flow_constant(gamma, R):
+    return np.sqrt(gamma/R)*np.sqrt((2/(gamma+1))**((gamma+1)/(gamma-1)))
