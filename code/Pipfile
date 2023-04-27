@@ -15,6 +15,7 @@ pyqt5 = "*"
 chiantipy = "*"
 python-dotenv = "*"
 ipykernel = "*"
+openpyxl = "*"
 
 [dev-packages]
 
