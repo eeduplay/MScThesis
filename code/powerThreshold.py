@@ -30,9 +30,9 @@ if __name__ == '__main__':
     # plt.imshow(zimakovData, 
     #     extent=(0, 16e5, 1e2, 1e4)
     #     )
-    plt.semilogy(ps, threshold_power(ps, Gas.Argon), label='Empirical Formula')
-    plt.semilogy(zimakovData[:,0]*1e5, zimakovData[:,1], 'o', label='Experimental Data')
-    plt.xlabel('Pressure $p$ [Pa]')
+    plt.semilogy(ps/1e5, threshold_power(ps, Gas.Argon), label='Empirical Formula')
+    plt.semilogy(zimakovData[:,0], zimakovData[:,1], 'o', label='Experimental Data')
+    plt.xlabel('Pressure $p$ [bar]')
     plt.ylabel('Laser threshold power $P_t$ [W]')
     # plt.xlim((0, 16e5))
     # plt.ylim((1e2, 1e4))
