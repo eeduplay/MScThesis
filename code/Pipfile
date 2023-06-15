@@ -16,6 +16,7 @@ chiantipy = "*"
 python-dotenv = "*"
 ipykernel = "*"
 openpyxl = "*"
+colour-science = {extras = ["optional"], version = "*"}
 
 [dev-packages]
 

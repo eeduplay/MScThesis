@@ -24,6 +24,8 @@ if __name__ == '__main__':
     ps = np.linspace(3e5, 20e5)
 
     zimakovData = np.loadtxt('rawdata/ZimakovExperimental.csv', delimiter=',')
+    matsuiData = np.loadtxt('rawdata/matsui_lu_pP.csv', delimiter=',', skiprows=2, usecols=[0,1])
+    luData = np.loadtxt('rawdata/matsui_lu_pP.csv', delimiter=',', skiprows=2, usecols=[2,3], max_rows=6)
 
     exp_success = np.loadtxt('rawdata/thresholdSearch_success.csv', 
         delimiter=',', skiprows=1)
@@ -35,10 +37,15 @@ if __name__ == '__main__':
     # plt.imshow(zimakovData, 
     #     extent=(0, 16e5, 1e2, 1e4)
     #     )
+    plt.figure(figsize=(5,5))
     plt.semilogy(ps/1e5, threshold_power(ps, Gas.Argon), 
-                 label='Empirical Formula')
-    plt.semilogy(zimakovData[:,0], zimakovData[:,1], 'o', 
-                 label='Zimakov (2019) Data')
+                 label='Zimakov et al. Model')
+    plt.semilogy(zimakovData[:,0], zimakovData[:,1], 'ob', 
+                 label='Zimakov et al. (2016) Data')
+    plt.semilogy(matsuiData[:,0], matsuiData[:,1], 'or', 
+                 label='Matsui et al. (2019) Data')
+    plt.semilogy(luData[:,0], luData[:,1], 'o', 
+                 label='Lu et al. (2022) Data')
     plt.semilogy(exp_success[:,0], exp_success[:,1], 
                  'o', label='Successful LSP', markerfacecolor='#fff0',
                  markeredgecolor='g')
@@ -50,7 +57,7 @@ if __name__ == '__main__':
     # plt.yscale('log')
     # ax = plt.gca()
     # ax.set_aspect(((1e4-1e2)/16e5)*622/426)
-    convertAxis('x', (Pa2psi, psi2Pa), 'Pressure $p$ [psi]')
+    convertAxis('x', (bar2psi, psi2bar), 'Pressure $p$ [psi]')
     plt.legend()
     plt.grid(which='both')
     plt.show()

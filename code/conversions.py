@@ -5,12 +5,19 @@
 import matplotlib as mpl
 
 psiPerPa = 0.0254**2/(0.45359237*9.80665)
+psiPerbar = 14.5038
 
 def Pa2psi(x):
     return x*psiPerPa
 
 def psi2Pa(x):
     return x/psiPerPa
+
+def psi2bar(x):
+    return x/psiPerbar
+
+def bar2psi(x):
+    return x*psiPerbar
 
 def convertAxis(which, convertorTuple, label=''):
     ax = mpl.pyplot.gca()
