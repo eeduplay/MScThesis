@@ -51,6 +51,15 @@
 % \usepackage{datetime}
 \usepackage{nameref}
 \usepackage{hyperref}
+\definecolor{McGillRed}{cmyk}{0, 1, 0.9, 0}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=cyan,
+    anchorcolor=cyan,
+    citecolor=cyan,
+    filecolor=cyan,
+    urlcolor=cyan
+}
 
 % \input{titlesec.tex}
 \addbibresource{ref.bib}
@@ -95,8 +104,9 @@
     \pagenumbering{roman}
 
     \input{chapters/0_0_preface.tex}
-
+    \hypersetup{linkcolor=black}
     \tableofcontents
+    \hypersetup{linkcolor=cyan}
 
     % \listoffigures
     % \addcontentsline{toc}{chapter}{List of Figures}
@@ -114,13 +124,14 @@
 
     % \input{chapters/unnumberedchapter.tex}
     \input{chapters/1_intro.tex}
+    \input{chapters/2_background.tex}
     
     \clearpage
-    % \printbibliography[
-    %     heading=bibintoc,
-    %     title={References},
-    %     block=ragged
-    %     ]
+    \printbibliography[
+        heading=bibintoc,
+        title={References},
+        block=ragged
+        ]
     % \newpage
     % \appendix
 \end{document}

@@ -36,6 +36,7 @@ def degreeIonization(temperature, ion_E, n_0, pfr=1):
     l = deBroglieThermal(temperature)
     ratio = (2/l**3)*pfr*np.exp(-c.eV*ion_E/(kb*temperature))
     return (-ratio+np.sqrt(ratio**2+4*ratio*n_0))/2
+    # return np.sqrt(ratio*n_0)  # Incorrect, n_0 != n_Ar. n_Ar = n_0 - n_e
 
 # def degreeIonization_chianti(temperature, n_0, element):
 #     '''
