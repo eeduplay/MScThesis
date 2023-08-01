@@ -1,7 +1,7 @@
 \PassOptionsToPackage{dvipsnames}{xcolor}
 \documentclass[11pt,a4paper]{report}
 
-\usepackage[left=3cm, right=3cm, top=3cm, bottom=3cm]{geometry}
+\usepackage[left=3cm, right=3cm, top=3cm, bottom=3.5cm]{geometry}
 \usepackage{setspace}
 \usepackage{layout}
 \usepackage{parskip}
@@ -97,6 +97,7 @@
 \begin{document}
     \setlength{\parindent}{0pt}
     \setlength{\headheight}{13.6pt}
+    \includepdf{assets/cover.pdf}
     \input{title.tex}
 
     \newpage
@@ -106,14 +107,14 @@
     \input{chapters/0_0_preface.tex}
     \hypersetup{linkcolor=black}
     \tableofcontents
-    \hypersetup{linkcolor=cyan}
-
+    
     \listoffigures
     \addcontentsline{toc}{chapter}{List of Figures}
-
+    
     \listoftables
     \addcontentsline{toc}{chapter}{List of Tables}
-
+    \hypersetup{linkcolor=cyan}
+    
     \input{chapters/0_1_nomenclature.tex}
 
     \newpage
@@ -131,10 +132,12 @@
     \input{chapters/6_conclusion.tex}
     
     \clearpage
+    \defbibnote{bibmark}{\markright{}}
     \printbibliography[
         heading=bibintoc,
         title={References},
-        block=ragged
+        block=ragged,
+        prenote=bibmark
         ]
     % \newpage
     % \appendix
