@@ -19,3 +19,12 @@
         \restoregeometry
         \pagestyle{fancy}
     }
+
+\newenvironment{statement}[1]
+    {
+        \begin{center}\begin{minipage}{0.85\textwidth}
+            {\sffamily \footnotesize \color{cyan}\caps{\MakeUppercase{#1}}}\\\itshape
+    }
+    {
+        \end{minipage}\end{center}
+    }

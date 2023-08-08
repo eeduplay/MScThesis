@@ -72,6 +72,9 @@
 \renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{\thechapter.\ #1}}{}}
 \renewcommand{\sectionmark}[1]{\markright{\MakeUppercase{\thesection.\ #1}}}
 
+\renewcommand{\chapterautorefname}{Chapter}
+\renewcommand{\sectionautorefname}{Section}
+
 \fancypagestyle{fancy}{
     \fancyhf{}
     \fancyhfinit{\sffamily}
@@ -102,6 +105,15 @@
 
     \newpage
     % \layout*
+    {   \sffamily
+        \thispagestyle{empty}
+        \vspace*{\fill}
+        The code used for this project (including the \LaTeX\hspace{0.67ex}source) is available on \\ \url{https://github.com/eeduplay/MScThesis}
+
+        The author can be contacted by email at \href{mailto:emmanuel.duplay@gmail.com}{emmanuel.duplay@gmail.com}
+
+        Cover image: Composite photograph approximating (with some artistic license) the appearance of the laser-thermal thruster model operating in the laboratory.
+    }
     \pagenumbering{roman}
 
     \input{chapters/0_0_preface.tex}
@@ -139,6 +151,17 @@
         block=ragged,
         prenote=bibmark
         ]
-    % \newpage
-    % \appendix
+    \newpage
+
+    \appendix
+    \chapter{YLR-300/3000-QCW-MM-AC calibration report}
+    \label{chp:app_YLR}
+        \includepdf[pages=-, pagecommand={\thispagestyle{fancy}\markboth{}{}}]{assets/appendices/IPGLaser300-3000_calib.pdf}
+    \chapter{P30 collimator calibration report}
+    \label{chp:app_Collimator}
+        \includepdf[pages=-, pagecommand={\thispagestyle{fancy}\markboth{}{}}]{assets/appendices/D30_Collimator_calib.pdf}
+    \chapter{Cavitation apparatus drawings}
+        These drawings were drafted by John Kokkalis at McGill University, reproduced here with his permission. Though the apparatus represented here was not the iteration used in his final work, the final iteration of this system can be found in his Master's thesis~\cite{kokkalisOnsetCavitationDynamically2023}.
+        \label{chp:app_CavitatorDrawings}
+            \includepdf[pages=-, landscape=true]{assets/appendices/FULL_DRAWINGS_V4.pdf}
 \end{document}
