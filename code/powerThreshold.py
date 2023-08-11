@@ -4,6 +4,11 @@ import CoolProp.CoolProp as cp
 from conversions import *
 from PIL import Image
 from enum import Enum
+from cycler import cycler
+import pandas as pd
+
+# custom_cycler = cycler(color=['#ED1B2F', 'c', '#EC6842'])
+# plt.rc('axes', prop_cycle=custom_cycler)
 
 class Gas(Enum):
     Argon = {
@@ -27,29 +32,47 @@ if __name__ == '__main__':
     matsuiData = np.loadtxt('rawdata/matsui_lu_pP.csv', delimiter=',', skiprows=2, usecols=[0,1])
     luData = np.loadtxt('rawdata/matsui_lu_pP.csv', delimiter=',', skiprows=2, usecols=[2,3], max_rows=6)
 
+    # Early LSP experiments
     exp_success = np.loadtxt('rawdata/thresholdSearch_success.csv', 
         delimiter=',', skiprows=1)
+    success_front = []
+    unique_pressures = np.unique(exp_success[:,0])
+    for i in unique_pressures:
+        relevant_pressures = exp_success[:,0] == i
+        success_front.append(np.min(exp_success[relevant_pressures,1]))
     exp_failure = np.loadtxt('rawdata/thresholdSearch_failure.csv', 
         delimiter=',', skiprows=1)
+    
+    # Solid target ignition experiments
+    STI_shots = pd.read_excel('rawdata/shotlist_Aug9.xlsx', 'Shotlist V2', 
+                              index_col=0, usecols='A:N', true_values=['TRUE'], 
+                              false_values=['FALSE'],
+                              dtype={'Stable': np.bool_}, nrows=49)
+    STI_successes = STI_shots[(STI_shots['Series Prefix'] == 'PS') & (STI_shots['Stable'] == True)]
+    STI_successes.sort_values('Pressure [bar]', inplace=True)
+    # for i, row in STI_successes.itertuples():
+
 
     # zimakovData = np.asarray(Image.open('../rawdata/zimakov2.png'))
 
     # plt.imshow(zimakovData, 
     #     extent=(0, 16e5, 1e2, 1e4)
     #     )
-    plt.figure(figsize=(5,5))
-    plt.semilogy(ps/1e5, threshold_power(ps, Gas.Argon), 
-                 label='Zimakov et al. Model')
-    plt.semilogy(zimakovData[:,0], zimakovData[:,1], 'ob', 
+    plt.figure(figsize=(6,5))
+    plt.semilogy(ps/1e5, threshold_power(ps, Gas.Argon), '--k',
+                 label='Zimakov et al. Model', linewidth=1)
+    plt.semilogy(zimakovData[:,0], zimakovData[:,1], 'Dk', 
                  label='Zimakov et al. (2016) Data')
-    plt.semilogy(matsuiData[:,0], matsuiData[:,1], 'or', 
+    plt.semilogy(matsuiData[:,0], matsuiData[:,1], '^k', 
                  label='Matsui et al. (2019) Data')
-    plt.semilogy(luData[:,0], luData[:,1], 'o', 
+    plt.semilogy(luData[:,0], luData[:,1], 'sk', 
                  label='Lu et al. (2022) Data')
-    plt.semilogy(exp_success[:,0], exp_success[:,1], 
-                 'o', label='Successful LSP', markerfacecolor='#fff0',
-                 markeredgecolor='g')
-    plt.semilogy(exp_failure[:,0], exp_failure[:,1], 'xg', label='Failed LSP')
+    plt.semilogy(unique_pressures, success_front, 
+                 'o', label='Arc Ignition')
+    # plt.semilogy(exp_success[:,0], exp_success[:,1], 
+    #              'o', label='Successful LSP', markerfacecolor='#fff0',
+    #              markeredgecolor='g')
+    plt.semilogy(exp_failure[:,0], exp_failure[:,1], 'x', label='Failed LSP')
     plt.xlabel('Pressure $p$ [bar]')
     plt.ylabel('Laser threshold power $P_t$ [W]')
     # plt.xlim((0, 16e5))
