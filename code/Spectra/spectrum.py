@@ -31,9 +31,12 @@ class Spectrum:
             self.wavelengths = self.data[:,0]
         self.counts = self.data[:,1]
 
-    def plot(self, metadata=False):
+    def plot(self, metadata=False, semilog=False):
         fig, ax = plt.subplots()
-        ax.plot(self.wavelengths, self.counts, linewidth=0.5)
+        if semilog:
+            ax.semilogy(self.wavelengths, self.counts, linewidth=0.5)
+        else:
+            ax.plot(self.wavelengths, self.counts, linewidth=0.5)
         if metadata:
             ax.text(self.wavelengths.min(), self.counts.max(), self.rawmetadata, va='top', fontfamily='monospace', fontsize='x-small')
         ax.set_xlabel(r'Wavelength $\lambda$ [nm]')
@@ -42,8 +45,8 @@ class Spectrum:
 
 if __name__ == '__main__':
     s = Spectrum()
-    # s.loadFromOceanView('rawdata/spectra/calibration/CalibrationHalogen.txt') 
-    s.loadFromOceanView('rawdata/spectra/calibration/Mercury-Argog_Spectrum.txt') 
+    s.loadFromOceanView('rawdata/spectra/calibration/CalibrationHalogen.txt') 
+    # s.loadFromOceanView('rawdata/spectra/calibration/Mercury-Argog_Spectrum.txt') 
     # s.loadFromOceanView('rawdata/spectra/LSP52_S2_Subt2_15-13-04-066.txt') 
-    fig, ax = s.plot(metadata=True)
+    fig, ax = s.plot(metadata=True, semilog=True)
     plt.show()
