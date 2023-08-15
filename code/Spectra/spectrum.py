@@ -3,8 +3,8 @@ from numpy.polynomial import polynomial
 import matplotlib.pyplot as plt
 
 class Spectrum:
-    def __init__(self):
-        pixelcounts = np.loadtxt('rawdata/spectra/calibration/HgAr_pixel.csv', delimiter=',', skiprows=1)
+    def __init__(self, coefficients_path='rawdata/spectra/calibration/HgAr_pixel.csv'):
+        pixelcounts = np.loadtxt(coefficients_path, delimiter=',', skiprows=1)
         self.wavelength_coeffs = polynomial.polyfit(pixelcounts[:,1], pixelcounts[:,0], 3)
 
     def loadFromOceanView(self, path, calibrate=True):
@@ -45,8 +45,8 @@ class Spectrum:
 
 if __name__ == '__main__':
     s = Spectrum()
-    s.loadFromOceanView('rawdata/spectra/calibration/CalibrationHalogen.txt') 
-    # s.loadFromOceanView('rawdata/spectra/calibration/Mercury-Argog_Spectrum.txt') 
+    # s.loadFromOceanView('rawdata/spectra/calibration/CalibrationHalogen.txt') 
+    s.loadFromOceanView('rawdata/spectra/calibration/Mercury-Argog_Spectrum.txt') 
     # s.loadFromOceanView('rawdata/spectra/LSP52_S2_Subt2_15-13-04-066.txt') 
-    fig, ax = s.plot(metadata=True, semilog=True)
+    fig, ax = s.plot(metadata=True, semilog=False)
     plt.show()
