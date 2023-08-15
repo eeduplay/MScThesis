@@ -50,8 +50,14 @@ if __name__ == '__main__':
                               dtype={'Stable': np.bool_}, nrows=49)
     STI_successes = STI_shots[(STI_shots['Series Prefix'] == 'PS') & (STI_shots['Stable'] == True)]
     STI_successes.sort_values('Pressure [bar]', inplace=True)
-    # for i, row in STI_successes.itertuples():
-
+    lowest_power = 1.1
+    front_mask = []
+    for row in STI_successes.itertuples():
+        if front_mask == [] or row[5] <= lowest_power:
+            front_mask.append(True)
+            lowest_power = row[5]
+        else:
+            front_mask.append(False)
 
     # zimakovData = np.asarray(Image.open('../rawdata/zimakov2.png'))
 
@@ -69,10 +75,13 @@ if __name__ == '__main__':
                  label='Lu et al. (2022) Data')
     plt.semilogy(unique_pressures, success_front, 
                  'o', label='Arc Ignition')
+    plt.semilogy(STI_successes[front_mask]['Pressure [bar]'], 
+                 STI_successes[front_mask]['Laser Setpoint']*3000, 
+                 '-o', label='Wire Ignition', linewidth=1)
     # plt.semilogy(exp_success[:,0], exp_success[:,1], 
     #              'o', label='Successful LSP', markerfacecolor='#fff0',
     #              markeredgecolor='g')
-    plt.semilogy(exp_failure[:,0], exp_failure[:,1], 'x', label='Failed LSP')
+    # plt.semilogy(exp_failure[:,0], exp_failure[:,1], 'x', label='Failed LSP')
     plt.xlabel('Pressure $p$ [bar]')
     plt.ylabel('Laser threshold power $P_t$ [W]')
     # plt.xlim((0, 16e5))
