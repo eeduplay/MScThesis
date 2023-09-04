@@ -108,6 +108,8 @@
     {   \sffamily
         \thispagestyle{empty}
         \vspace*{\fill}
+        Text width: \the\textwidth  % DELETE THIS LINE BEFORE SUBMITTING
+
         The code used for this project (including the \LaTeX\hspace{0.67ex}source) is available on \\ \url{https://github.com/eeduplay/MScThesis}
 
         The author can be contacted by email at \href{mailto:emmanuel.duplay@gmail.com}{emmanuel.duplay@gmail.com}
@@ -154,14 +156,24 @@
     \newpage
 
     \appendix
+    \newcommand{\footeronly}{\thispagestyle{fancy}\markboth{}{}}
     \chapter{YLR-300/3000-QCW-MM-AC calibration report}
-    \label{chp:app_YLR}
-        \includepdf[pages=-, pagecommand={\thispagestyle{fancy}\markboth{}{}}]{assets/appendices/IPGLaser300-3000_calib.pdf}
+        \label{chp:app_YLR}
+        \includepdf[pages=-, pagecommand={\footeronly}]{assets/appendices/IPGLaser300-3000_calib.pdf}
     \chapter{P30 collimator calibration report}
-    \label{chp:app_Collimator}
-        \includepdf[pages=-, pagecommand={\thispagestyle{fancy}\markboth{}{}}]{assets/appendices/D30_Collimator_calib.pdf}
+        \label{chp:app_Collimator}
+        \includepdf[pages=-, pagecommand={\footeronly}]{assets/appendices/D30_Collimator_calib.pdf}
     \chapter{Cavitation apparatus drawings}
         These drawings were drafted by John Kokkalis at McGill University, reproduced here with his permission. Though the apparatus represented here was not the iteration used in his final work, the final iteration of this system can be found in his Master's thesis~\cite{kokkalisOnsetCavitationDynamically2023}.
         \label{chp:app_CavitatorDrawings}
-            \includepdf[pages=-, landscape=true]{assets/appendices/FULL_DRAWINGS_V4.pdf}
+        \includepdf[pages=-, landscape=true, pagecommand={\thispagestyle{fancy}}]{assets/appendices/FULL_DRAWINGS_V4.pdf}
+    \chapter{Laser window mount drawings}
+        \label{chp:app_lwmDrawings}
+        \includepdf[pages=-, landscape=true, pagecommand={\thispagestyle{fancy}}]{assets/appendices/LWM_allDrawings.pdf}
+    \chapter{Instrumentation datasheets and calibration reports}
+        \label{chp:app_calibration}
+        \includepdf[pages={1}, pagecommand={\thispagestyle{fancy}}\label{ds:laserPM}]{assets/appendices/Gentec-EO_UP55N_PowerMeter_Calibration.pdf}
+        \includepdf[pages={2}, pagecommand={\thispagestyle{fancy}}]{assets/appendices/Gentec-EO_UP55N_PowerMeter_Calibration.pdf}
+        \includepdf[pages=-, pagecommand={\thispagestyle{fancy}}\label{ds:pcbPressure}]{assets/appendices/Calibration-Certificate_113B28-LW41871.pdf}
+
 \end{document}

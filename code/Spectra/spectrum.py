@@ -63,6 +63,8 @@ class Spectrum:
         self.trimL = trimL
         self.trimR = trimR
         self.wavelength_calibrated = calibrate
+        self.resolution = (self.wavelengths[-1] - self.wavelengths[0]) / \
+            (self.wavelengths.size - 1)  #  nm/px, spectral resolution
 
     def calibrate_irradiance(self, temperature, ref_spectrum_path, 
                              ref_dark_spectrum_path, dark_spectrum_path=None):
@@ -91,7 +93,7 @@ class Spectrum:
             DL_exp = dark_spectrum.counts()
         else:
             DL_exp = np.zeros_like(self.counts)
-        irradiance_coeffs = N*planck(self.wavelengths, temperature) / \
+        irradiance_coeffs = N*planck(self.wavelengths*1e-9, temperature) / \
                             (ref_spectrum.counts - ref_dark_spectrum.counts)
         self.counts = irradiance_coeffs*(self.counts-DL_exp)
                 
@@ -111,9 +113,20 @@ class Spectrum:
         return fig, ax
 
 if __name__ == '__main__':
-    # s = Spectrum('rawdata/spectra/calibration/CalibrationHalogen.txt') 
+    # s = Spectrum('rawdata/spectra/calibration/Halogen_Light.txt', trimL=5) 
     # s = Spectrum('rawdata/spectra/calibration/Mercury-Argog_Spectrum.txt') 
-    s = Spectrum('rawdata/spectra/LSP52_S2_Subt2_15-13-04-066.txt', 
-                        trimL=1) 
+    s = Spectrum('rawdata/spectra/LSP50_X7_Subt2_11-36-52-543.txt', trimL=48, trimR=600)
+    s.calibrate_irradiance(2800, 
+                           'rawdata/spectra/calibration/Halogen_Light.txt',
+                           'rawdata/spectra/calibration/Halogen_Dark.txt') 
     fig, ax = s.plot(metadata=True, semilog=False)
+    print('Resolution: {:.3f} nm'.format(s.resolution))
+    # planck2800 = planck(s.wavelengths*1e-9, 2800)
+    # planck4800 = planck(s.wavelengths*1e-9, 4800)
+    # plt.plot(s.wavelengths, s.counts/np.max(s.counts), label='HL-2000')
+    # plt.plot(s.wavelengths, planck2800/np.max(planck2800), label='Black body 2800 K')
+    # plt.plot(s.wavelengths, planck4800/np.max(planck4800), label='Black body 4800 K')
+    # plt.legend()
+    # plt.xlabel(r'Wavelength $\lambda$ [nm]')
+    # plt.ylabel(r'Relative Irradiance [-]')
     plt.show()
