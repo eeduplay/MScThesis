@@ -37,27 +37,33 @@ with os.scandir(DATA_DIR) as it:
 if CSV_OUT:
     compiledData.to_csv(PROC_DIR+'/CW_power.csv', index_label='Sample (6 Hz)')
 
-plt.figure()
+plt.figure(figsize=(2.5,3))
 for series in compiledData.columns:
     if compiledData[series].max() < 0.5:
         continue
-    plt.plot(compiledData.index/SAMPLE_RATE, 
+    if series in ['27.0', '33.3']:
+        plt.plot(compiledData.index/SAMPLE_RATE, 
              compiledData[series]/compiledData[series].max(), 
              label=series+' %')
 plt.xlabel('Time [s]')
 plt.ylabel('Relative power [-]')
 plt.legend()
-plt.show()
+plt.tight_layout()
+plt.savefig('report/assets/3 design/cw_power_time.pdf')
 
 setpoints = compiledData.columns.to_numpy(dtype='float')
 maximums = compiledData.max().to_numpy()
 affineFunc = lambda x, a, b: a*x+b
 popt, pcov = sciopt.curve_fit(affineFunc, setpoints[5:], maximums[5:])
 xproj = np.linspace(25, 100, 20)
-plt.figure()
-plt.plot(xproj, affineFunc(xproj, popt[0], popt[1]), '--', linewidth=0.5)
-plt.plot(setpoints, maximums, 'b.')
-plt.text(30, 200, '$P = {:.3f}{}{:+.3f}$'.format(popt[0], r'n_\mathrm{sp}', popt[1]))
+plt.figure(figsize=(3.3, 3))
+plt.plot(xproj, affineFunc(xproj, popt[0], popt[1]), '--')
+plt.plot(setpoints, maximums, '.', color='#00A6D6', markersize=2)
+plt.plot(setpoints, maximums, 'o', mec='#00A6D6', mfc=(0,0,0,0))
+plt.text(30, 100, '$P = {:.3f}{}{:+.3f}$'.format(popt[0], r'n_\mathrm{sp}', popt[1]),
+         rotation=45)
 plt.xlabel('Power Setpoint $n_\mathrm{sp}$ [%]')
 plt.ylabel('Measured Maximum CW Power $P$ [W]')
+plt.tight_layout()
+plt.savefig('report/assets/3 design/cw_power_setpoint.pdf')
 plt.show()

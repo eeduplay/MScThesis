@@ -57,6 +57,7 @@
                     \caption{IPG Photonics YLR-300/3000-QCW-MM-AC Laser}
                     \label{fig:laser_laser}
                 \end{subfigure}
+                \hfill
                 \begin{subfigure}[t]{0.35\textwidth}
                     \centering
                     \includegraphics[height=2.6in]{assets/3 design/collimator_r.jpg}
@@ -134,7 +135,7 @@
                 \end{tabular}
             \end{table}
 
-            Coincidentally, \textcite{kokkalisOnsetCavitationDynamically2023} at the neighboring McGill Fluid Dynamics Lab was undertaking research into cavitation effects within piston-cylinder assemblies. His apparatus included cylindrical sections designed to withstand high dynamic pressures encountered in their experiments, and featured windows or transparent walls to track the onset of cavitation with high-speed cameras. The design was modular, allowing the installation of various endcaps with different functions. This theoretically fulfilled requirements LTTLM\nobreakdash-2 to LTTLM\nobreakdash-4. One particular test section (pictured in \autoref{fig:cavitation}, detailed drawings can be found in \autoref{chp:app_CavitatorDrawings}) had been fabricated with a set of instrumentation ports and polycarbonate windows spanning the length of the cylinder. This test section had been tested in a few experiments but was found to be inadequate, as gaps around the ports and windows were sources of parasitic cavitation.
+            Coincidentally, \textcite{kokkalisOnsetCavitationDynamically2023} at the neighboring McGill Fluid Dynamics Lab (FDL) was undertaking research into cavitation effects within piston-cylinder assemblies. His apparatus included cylindrical sections designed to withstand high dynamic pressures encountered in their experiments, and featured windows or transparent walls to track the onset of cavitation with high-speed cameras. The design was modular, allowing the installation of various endcaps with different functions. This theoretically fulfilled requirements LTTLM\nobreakdash-2 to LTTLM\nobreakdash-4. One particular test section (pictured in \autoref{fig:cavitation}, detailed drawings can be found in \autoref{chp:app_CavitatorDrawings}) had been fabricated with a set of instrumentation ports and polycarbonate windows spanning the length of the cylinder. This test section had been tested in a few experiments but was found to be inadequate, as gaps around the ports and windows were sources of parasitic cavitation.
 
             \begin{figure}[h]
                 \centering
@@ -144,6 +145,7 @@
                     \caption{Assembly schematic}
                     \label{fig:cavitation_schematic}
                 \end{subfigure}
+                \hfill
                 \begin{subfigure}[t]{0.49\textwidth}
                     \centering
                     \includegraphics[width=\textwidth]{assets/3 design/cavitationSection.jpg}
@@ -205,6 +207,7 @@
                     \caption{O-ring installed and mounted on optical post}
                     \label{fig:windowMount_empty}
                 \end{subfigure}
+                \hfill
                 \begin{subfigure}[t]{0.48\textwidth}
                     \centering
                     \includegraphics[width=\textwidth]{assets/3 design/windowMount_installed.jpg}
@@ -262,6 +265,7 @@
                     \caption{Required voltage to arc across electrodes}
                     \label{fig:paschenPressure}
                 \end{subfigure}
+                \hfill
                 \begin{subfigure}[t]{0.47\textwidth}
                     \centering
                     \includegraphics[width=\textwidth]{assets/3 design/sparkTests_final.pdf}
@@ -285,7 +289,112 @@
 
 
     \section{Integration and test}
+        As part of the design process and the progressive integration of all the experimental apparatus, a series of tests were performed on various components of the experiment. This was done to verify each component performed as expected and to a degree deemed sufficient for the experiment.
+        
         \subsection{Pressure testing}
+            One of the first concerns regarding the test section acquired from the FDL was whether it could sustain 20~bar of internal pressure, and whether it could maintain this pressure with minimal leakage. Before taking possession of the test section, the FDL demonstrated that it could sustain the necessary \qty{20}{bar} of pressure without failing, and had an average leak rate of \qty{0.04}{bar/min} when pressurized with \qty{11}{bar} of Nitrogen, or a 1.8~\% pressure drop over 5 minutes. To determine whether these promising results would be applicable to Argon, the leak rates $L$ of two different gases in the same system and conditions can be related by \autoref{eq:leakrates} (\textcite{greenhouseHermeticityElectronicPackages2012}):
+            \begin{equation}
+                \frac{L_\mathrm{Ar}}{L_{\mathrm{N}_2}} = \sqrt{\frac{\mathcal{M}_{\mathrm{N}_2}}{\mathcal{M}_\mathrm{Ar}}}
+                \label{eq:leakrates}
+            \end{equation}
+            Where the leak rate $L$ is expressed as the product of a volume and pressure loss rate, e.g. \unit{Pa.m^3/s}. Evaluating \autoref{eq:leakrates} with the properties of Argon and Nitrogen shows that the test section is expected to leak 16.3~\% slower when filled with Argon. This provided the confidence needed to move forward with repurposing the FDL's cavitation test section into an LSP generator.
+            
+            An acceptable leak rate was determined based on the expected time needed to complete an experimental trial after pressurizing the test section. This time is needed to perform laser safety procedures (closing laser curtains, turning on a laser warning light, etc.), power on the laser, check that instrumentation is ready, and more. This was estimated to take 5~minutes, and a 1~\% loss in test section pressure was deemed acceptable within that time frame.
+
+            \autoref{fig:pressureTest_og} shows the results of pressure testing the test section as received from the FDL, i.e., fitted with polycarbonate/acrylic side windows, and with the ends sealed with blank endcaps. This was necessary to confirm that similar leak rates could be achieved with Argon compared to the Nitrogen test, and to serve as a comparison basis once new windows would be integrated in the test section. As seen in \autoref{tab:pressureTests_og} a series of tests were performed at varying Argon pressures, with attempts made to minimize leaks. Pressure measurements were read off a digital pressure gauge at 1 minute intervals. Only minor adjustments to the test section fittings were needed to bring the leak rate below the acceptable threshold of 1~\% over 5 minutes. 
+
+            \begin{figure}[h]
+                \centering
+                \begin{subfigure}[t]{0.47\textwidth}
+                    \centering
+                    \includegraphics[width=\textwidth]{assets/3 design/pressureTest_original.pdf}
+                    \caption{As received from the FDL, see \autoref{tab:pressureTests_og} for details}
+                    \label{fig:pressureTest_og}
+                \end{subfigure}
+                \hfill
+                \begin{subfigure}[t]{0.47\textwidth}
+                    \centering
+                    \includegraphics[width=\textwidth]{assets/3 design/pressureTest_newWindows.pdf}
+                    \caption{With new laser windows and side windows}
+                    \label{fig:pressureTest_final}
+                \end{subfigure}
+                \caption{Pressure leak tests on the test section}
+                \label{fig:pressureTest}
+            \end{figure}
+
+            \begin{table}[h]
+                \centering
+                \caption[Pressure leak tests on test section]{Pressure leak tests on test section received from the FDL. $p_0$ is the initial pressure, $\overline{dp/dt}$ is the average leak rate, $\Delta p/p_0$ is the relative pressure loss after a specified time.}
+                \label{tab:pressureTests_og}
+                \begin{tabular}{lrrrl}
+                    \toprule
+                    \textbf{Test \#}  & \textbf{$p_0$ [bar]}  & \textbf{$\overline{dp/dt}$ [bar/min]}   & \textbf{$\Delta p/p_0$ (5~min)} & \textbf{Comments} \\
+                    \midrule
+                    1   & 3.01  & 0.0138    & 2.3~\%    &   \\
+                    2   & 6.92  & 0.1007    & 7.3~\%    &   \\
+                    3   & 7.25  & 0.0855    & 5.9~\%    & Tightened plug \#2  \\
+                    4   & 6.95  & 0.0097    & 0.7~\%    & Replaced vent valve  \\
+                    5   & 11.24 & 0.0165    & 0.7~\%    &   \\
+                    \bottomrule
+                \end{tabular}
+            \end{table}
+
+            Once the laser windows and UVFS windows were installed, another pressure test was performed to qualify the facility for experimentation. \autoref{fig:pressureTest_final} shows the result of this test, done at an initial pressure of \qty{19.6}{bar}. The test section leaked at an average rate of \qty{0.012}{bar/min}, resulting in a relative pressure loss of 0.3~\% after 5 minutes, well within the acceptable rate. The improved leak rate is thought to be due partially to the use of UVFS windows: their smoother surface finish may have provided a better seal, and their susceptibility to fracture meant that careful tightening of the window clamp was required. This was performed with a torque wrench, tightening each bolt of the clamp to \qty{5}{N.m}, following a sequence used for bolting automotive engine cylinder heads
+            % , illustrated in \autoref{fig:windowBoltPattern}
+            . In addition to preventing window fracture, this evenly distributed the clamping load, minimizing the chances of a leak path forming between the window and the gasket.
+
+            % \begin{figure}[h]
+            %     \centering
+            %     \includegraphics[height=1.29in]{assets/3 design/boltpattern.png}
+            %     \caption{Window clamp bolt torquing pattern~\cite{adminArtBoltTightening2011}}
+            %     \label{fig:windowBoltPattern}
+            % \end{figure}
+
         \subsection{Laser power tests}
+            Laser power and optical power loss tests were necessary to understand the limitations of the laser system and determine the losses induced by the optics in the experiment.
+
+            The YLR-300/3000 laser provides control over the laser power as a setpoint percentage. Early laser tests showed that there was a minimum threshold setpoint under which the laser would not function. Such a phenomenon is implied by the calibration report, but is not explicitly documented. As the primary method to control power is through this setpoint percentage system, calibration was required to determine the true useful CW and pulsed power range. To do so, the laser was set up to point directly at the Gentec power meter, and turned on over a range of power setpoints. The incident power on the power meter was then recorded.
+
+            The result of this first test run are shown in \autoref{fig:cw_tests}. The power setpoint threshold was found to be at approximately 27~\%. This was the point at which a significant signal was detected on the Gentec power meter. The power stability at that threshold is poor when compared to a higher setpoint, as seen in \autoref{fig:cw_tests_time}, and the output power at that setpoint deviates from the otherwise closely linear relationship between setpoint percentage and output power, seen in \autoref{fig:cw_tests_setpoint}. In addition, the maximum CW power appears to significantly exceed the nominal average power rating of the laser, at \qty{350}{W} instead of \qty{300}{W}. Considering these results, the effective operating range (where the power is stable and in the linear range) of the laser in CW mode was deemed to be between 30 and 100~\%. A linear fit of the data (for $n_\mathrm{sp} \geq 30$~\%) was made to accurately convert a given setpoint $n_\mathrm{sp}$ to an output power $P$, with the resulting affine function printed on \autoref{fig:cw_tests_setpoint}.
+
+            \begin{figure}[h]
+                \centering
+                \begin{subfigure}[t]{2.5in}
+                    \centering
+                    \includegraphics[width=\textwidth]{assets/3 design/cw_power_time.pdf}
+                    \caption{Power stability: the decrease in power seen after the initial peak is due to the power meter's rise time compensation (``anticipation'') feature. This did not affect the calibration results as the steady state measurement was used.}
+                    \label{fig:cw_tests_time}
+                \end{subfigure}
+                \hfill
+                \begin{subfigure}[t]{3.1in}
+                    \centering
+                    \includegraphics[width=\textwidth]{assets/3 design/cw_power_setpoint.pdf}
+                    \caption{Setpoint percentage to power relation. Blue markers represent experimental tests, the dashed line is a linear fit for the data, excluding points below 30~\% of setpoint power.}
+                    \label{fig:cw_tests_setpoint}
+                \end{subfigure}
+                \caption{CW power test results}
+                \label{fig:cw_tests}
+            \end{figure}
+
+            In the pulsed power regime, similar tests were performed, but found a practically linear relationship. Furthermore, pulsed mode could be controlled with IPG's PulseShaper software, which used calibration settings saved on the laser itself to accurately determine the pulse power/energy. The maximum pulse energy (100~\% for \qty{10}{ms}) was \qty{30.8}{J}.
+
+            \subsubsection*{Optical power losses}
+                As mentioned in \autoref{sec:design_lwm}, power losses through the focusing optics were expected and tolerated as long as they could be measured and accounted for. The power losses in the system can be characterized by \autoref{eq:powerLosses}:
+                \begin{equation}
+                    P_\mathrm{m} = P(1-\ell_\mathrm{l})(1-\ell_\mathrm{w})(1-\alpha_\mathrm{LSP})(1-\ell_\mathrm{other})(1-\ell_\mathrm{w})
+                    \label{eq:powerLosses}
+                \end{equation}
+                Where $P$ is the laser power exiting the collimator, $\ell_\mathrm{l}$ is the loss due to the lens, $\ell_\mathrm{w}$ is the loss due to a laser window, $\ell_\mathrm{other}$ are losses due parts of the test section interior blocking the beam, and $P_\mathrm{m}$ is the measured power at the power meter. The power absorbed by the LSP is also included as $\alpha_\mathrm{LSP}$, and must be determined during experiment. These losses are illustrated in \autoref{fig:sankeyOptics}. If $(1-\ell_\mathrm{l})(1-\ell_\mathrm{w})$ and $(1-\ell_\mathrm{other})(1-\ell_\mathrm{w})$ can be determined separately (though with no need to determine the individual losses due to each component), then they can be accounted for to calculate an accurate value for $\alpha_\mathrm{LSP}$.
+
+                \begin{figure}[h]
+                    \centering
+                    \includegraphics[]{assets/3 design/sankeyOptics.pdf}
+                    \caption[Laser power losses throughout the test section]{Laser power losses throughout the test section. Sankey diagram is qualitative.}
+                    \label{fig:sankeyOptics}
+                \end{figure}
+
+                To determine these losses, the laser was programmed to output \qty{100}{W} of CW power. Incident power was measured by the Gentec power meters with no optics. Then, the focusing lens and one laser window were placed in the beam path between the laser collimator and the Gentec power meter. The incident power in both cases was measured for 30~s once the power meter's signal reached steady-state (after 60~s). A similar procedure was performed with the entire test section to determine overall losses. 
+                
+
         \subsection{System integration}
         \subsection{Preliminary ignition experiments} \label{sec:design_ignitiontest}
