@@ -393,8 +393,62 @@
                     \label{fig:sankeyOptics}
                 \end{figure}
 
-                To determine these losses, the laser was programmed to output \qty{100}{W} of CW power. Incident power was measured by the Gentec power meters with no optics. Then, the focusing lens and one laser window were placed in the beam path between the laser collimator and the Gentec power meter. The incident power in both cases was measured for 30~s once the power meter's signal reached steady-state (after 60~s). A similar procedure was performed with the entire test section to determine overall losses. 
+                To determine these losses, the laser was programmed to output \qty{100}{W} of CW power. Incident power was measured by the Gentec power meter with no optics. Then, the focusing lens and one laser window were placed in the beam path between the laser collimator and the Gentec power meter. The incident power in both cases was measured for 30~s once the power meter's signal reached steady-state (after 60~s). This allows the measurement of $(1-\ell_\mathrm{l})(1-\ell_\mathrm{w})$. A similar procedure was followed to determine $(1-\ell_\mathrm{l})(1-\ell_\mathrm{w})(1-\ell_\mathrm{other})(1-\ell_\mathrm{w})$, by placing the focus lens and the entire test section in the laser beam path. The results of both tests are summarized in \autoref{tab:opticalLoss}.
+
+                \begin{table}[h]
+                    \centering
+                    \caption{Optical power loss test summary}
+                    \label{tab:opticalLoss}
+                    \begin{tabular}{lrrrr}
+                        \toprule
+                        \textbf{Test}        & \textbf{$P$ [W]}   & \textbf{$P_\mathrm{m}$ [W]}    & \textbf{$P-P_\mathrm{m}$ [W]}  & \textbf{$1-P_\mathrm{m}/P$ [-]} \\
+                        \midrule
+                        Front optics    & 100.19    & 99.60 & 0.587  & 0.586 \% \\
+                        Full test section    & 100.92    & 95.32 & 5.602  & 5.551 \% \\
+                        \bottomrule
+                    \end{tabular}
+                \end{table}
+
+                These results can be used to compute the loss terms as follows:
+
+                \begin{gather*}
+                    (1-\ell_\mathrm{l})(1-\ell_\mathrm{w}) = \frac{P_\mathrm{m}}{P} = \frac{99.60}{100.19} = 0.99414 \\
+                    (1-\ell_\mathrm{other})(1-\ell_\mathrm{w}) = \frac{P_\mathrm{m}}{P}\frac{1}{(1-\ell_\mathrm{l})(1-\ell_\mathrm{w})} = \frac{95.32}{100.92}\frac{1}{0.99414} = 0.95008
+                \end{gather*}
                 
+                The much greater losses at the exit of the test sections are likely due to the laser beam being reflected or otherwise blocked by parts of the test section itself. This is an issue at the exit rather than at the laser inlet, as the diverging beam makes it more difficult to entirely avoid reflections. However, as these losses are quantified, they can be compensated for during experiments.
 
         \subsection{System integration}
+                Once the necessary parts were manufactured, installed, and tested, the experimental apparatus could be integrated together. As the laser pulse duration was short, precise timing and triggering was needed to ensure the necessary conditions for LSP formation, and integration work focused on connecting instrumentation, ignition systems, and the laser such that an entire experimental trial would automatically run with a single trigger. Laser tests and spark tests showed that the laser pulse would begin \qty{2}{ms} after receiving an EMISSION START signal, while the spark would occur at the end of a gate signal which could be controlled to be between \qtyrange{3}{9}{ms}. The experiment was then planned to occur as summarized in \autoref{tab:expTimeline}. This information can also be found in a graphical form in \autoref{fig:timings}, with indications on which triggering signals are active and what they trigger.
+
+                \begin{table}[h]
+                    \renewcommand{\arraystretch}{1.3}
+                    \centering
+                    \caption{Timeline of one experimental run}
+                    \label{tab:expTimeline}
+                    \begin{tabularx}{\textwidth}{rX}
+                        \toprule
+                        \textbf{Time [ms]}   & \textbf{Event} \\
+                        \midrule
+                        0.0         & Experiment is triggered manually. High speed camera begins recording. Spark igniter gate signal is opened to charge it. \\
+                        6.0         & EMISSION START signal is sent to laser. Oscilloscope begins recording pressure transducer signal. \\
+                        8.0         & Laser pulse begins.    \\
+                        9.0         & Spark igniter gate signal closes, spark begins. LSP should begin forming. \\
+                        10.0        & Spark should have ended. LSP continues growing.   \\
+                        11.0        & Spectrometer begins capturing radiation.  \\
+                        15.0        & Spectrometer stops capturing radiation.   \\
+                        18.0        & Laser pulse ends, LSP dissipates. \\
+                        \bottomrule
+                    \end{tabularx}
+                \end{table}
+
+                A series of digital delay generators were used to achieve the timings listed shown in \autoref{tab:expTimeline}. These devices use coaxial cables terminated with BNC connectors as inputs/outputs and provide easy adjustment of timings down to sub-\unit{\us} precision, making them ideal to tweak the triggering sequence as the experiment was modified.
+
+                \begin{figure}[h]
+                    \centering
+                    \includegraphics[]{assets/3 design/timings.pdf}
+                    \caption[Signal timing diagram of an experimental run]{Signal timing diagram of an experimental run. Triggering signals are prefixed with \texttt{trig\_}, all lines indicate whether a component is active (high) or inactive (low).}
+                    \label{fig:timings}
+                \end{figure}
+
         \subsection{Preliminary ignition experiments} \label{sec:design_ignitiontest}
