@@ -23,6 +23,7 @@
 \usepackage{multicol}
 \usepackage{multirow}
 \usepackage{pdfpages}
+\usepackage{pdflscape}
 \usepackage{graphicx}
 \usepackage{tabularx}
 % \usepackage{expl3}
@@ -75,6 +76,8 @@
 \renewcommand{\chapterautorefname}{Chapter}
 \renewcommand{\sectionautorefname}{Section}
 
+\newcommand{\shotsettings}[4]{\texttt{#1}: #2~ms, \textit{f}/#3, ND#4}
+
 \fancypagestyle{fancy}{
     \fancyhf{}
     \fancyhfinit{\sffamily}
@@ -108,7 +111,8 @@
     {   \sffamily
         \thispagestyle{empty}
         \vspace*{\fill}
-        Text width: \the\textwidth  % DELETE THIS LINE BEFORE SUBMITTING
+        Text width: \the\textwidth  \\ % DELETE THIS LINE BEFORE SUBMITTING
+        Text height: \the\textheight  % DELETE THIS LINE BEFORE SUBMITTING
 
         The code used for this project (including the \LaTeX\hspace{0.67ex}source) is available on \\ \url{https://github.com/eeduplay/MScThesis}
 
@@ -170,10 +174,11 @@
     \chapter{Laser window mount drawings}
         \label{chp:app_lwmDrawings}
         \includepdf[pages=-, landscape=true, pagecommand={\thispagestyle{fancy}}]{assets/appendices/LWM_allDrawings.pdf}
+        \includepdf[landscape=true, pagecommand={\thispagestyle{fancy}\label{chp:app_optics}}]{assets/appendices/optics_diagram.pdf}
     \chapter{Instrumentation datasheets and calibration reports}
         \label{chp:app_calibration}
-        \includepdf[pages={1}, pagecommand={\thispagestyle{fancy}}\label{ds:laserPM}]{assets/appendices/Gentec-EO_UP55N_PowerMeter_Calibration.pdf}
+        \includepdf[pages={1}, pagecommand={\thispagestyle{fancy}\label{ds:laserPM}}]{assets/appendices/Gentec-EO_UP55N_PowerMeter_Calibration.pdf}
         \includepdf[pages={2}, pagecommand={\thispagestyle{fancy}}]{assets/appendices/Gentec-EO_UP55N_PowerMeter_Calibration.pdf}
-        \includepdf[pages=-, pagecommand={\thispagestyle{fancy}}\label{ds:pcbPressure}]{assets/appendices/Calibration-Certificate_113B28-LW41871.pdf}
+        \includepdf[pages=-, pagecommand={\thispagestyle{fancy}\label{ds:pcbPressure}}]{assets/appendices/Calibration-Certificate_113B28-LW41871.pdf}
 
 \end{document}

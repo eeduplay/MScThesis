@@ -64,7 +64,7 @@ if __name__ == '__main__':
     # plt.imshow(zimakovData, 
     #     extent=(0, 16e5, 1e2, 1e4)
     #     )
-    plt.figure(figsize=(6,5))
+    plt.figure(figsize=(5.8,5))
     plt.semilogy(ps/1e5, threshold_power(ps, Gas.Argon), '--k',
                  label='Zimakov et al. Model', linewidth=1)
     plt.semilogy(zimakovData[:,0], zimakovData[:,1], 'Dk', 
@@ -92,4 +92,5 @@ if __name__ == '__main__':
     convertAxis('x', (bar2psi, psi2bar), 'Pressure $p$ [psi]')
     plt.legend()
     plt.grid(which='both')
+    plt.savefig('report/assets/5 results/powerthreshold.pdf')
     plt.show()

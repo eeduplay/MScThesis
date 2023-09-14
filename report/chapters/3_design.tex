@@ -22,7 +22,7 @@
         \begin{figure}[h]
             \centering
             \includegraphics[]{assets/3 design/experiment_diagram.pdf}
-            \caption{LTP Experiment subsystems}
+            \caption[LTP Experiment subsystems]{LTP Experiment subsystems. The field of view of the high-speed camera is shown in dotted lines. Any snapshots from the camera shown in this report will be from this region.}
             \label{fig:exp_subsys}
         \end{figure}
 
@@ -422,7 +422,7 @@
                 Once the necessary parts were manufactured, installed, and tested, the experimental apparatus could be integrated together. As the laser pulse duration was short, precise timing and triggering was needed to ensure the necessary conditions for LSP formation, and integration work focused on connecting instrumentation, ignition systems, and the laser such that an entire experimental trial would automatically run with a single trigger. Laser tests and spark tests showed that the laser pulse would begin \qty{2}{ms} after receiving an EMISSION START signal, while the spark would occur at the end of a gate signal which could be controlled to be between \qtyrange{3}{9}{ms}. The experiment was then planned to occur as summarized in \autoref{tab:expTimeline}. This information can also be found in a graphical form in \autoref{fig:timings}, with indications on which triggering signals are active and what they trigger.
 
                 \begin{table}[h]
-                    \renewcommand{\arraystretch}{1.3}
+                    % \renewcommand{\arraystretch}{1.3}
                     \centering
                     \caption{Timeline of one experimental run}
                     \label{tab:expTimeline}
@@ -441,14 +441,74 @@
                         \bottomrule
                     \end{tabularx}
                 \end{table}
-
-                A series of digital delay generators were used to achieve the timings listed shown in \autoref{tab:expTimeline}. These devices use coaxial cables terminated with BNC connectors as inputs/outputs and provide easy adjustment of timings down to sub-\unit{\us} precision, making them ideal to tweak the triggering sequence as the experiment was modified.
-
+                
                 \begin{figure}[h]
                     \centering
                     \includegraphics[]{assets/3 design/timings.pdf}
-                    \caption[Signal timing diagram of an experimental run]{Signal timing diagram of an experimental run. Triggering signals are prefixed with \texttt{trig\_}, all lines indicate whether a component is active (high) or inactive (low).}
+                    \caption[Signal timing diagram of an experimental run]{Signal timing diagram of an experimental run. Triggering signals are prefixed with \texttt{trig\_}, all lines indicate whether a component is active (high) or inactive (low). Consult \autoref{tab:expTimeline} for additional details.}
                     \label{fig:timings}
                 \end{figure}
+                
+                \begin{wrapfigure}{R}{151pt}
+                    \centering
+                    \includegraphics{assets/3 design/setupPhoto_control.pdf}
+                    \caption{Experiment control station}
+                    \label{fig:setupPhoto_controls}
+                \end{wrapfigure}
+
+                \paragraph{Experiment control} A series of digital delay generators, seen in \autoref{fig:setupPhoto_controls}, was used to achieve the timings listed shown in \autoref{tab:expTimeline}. These devices use coaxial cables terminated with BNC connectors as inputs/outputs and provide easy adjustment of timings down to sub-\unit{\us} precision, making them ideal to tweak the triggering sequence as the experiment was modified.
+
+                The laser, triggering systems, computer for data acquisition and camera control, and an oscilloscope were mounted on a 19-inch rack, allowing a single operator to run an experiment from the same location. This capability was critical, as the experiment area was contained by laser curtains to protect lab personnel. The oscilloscope was a useful tool to troubleshoot communication between delay generators and other devices, and to monitor the state of the laser at all times.
+
+                \paragraph{Optics} Control over the laser focus was critical to reliably ignite LSP, avoid losing laser power before it reached the power meter, and avoid specular reflections that could damage instrumentation. Several focusing lenses were purchased of varying focal lengths, though all experiments were performed with a \qty{200}{mm} N-BK7 lens. The longer focal length, though not ideal for LSP stability as discussed in \autoref{sec:background_exp}, made it easier to ensure the entire beam would be allowed through the exit window into the power meter, since the beam divergence was smaller. A diagram showing relevant dimensions for optical alignment can be seen in \autoref{chp:app_lwmDrawings}, page \pageref*{chp:app_optics}. The lens was mounted on a set of leadscrew-operated optical stages, allowing precision adjustments to the lens position with 3 degrees of freedom.
+
+                \paragraph{Feed system} Argon gas was provided from a gas cylinder, fitted with a high-pressure regulator, a manual metering valve, and a solenoid valve. Argon was delivered to the test section through 1/4-inch tubing. A second manual metering valve was fitted on the tubing to allow venting of the test section. An Omega digital pressure gauge provided a static pressure reading of the test section.
+
+                The experiment area (contained within laser curtains) is pictured in \autoref{fig:setupPhoto}.
+
+                \begin{landscape}
+                    \begin{figure}[h]
+                        \centering
+                        \includegraphics[]{assets/3 design/setupPhoto.pdf}
+                        \caption[Experimental setup photograph for flowing tests]{Experimental setup photograph for flowing tests. Spark igniter is not present as this used wire ignition.}
+                        \label{fig:setupPhoto}
+                    \end{figure}
+                \end{landscape}
 
         \subsection{Preliminary ignition experiments} \label{sec:design_ignitiontest}
+            Once the necessary components of the experiment were integrated, a preliminary testing campaign began to attempt to ignite LSP. The hope was to resolve any unforeseen practical issues, then quickly move on to replicating the power threshold experiments of past LSP literature~\cite{zimakovInteractionNearIRLaser2016,matsuiGeneratingConditionsArgon2019,luCharacteristicDiagnosticsLaserStabilized2022}. The test campaign aimed to answer two questions:
+            \begin{itemize}
+                \item Can LSP be achieved with this experimental setup at all?
+                \item How reliable is LSP ignition with this system?
+            \end{itemize}
+            To answer this, experimental trials would be run in conditions most favorable to steady LSP formation, i.e. at maximum laser power and maximum test section pressure: \qty{3}{kW} and \qty{20}{bar}. Successful ignition would be determined based on two independent measures:
+            \begin{enumerate}
+                \item The high-speed camera should be able to image the LSP growing and propagating towards the laser source over the course of the laser pulse, as consistently documented in LSP literature.
+                \item A measurable drop in laser energy reaching the Gentec power meter should be observed.
+            \end{enumerate}
+            LSP would only be deemed to have successfully ignited if the expected behavior was observed with both instruments.
+
+            Laser alignment was immediately found to be a non-trivial problem. In order to successfully ignite the LSP, the laser must be focused onto the arc generated by the spark igniter. To maximize the chance of ignition, the laser flux at the arc must be as high as possible, so the focused laser dot must be as small as possible. This makes alignment tolerances much stricter, as the laser is less likely to be incident on the thin arc at all.
+
+            Compounding this issue was the fact that the path taken by the arc between both electrode tips was no consistent. As seen in \autoref{fig:sparkAlignment}, the location of the arc was highly variable: though an average arc path could be determined, the arc could form up to \qty{1}{mm} away. This made it impossible to ensure consistent alignment between the arc and the laser focus.
+
+            \begin{figure}[h]
+                \centering
+                \begin{subfigure}[t]{0.47\textwidth}
+                    \centering
+                    \includegraphics[]{assets/3 design/sparkAlignment_one.jpg}
+                    \caption{Single arc generated by the spark igniter}
+                    \label{fig:sparkAlignment_one}
+                \end{subfigure}
+                \hfill
+                \begin{subfigure}[t]{0.47\textwidth}
+                    \centering
+                    \includegraphics[]{assets/3 design/sparkAlignment.jpg}
+                    \caption{Several arcs stacked together to create a ``heatmap'' of arc formation. Note the large variance in the path taken by the arc.}
+                    \label{fig:sparkAlignment_heatmap}
+                \end{subfigure}
+                \caption[Composite photos made during a typical spark-laser alignment procedure]{Composite photos made during a typical spark-laser alignment procedure. The greyscale background, blue arcs, and red guide laser photos were taken separately then stacked together to be able to compare the relative position of the arcs and laser.}
+                \label{fig:sparkAlignment}
+            \end{figure}
+
+            In addition, the laser could not be aligned without placing reflecting or scattering material in the beam path.

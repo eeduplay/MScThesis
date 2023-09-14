@@ -2,8 +2,10 @@ import numpy as np
 from numpy.polynomial import polynomial
 import matplotlib.pyplot as plt
 from scipy import constants
+from os import listdir
 
 wien_constant = 2.897771955e-3  # m K, proportionality constant for Wien's law
+DEFAULT_SPECTRA_PATH = 'rawdata/spectra/'
 
 def planck(wavelength: np.float_, temperature: np.float_) -> np.float_:
     '''
@@ -111,11 +113,24 @@ class Spectrum:
         ax.set_xlabel(r'Wavelength $\lambda$ [nm]')
         ax.set_ylabel(r'Count $N$ [-]')
         return fig, ax
+    
+def get_filepath_from_ID(directory, shotID):
+    '''
+        Searches a directory for the requested shot identifier, returns path
+        to file as '`directory`/`shotID`_[rest of filename].txt'
+    '''
+    for filename in listdir(directory):
+        if filename.startswith(shotID):
+            return directory+filename
+
+    return None
 
 if __name__ == '__main__':
+    shot_ID = 'LSP60_S9'
+    spectrum_path = get_filepath_from_ID(DEFAULT_SPECTRA_PATH, shot_ID)
     # s = Spectrum('rawdata/spectra/calibration/Halogen_Light.txt', trimL=5) 
-    # s = Spectrum('rawdata/spectra/calibration/Mercury-Argog_Spectrum.txt') 
-    s = Spectrum('rawdata/spectra/LSP50_X7_Subt2_11-36-52-543.txt', trimL=48, trimR=600)
+    # s = Spectrum('rawdata/spectra/calibration/Mercury-Argog_Spectrum.txt')
+    s = Spectrum(spectrum_path, trimL=48, trimR=600)
     s.calibrate_irradiance(2800, 
                            'rawdata/spectra/calibration/Halogen_Light.txt',
                            'rawdata/spectra/calibration/Halogen_Dark.txt') 
