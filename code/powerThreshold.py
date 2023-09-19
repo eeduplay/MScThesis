@@ -51,11 +51,16 @@ if __name__ == '__main__':
     STI_successes = STI_shots[(STI_shots['Series Prefix'] == 'PS') & (STI_shots['Stable'] == True)]
     STI_successes.sort_values('Pressure [bar]', inplace=True)
     lowest_power = 1.1
+    lastp = 0
     front_mask = []
     for row in STI_successes.itertuples():
         if front_mask == [] or row[5] <= lowest_power:
+            if row[10] <= lastp + 0.5:
+                front_mask[-1] = False
             front_mask.append(True)
             lowest_power = row[5]
+            lastp = row[10]
+            lasti = len(front_mask)-1
         else:
             front_mask.append(False)
 

@@ -6,6 +6,7 @@
 \usepackage{layout}
 \usepackage{parskip}
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage[T1]{fontenc}
 \usepackage{fontspec}
 \setmainfont{XCharter}
@@ -31,7 +32,7 @@
 \usepackage[version=4]{mhchem}
 \usepackage{siunitx}
 \usepackage{bm}
-\usepackage{xcolor}
+\usepackage[dvipsnames]{xcolor}
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage[sf,bf]{titlesec}
@@ -44,6 +45,7 @@
 \usepackage{wrapfig}
 \usepackage{fancyhdr}
 \usepackage{lipsum}
+
 \usepackage{soul}
 \usepackage[
     style=ieee,
@@ -180,5 +182,9 @@
         \includepdf[pages={1}, pagecommand={\thispagestyle{fancy}\label{ds:laserPM}}]{assets/appendices/Gentec-EO_UP55N_PowerMeter_Calibration.pdf}
         \includepdf[pages={2}, pagecommand={\thispagestyle{fancy}}]{assets/appendices/Gentec-EO_UP55N_PowerMeter_Calibration.pdf}
         \includepdf[pages=-, pagecommand={\thispagestyle{fancy}\label{ds:pcbPressure}}]{assets/appendices/Calibration-Certificate_113B28-LW41871.pdf}
+    \chapter{LSP shot procedure}
+        This procedure was published as a living document on a collaboration platform accessible to personnel associated with this project. It is reproduced here in its most up-to-date state at the time of publication.
+
+        \input{assets/appendices/LSP_procedure.tex}
 
 \end{document}

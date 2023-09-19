@@ -1,0 +1,301 @@
+\section*{LSP Shot Procedure}\label{lsp-shot-procedure}
+
+This checklist is used for starting up, using, then shutting down the
+Laser-Sustained Plasma (LSP) experiment to perform and LSP test. This
+checklist assumes the laser has already been aligned.
+
+Not all components are used for all experiments (e.g.~spark igniter).
+Avoid setting them up if not necessary.
+
+\subsubsection{STARTUP PROCEDURE}\label{startup-procedure}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+
+\item
+  Power on triggering and monitoring station
+
+  \begin{enumerate}
+  \def\labelenumii{\arabic{enumii}.}
+  
+  \item
+    Turn on delay generators, oscilloscope
+  \item
+    Oscilloscope trigger should be set to ``Normal'' mode
+  \item
+    Turn on laser in LOCAL mode
+  \item
+    Verify that timing delays have the correct value \textbf{and} unit
+    (ms)
+  \item
+    Verify that delay generators, camera, and laser are connected
+    according to wiring diagram
+  \end{enumerate}
+\item
+  Setup camera
+
+  \begin{enumerate}
+  \def\labelenumii{\arabic{enumii}.}
+  \item
+    Turn on camera
+  \item
+    Connect to camera using Yellow Cat 6 cable
+  \item
+    Start PFV4 software and acquire live camera feed
+  \item
+    Calibrate sensor
+  \item
+    Remove lens cap
+  \item
+    Attach ND Filter and UV-IR Cut Filter to lens
+  \item
+    Adjust camera position and focus to frame the LSP ignition point
+    (spark plug tips) at a 300 mm focal length
+
+    {\color{cyan} Use low-light mode, set the lens aperture to f/4, set the ND
+    Filter to minimum, and use additional lighting if needed}
+  \item
+    Turn off low-light mode, set the camera frame rate to 10000 fps
+  \item
+    Set the aperture to f/22 and the ND filter to the maximum level
+  \end{enumerate}
+\item
+  Setup power meter
+
+  \begin{enumerate}
+  \def\labelenumii{\arabic{enumii}.}
+  \item
+    The black rubber protective cap should be on
+  \item
+    Plug in the power meter's fan power supply and ensure the fan is
+    running
+  \item
+    Turn on the BLU emitter (blue button)
+  \item
+    Connect to the power meter on the PC Gentec-EO software using the
+    Bluetooth dongle (attached to blue USB extension cord)
+
+    {\color{cyan} For best results, leave the Bluetooth dongle within the test area}
+  \item
+    Remove the black rubber protective cap and allow the power meter's
+    signal to stabilize
+  \item
+    Set the wavelength to 1070 nm and perform the zeroing procedure
+  \item
+    Set the power meter to ``SSE (J)'' (Single Shot Energy) mode
+  \item
+    Suggested: set the display mode to ``Statistics''
+  \item
+    If applicable, set your acquisition settings (filename, etc)
+  \end{enumerate}
+\item
+  Setup spectrometer
+
+  \begin{enumerate}
+  \def\labelenumii{\arabic{enumii}.}
+  
+  \item
+    Use a laser pointer and a 100 micron fiber attached to the fiber
+    mount to ensure the fiber tip is pointed at the ignition point, then
+    re-attach the spectrometer fiber (10 micron) to the fiber mount
+  \item
+    Connect to the spectrometer via USB and start the OceanView Lite
+    software, in ``Quick View'' mode
+  \item
+    Click ``Create dark background spectrum''
+  \item
+    Set the integration time to 4 ms and the trigger mode to ``Edge''
+  \end{enumerate}
+\item
+  Setup pressure transducer
+
+  \begin{enumerate}
+  \def\labelenumii{\arabic{enumii}.}
+  
+  \item
+    If the transducer is already mounted, all that is needed is to turn
+    on the signal conditioner and check that the Channel 1 indicator is
+    green
+  \end{enumerate}
+\item
+  Prepare test area
+
+  \begin{enumerate}
+  \def\labelenumii{\arabic{enumii}.}
+  \item
+    Ensure the laser protection panels (2) are installed over the beam
+    path between the collimator and the test section
+  \item
+    Ensure that the collimator cap is \textbf{OFF}
+    and no obstacle is present in the beam path. Use the guide laser to
+    check.
+  \item
+    Pressurize the test section to the target pressure. If performing a
+    flowing test, pressurize the feed lines upstream of the solenoid
+    valve, and set the valve's safety switch to the FIRE mode
+
+    {\color{cyan} Before pressurizing to target pressure, evacuate the air in the
+    test section by filling it with Argon to 5 bar then venting it to
+    1.5 bar, repeating this process three times.}
+
+    \colorbox{Goldenrod}{\textbf{!}} \textbf{The
+    laser windows are rated for a maximum internal pressure of 20 bar.
+    Do not exceed this
+    pressure.}
+    Some tolerance for overpressure (\~1~bar) is available
+    in order to let the system stabilize to 20 bar, but do not run tests
+    in overpressure conditions. \emph{Destructive testing has not been
+    performed to determine the actual failure pressure.}
+  \item
+    Plug in the spark igniter to the mains
+
+    \colorbox{Goldenrod}{\textbf{!}} The igniter is now \textbf{ON} and will spark when receiving a
+    signal
+  \item
+    Exit the area enclosed by the laser safety curtains and close them
+  \end{enumerate}
+\end{enumerate}
+
+The experiment is now ready to be run.
+
+\subsubsection{RUNNING THE EXPERIMENT}\label{running-the-experiment}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Perform a final check on the control station to verify the timings and
+  connections of the delay generators, oscilloscope, and laser.
+\item
+  Prepare the laser
+
+  \begin{enumerate}
+  \def\labelenumii{\arabic{enumii}.}
+  \item
+    Restart the laser in REMOTE mode
+  \item
+    Connect to the laser via the router, using the Black Cat 6 cable
+  \item
+    Use the laser's web interface to set up the pulse. Check the
+    following settings:
+
+    \texttt{HW\ Emission\ Control} should be ENABLED
+
+    \texttt{Pulse\ Mode} should be ENABLED
+
+    {\color{cyan}For more information on the web interface, consult the laser user
+    guide}
+  \item
+    Set the pulse power setpoint to the desired value
+  \item
+    Set the pulse duration to the desired value
+  \end{enumerate}
+\item
+  Connect to camera using Yellow Cat 6 cable, and confirm connection in
+  PFV4
+\item
+  Click ``Record'' in PFV4. The button should read ``Ready''
+\item
+  Set the spectrometer save settings by clicking ``Configure graph
+  saving'' in OceanView, entering the appropriate LSP shot identifier
+  code as the BaseName, click ``Apply''
+\item
+  Click the ``Save graph to files'' icon in OceanView---this should turn
+  the button red.
+\item
+  \textbf{All
+  personnel present in the
+  laboratory,}
+  regardless of their involvement in the experiment,
+  must
+  equip laser safety goggles rated for 1070 nm beyond this
+  step
+\item
+  Turn on the laboratory's laser warning light (confirm visually) and
+  ensure the door is closed
+
+  {\color{McGillRed}Entering/exiting the laboratory is not permitted beyond this step}
+\item
+  Disengage the laser's front-panel E-stop. Call out ``Safety OFF''.
+\item
+  Find the power supply switch wired in the back of the laser. Flick the
+  switch ON then OFF. Call out ``Laser is ARMED''.
+
+  {\color{cyan} This starts the laser's main power supply, this is indicated by a
+  louder fan volume and the green button on the front panel being lit up}
+
+  \colorbox{Goldenrod}{\textbf{!}} The laser is now \textbf{armed} - it will emit a laser pulse when
+  the trigger signal is active
+\item
+  The experiment is ready to run, go through the following checklist
+  before firing:
+
+  \begin{itemize}
+  
+  \item[$\square$]
+    Curtains are \textbf{CLOSED}
+  \item[$\square$]
+    Laboratory warning light is \textbf{ON}
+  \item[$\square$]
+    Laser is \textbf{ARMED}
+  \item[$\square$]
+    Camera is \textbf{READY}
+  \item[$\square$]
+    Power meter monitor is active and awaiting pulses
+  \item[$\square$]
+    All delay generators are \textbf{ON}
+  \item[$\square$]
+    Oscilloscope is \textbf{ON}
+  \item[$\square$]
+    \textbf{ALL LAB PERSONNEL IS WEARING LASER
+    SAFETY GOGGLES}
+  \end{itemize}
+\item
+  If performing a flowing test, use the valve switch near the control
+  station to initiate flow. Allow for 5 seconds for the flow to
+  stabilize, or up to 45 seconds for the pressure transducer signal to
+  return to 0.
+\item
+  You may press the \texttt{MAN\ TRIG} button to emit a laser pulse.
+  Watch the ceiling above the test area to spot the flash of a
+  successful LSP ignition
+\item
+  Press the front panel E-stop to safe the laser. Call out ``SAFE''.
+\item
+  Regardless of ignition, the camera will have recorded footage. To
+  perform a new shot, resume from step 4
+\end{enumerate}
+
+{\color{cyan} If at any point after step 6, someone must remove their safety
+glasses, enter, or leave the lab, press the E-stop to safe the laser.
+Resume procedure from step 5.}
+
+\subsubsection{SHUTDOWN PROCEDURE}\label{shutdown-procedure}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Press the laser's front-panel E-stop
+
+  {\color{cyan} Laboratory personnel is now free to remove their laser safety
+  glasses, and can freely enter/leave the lab}
+\item
+  Disable laser warning light
+\item
+  Open the laser safety curtains
+\item
+  Unplug the igniter
+\item
+  Vent the test section
+\item
+  Shut off the camera
+\item
+  Shut off the power meter, unplug its fan, and place the rubber
+  protective cap back on
+\item
+  Screw on the collimator cap
+\item
+  Switch off the delay generators and the oscilloscope
+\item
+  Switch off the laser, place the keys in the ``Miscellaneous'' drawer
+  of the component cabinet
+\end{enumerate}

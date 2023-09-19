@@ -126,7 +126,7 @@ def get_filepath_from_ID(directory, shotID):
     return None
 
 if __name__ == '__main__':
-    shot_ID = 'LSP60_S9'
+    shot_ID = 'LSP80_X17'
     spectrum_path = get_filepath_from_ID(DEFAULT_SPECTRA_PATH, shot_ID)
     # s = Spectrum('rawdata/spectra/calibration/Halogen_Light.txt', trimL=5) 
     # s = Spectrum('rawdata/spectra/calibration/Mercury-Argog_Spectrum.txt')
