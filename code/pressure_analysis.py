@@ -4,10 +4,10 @@
 
 import sys
 import matplotlib.pyplot as plt
-import matplotlib as mpl
 import numpy as np
 from datamanager import shotlist
 from Pressure.pcb import PressureData
+from Laser import util
 
 # Thermo constants
 Ar_cv = 312  # J/kg K
@@ -25,7 +25,7 @@ bbox_props = {
 REPORT_STRING = \
 '''{:<30}
 ------------------------------
-Puse width:         {:>6.2f} ms 
+Pulse width:        {:>6.2f} ms 
 Nominal pressure:   {:>6.3f} bar
 Pulse energy:       {:>6.2f} J  
 Input energy:       {:>6.2f} J  
@@ -75,13 +75,16 @@ print('Second peak: {:.2f} kPa, {:.1f} ms'.format(peak2_p, peak2_t*1000))
 print('Trough: {:.2f} kPa, {:.1f} ms'.format(trough_p, trough_t*1000))
 
 # Compute heat transfer estimates
-# To-Do: Make this laser energy stuff accurate
 shotdata = shotlist.loc[shot_id]
 sp = shotdata['Laser Setpoint']
 pw = shotdata['Pulse width [ms]']
 nomp = shotdata['Pressure [bar]']*1e5  # Pa
-laser_energy = sp*(pw/10)*30.8  # J
-input_energy = 0.99414*laser_energy  # J
+pulse_type = shotdata['Pulse Spec']
+if pulse_type == 'Constant':
+    laser_energy = util.sp2energy(sp, pw)
+else:
+    laser_energy = util.pulseDB.loc[pulse_type]['Energy [J]']
+input_energy = util.entryFactor*laser_energy  # J
 Ar_mass = nomp*volume/(Ar_R*init_T)  # kg, approximate Argon mass
 deltaT = (peak2_p*1e3/nomp) * init_T  # K
 Qin = Ar_mass*Ar_cv*deltaT  # J
