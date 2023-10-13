@@ -89,6 +89,7 @@ if __name__ == '__main__':
     # plt.show()
 
     part = Partition(species)
-    part.get_stored_data()
-    print(part.get_ratio('Ar I', 'Ar II', [5000, 6000, 7000]))
+    part.get_web_data(np.linspace(1000, 30000, 100), saveData=True)
+    # part.get_stored_data()
+    print(part.get_ratio('Ar I', 'Ar II', [5000, 6000, 7000, 25000]))
     part.plot()

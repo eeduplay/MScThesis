@@ -2,8 +2,9 @@ from Pressure.pcb import PressureData
 from datamanager import shotlist
 import matplotlib.pyplot as plt
 import numpy as np
+from Laser import util
 
-SAVE = True
+SAVE = False
 
 # Comparison of raw vs filtered signal
 fig0, ax0 = plt.subplots(figsize=(5.8, 4))
@@ -61,16 +62,18 @@ identifiers_10b = ['LSP60_S9', 'LSP61_S10', 'LSP62_S11', 'LSP64_S13',
 fig2, axes2 = plt.subplots(1, 2, sharey=True, figsize=(5.8, 4))
 for i, idset in enumerate([identifiers_20b, identifiers_10b]):
     for shot in idset:
-        setpoint = shotlist.loc[shot]['Laser Setpoint']
+        energy = util.energy_from_shot_data(shotlist.loc[shot])
+        energy *= util.entryFactor
         pressure = PressureData()
         pressure.load_from_wavedata(shot, trimstart=True)
         pressure.filter_data()
         axes2[i].plot(pressure.time[:750]*1000, pressure.pressure[:750], 
-                    label='{:.1f} %'.format(setpoint*100))
+                      label='{:.1f} J'.format(energy))
     axes2[i].set_xlabel('Time $t$ [ms]')
     axes2[i].legend()
-    axes2[i].text(pressure.time.min()*1000, 8, 'Nominal pressure: {} bar'.format(20-i*10), va='top', fontfamily='monospace', 
-                    fontsize='x-small')
+    axes2[i].text(pressure.time.min()*1000, 8, 
+                  'Nominal pressure: {} bar'.format(20-i*10), va='top', 
+                  fontfamily='monospace', fontsize='x-small')
     
 axes2[0].set_ylabel(r'Pressure change $\Delta p$ [kPa]')
 if SAVE: plt.savefig('report/assets/5 results/pressure_powers.pdf')

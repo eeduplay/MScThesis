@@ -5,9 +5,11 @@
 from dotenv import load_dotenv
 load_dotenv()
 import numpy as np
+import matplotlib.pyplot as plt
 import pandas as pd
 import warnings
 import os
+import sys
 
 DATAPATH = os.getenv('DATAPATH')
 
@@ -27,6 +29,9 @@ def sp2power_cw(sp):
 
 def sp2power_rp(sp):
     return sp*maxpower_RP
+
+def power2sp_rp(P):
+    return P/maxpower_RP
 
 def sp2energy(sp, pw):
     '''
@@ -85,5 +90,34 @@ else:
     print('No pulse database found. Generating now...')
     pulseDB = generate_database()
 
+def energy_from_shot_data(shot_data: pd.DataFrame):
+    pulse_type = shot_data['Pulse Spec']
+    if pulse_type == 'Constant':
+        return sp2energy(shot_data['Laser Setpoint'], 
+                         shot_data['Pulse width [ms]'])
+    else:
+        return pulseDB.loc[pulse_type]['Energy [J]']
+    
+def plot_pulseshape(pulseID):
+    pulse = pulseDB.loc[pulseID]
+    setpoint = np.array([0]+[pulse['High SP']]*2+[pulse['Low SP']]*2+[0])
+    timing = np.array([0, 0] + [pulse['High duration [ms]']]*2 
+                      + [pulse['Duration [ms]']]*2)
+    fig, ax = plt.subplots(figsize=(5.8,3))
+    ax.plot(timing, setpoint*100)
+    ax.set_xlabel('Time $t$ [ms]')
+    ax.set_ylabel(r'Setpoint $n_\mathrm{sp}$ [%]')
+    ax.text(timing.max(), setpoint.max()*100, pulseID, fontfamily='monospace', 
+            fontsize='x-small', ha='right', va='top')
+    ax.grid(which='both')
+    secax = ax.secondary_yaxis('right', functions=(
+        lambda s: sp2power_rp(s/100)/1000, lambda p: power2sp_rp(p*1000)*100))
+    secax.set_ylabel(r'Power $P$ [kW]')
+    plt.tight_layout()
+    plt.show()
+
 if __name__ == '__main__':
-    generate_database()
+    if len(sys.argv) == 3 and sys.argv[1] == 'pulse':
+        plot_pulseshape(sys.argv[2])
+    else:
+        generate_database()

@@ -6,6 +6,7 @@ from PIL import Image
 from enum import Enum
 from cycler import cycler
 import pandas as pd
+from scipy.optimize import curve_fit
 
 # custom_cycler = cycler(color=['#ED1B2F', 'c', '#EC6842'])
 # plt.rc('axes', prop_cycle=custom_cycler)
@@ -21,8 +22,8 @@ class Gas(Enum):
     }
 
 
-def threshold_power(pressure, gas):
-    gasprops = gas.value
+def threshold_power(pressure, gasprops):
+    # gasprops = gas.value
     return gasprops['p2Ph']*pressure**-2 + gasprops['Pr']
 
 if __name__ == '__main__':
@@ -63,6 +64,17 @@ if __name__ == '__main__':
             lasti = len(front_mask)-1
         else:
             front_mask.append(False)
+    y_e = np.stack([np.ones(STI_successes[front_mask].shape[0]), 
+                    np.zeros(STI_successes[front_mask].shape[0])], axis=1).T*50
+    
+    # Fit Zimakov's curve to our data
+    popt, pcov = curve_fit(
+        lambda p, p2Ph, Pr: threshold_power(p, {'p2Ph': p2Ph, 'Pr': Pr}),
+        STI_successes[front_mask]['Pressure [bar]']*1e5,
+        STI_successes[front_mask]['Laser Setpoint']*3080, 
+        p0=[Gas.Argon.value['p2Ph'], Gas.Argon.value['Pr']]
+    )
+    exp_params = {'p2Ph': popt[0], 'Pr': popt[1]}
 
     # zimakovData = np.asarray(Image.open('../rawdata/zimakov2.png'))
 
@@ -70,19 +82,25 @@ if __name__ == '__main__':
     #     extent=(0, 16e5, 1e2, 1e4)
     #     )
     plt.figure(figsize=(5.8,5))
-    plt.semilogy(ps/1e5, threshold_power(ps, Gas.Argon), '--k',
+    plt.semilogy(ps/1e5, threshold_power(ps, Gas.Argon.value), '--k',
                  label='Zimakov et al. Model', linewidth=1)
-    plt.semilogy(zimakovData[:,0], zimakovData[:,1], 'Dk', 
+    plt.semilogy(zimakovData[:,0], zimakovData[:,1], 'ok', 
+                 mfc=(0,0,0,0), mec='black', markersize=5,
                  label='Zimakov et al. (2016) Data')
     plt.semilogy(matsuiData[:,0], matsuiData[:,1], '^k', 
+                 mfc=(0,0,0,0), mec='black', markersize=5,
                  label='Matsui et al. (2019) Data')
     plt.semilogy(luData[:,0], luData[:,1], 'sk', 
+                 mfc=(0,0,0,0), mec='black', markersize=5,
                  label='Lu et al. (2022) Data')
     plt.semilogy(unique_pressures, success_front, 
                  'o', label='Arc Ignition')
-    plt.semilogy(STI_successes[front_mask]['Pressure [bar]'], 
-                 STI_successes[front_mask]['Laser Setpoint']*3000, 
-                 '-o', label='Wire Ignition', linewidth=1)
+    plt.semilogy(ps/1e5, threshold_power(ps, exp_params), '--', 
+                 color='#00A6D6', linewidth=1)
+    plt.errorbar(STI_successes[front_mask]['Pressure [bar]'], 
+                 STI_successes[front_mask]['Laser Setpoint']*3080, fmt='o', 
+                 yerr=y_e, ecolor=(0,0,0,0.5), elinewidth=1.0, capsize=3,
+                 label='Wire Ignition', linewidth=1)
     # plt.semilogy(exp_success[:,0], exp_success[:,1], 
     #              'o', label='Successful LSP', markerfacecolor='#fff0',
     #              markeredgecolor='g')

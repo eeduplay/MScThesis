@@ -285,7 +285,7 @@
 
             This initial model was sufficient to proceed with prototyping spark plugs. Several prototypes were fabricated with varying electrode spacing to determine the maximum electrode gap that could spark across the range of operating pressures. The plugs were then tested to compare their performance to the limit predicted by Paschen's law. The results are shown in \autoref{fig:sparkTests}. One can distinctly see that the spark plugs appear to successfully spark beyond the pressure limit predicted by Paschen. This is thought to be due to the electrode geometry. Indeed, the $A$ and $B$ parameters used above were determined for parallel flat plate electrodes, whereas the pointed electrodes are more favorable for arcs by concentrating the electric field near the tips. Furthermore, more sophisticated Particle-In-Cell simulations for spark formation implemented by \textcite{theisComputingPaschenCurve2021} suggest that Paschen's Law overestimates the necessary breakdown voltage for $pd$ values above \qty{10}{Torr.cm}.
 
-            As far as the experiment was concerned, the test showed that a single spark plug with electrodes spaced by 4.8~mm was sufficient to spark throughout the range of operating pressures considered for the experiment. The 4.8~mm gap sparked reliably while still leaving ample space for the laser beam. Initial LSP ignition tests would later show that this design approach is not optimal, as will be discussed in \autoref{sec:design_ignitiontest}.
+            As far as the experiment was concerned, the test showed that a single spark plug with electrodes spaced by 4.8~mm was sufficient to spark throughout the range of operating pressures considered for the experiment. The 4.8~mm gap sparked reliably while still leaving ample space for the laser beam. Initial LSP ignition tests would later show that this design approach is not optimal, as will be discussed in \autoref{sec:ignitiontest}.
 
 
     \section{Integration and test}
@@ -361,14 +361,14 @@
                 \centering
                 \begin{subfigure}[t]{2.5in}
                     \centering
-                    \includegraphics[width=\textwidth]{assets/3 design/cw_power_time.pdf}
+                    \includegraphics[]{assets/3 design/cw_power_time.pdf}
                     \caption{Power stability: the decrease in power seen after the initial peak is due to the power meter's rise time compensation (``anticipation'') feature. This did not affect the calibration results as the steady state measurement was used.}
                     \label{fig:cw_tests_time}
                 \end{subfigure}
                 \hfill
-                \begin{subfigure}[t]{3.1in}
+                \begin{subfigure}[t]{3.3in}
                     \centering
-                    \includegraphics[width=\textwidth]{assets/3 design/cw_power_setpoint.pdf}
+                    \includegraphics[]{assets/3 design/cw_power_setpoint.pdf}
                     \caption{Setpoint percentage to power relation. Blue markers represent experimental tests, the dashed line is a linear fit for the data, excluding points below 30~\% of setpoint power.}
                     \label{fig:cw_tests_setpoint}
                 \end{subfigure}
@@ -474,43 +474,3 @@
                         \label{fig:setupPhoto}
                     \end{figure}
                 \end{landscape}
-
-        \subsection{Preliminary ignition experiments} \label{sec:design_ignitiontest}
-            Once the necessary components of the experiment were integrated, a preliminary testing campaign began to attempt to ignite LSP. The hope was to resolve any unforeseen practical issues, then quickly move on to replicating the power threshold experiments of past LSP literature~\cite{zimakovInteractionNearIRLaser2016,matsuiGeneratingConditionsArgon2019,luCharacteristicDiagnosticsLaserStabilized2022}. The test campaign aimed to answer two questions:
-            \begin{itemize}
-                \item Can LSP be achieved with this experimental setup at all?
-                \item How reliable is LSP ignition with this system?
-            \end{itemize}
-            To answer this, experimental trials would be run in conditions most favorable to steady LSP formation, i.e. at maximum laser power and maximum test section pressure: \qty{3}{kW} and \qty{20}{bar}. Successful ignition would be determined based on two independent measures:
-            \begin{enumerate}
-                \item The high-speed camera should be able to image the LSP growing and propagating towards the laser source over the course of the laser pulse, as consistently documented in LSP literature.
-                \item A measurable drop in laser energy reaching the Gentec power meter should be observed.
-            \end{enumerate}
-            LSP would only be deemed to have successfully ignited if the expected behavior was observed with both instruments.
-
-            Laser alignment was immediately found to be a non-trivial problem. In order to successfully ignite the LSP, the laser must be focused onto the arc generated by the spark igniter. To maximize the chance of ignition, the laser flux at the arc must be as high as possible, so the focused laser dot must be as small as possible. This makes alignment tolerances much stricter, as the laser is less likely to be incident on the thin arc at all.
-
-            Compounding this issue was the fact that the path taken by the arc between both electrode tips was no consistent. As seen in \autoref{fig:sparkAlignment}, the location of the arc was highly variable: though an average arc path could be determined, the arc could form up to \qty{1}{mm} away. This made it impossible to ensure consistent alignment between the arc and the laser focus.
-
-            \begin{figure}[h]
-                \centering
-                \begin{subfigure}[t]{0.47\textwidth}
-                    \centering
-                    \includegraphics[]{assets/3 design/sparkAlignment_one.jpg}
-                    \caption{Single arc generated by the spark igniter}
-                    \label{fig:sparkAlignment_one}
-                \end{subfigure}
-                \hfill
-                \begin{subfigure}[t]{0.47\textwidth}
-                    \centering
-                    \includegraphics[]{assets/3 design/sparkAlignment.jpg}
-                    \caption{Several arcs stacked together to create a ``heatmap'' of arc formation. Note the large variance in the path taken by the arc.}
-                    \label{fig:sparkAlignment_heatmap}
-                \end{subfigure}
-                \caption[Composite photos made during a typical spark-laser alignment procedure]{Composite photos made during a typical spark-laser alignment procedure. The greyscale background, blue arcs, and red guide laser photos were taken separately then stacked together to be able to compare the relative position of the arcs and laser.}
-                \label{fig:sparkAlignment}
-            \end{figure}
-
-            In addition, the laser could not be aligned without placing reflecting or scattering material in the beam path. As seen in \autoref{fig:sparkAlignment}, a target must be placed near the ignition point to perform the alignment (and also serves as a scale indicator). However, this alignment target had to be removed to pressurize the test section, which was required both to determine the spark location, and to perform the LSP ignition test. Pressurization cycles and the placing/removal of this target made the alignment process slow and cumbersome. Alignment with the arcs could not be confirmed visually since the target could not be present when pressurizing the test section.
-
-            
