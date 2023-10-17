@@ -14,13 +14,13 @@
             \centering
             \begin{subfigure}[t]{0.64\textwidth}
                 \centering
-                \includegraphics[width=\textwidth]{assets/2 background/overview_ltp.pdf}
+                \includegraphics[width=\textwidth]{assets/2 background/overview_ltp}
                 \caption{Spacecraft}
                 \label{fig:overview_spacecraft}
             \end{subfigure}
             \begin{subfigure}[t]{0.64\textwidth}
                 \centering
-                \includegraphics[width=\textwidth]{assets/2 background/chamber.pdf}
+                \includegraphics[width=\textwidth]{assets/2 background/chamber}
                 \caption{Thrust chamber}
                 \label{fig:overview_chamber}
             \end{subfigure}
@@ -48,7 +48,7 @@
     \section{Laser-Sustained Plasma} \label{sec:background_lsp}
         One might wonder why bother with plasma at all. If the laser radiation could be deposited evenly in the propellant flow, little to no mixing would be needed and peak temperatures would be lower. Unfortunately, the use of lasers to directly heat hydrogen propellant has a major flaw: hydrogen gas does not absorb 1-\unit{\um}-wavelength radiation at room temperatures. Hydrogen only begins to absorb this wavelength at around 10~000~K, as shown by \textcite{glumbConceptsStatusLasersupported1984}: ``The paradox is that hydrogen cannot absorb any laser radiation unless it is already hot.'' They were considering 10.6 \unit{\um} laser radiation, but this also holds for 1.06 \unit{\um}. This is because these wavelengths do not match hydrogen's resonance absorption bands, whereby radiation is absorbed in the rotational or vibrational modes of a molecule. The main absorption mechanism in LSP is \emph{inverse brehmsstrahlung} (IB): free electrons absorb radiation across a continuous spectrum (as opposed to specific wavelengths) during collisions with ions in the plasma (\textcite{keeferLaserSustainedPlasmas1989}). \textcite{johnstonCorrectValuesHighfrequency1973} showed that the radiation absorption coefficient $\alpha$ [\unit{m^{-1}}] can be calculated with \autoref{eq:ib_absorption}, where $Z$ is the ionic charge, $n_\mathrm{e}$ is the electron density, $\nu$ is the radiation frequency, $k_\mathrm{B}$ is the Boltzmann constant, and $T_\mathrm{e}$ is the electron temperature in Kelvin. The Coulomb logarithm $\ln{\Lambda}$ and the plasma frequency $\nu_\mathrm{p}$ will be discussed in further detail in \autoref{chp:models}.
         \begin{equation}
-            \alpha = \frac{7.8\times 10^{-7}Zn_\mathrm{e}^2\ln{\Lambda}}{\nu^2(k_\mathrm{B}T_\mathrm{e})^{3/2}} \left(1-\frac{\nu_\mathrm{p}^2}{\nu^2}\right)^{-1/2} \label{eq:ib_absorption}
+            \alpha = \frac{7.8\times 10^{-7}q_\mathrm{e}n_\mathrm{e}^2\ln{\Lambda}}{\nu^2(k_\mathrm{B}T_\mathrm{e})^{3/2}} \left(1-\frac{\nu_\mathrm{p}^2}{\nu^2}\right)^{-1/2} \label{eq:ib_absorption}
         \end{equation}
 
     \section{Past experiments} \label{sec:background_exp}
