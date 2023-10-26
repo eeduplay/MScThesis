@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+from scipy.optimize import curve_fit
 
 wavefrontData = pd.read_csv('rawdata/LSP6_wavefrontTracking.csv',
                             header=None,
@@ -13,13 +14,19 @@ wavefrontData['Position [mm]'] = -(wavefrontData['Position [mm]'] - wavefrontDat
 wavefrontData['Speed [m/s]'] = np.gradient(wavefrontData['Position [mm]'], wavefrontData['Time [ms]'])
 # plt.plot(wavefrontData['Time [ms]'], wavefrontData['Position [mm]'])
 # plt.show()
+speedmodel = lambda t, a, b: a*(t+b)**0.5
+popt, pcov = curve_fit(speedmodel, wavefrontData['Time [ms]'], 
+                       wavefrontData['Position [mm]'])
 
 # The following was written in most part by ChatGPT (3.5)
 # Create the subplots
 fig, axs = plt.subplots(2, 1, sharex=True, figsize=(5,5))
 
 # Plot the first column ('Position [mm]')
-axs[0].plot(wavefrontData['Time [ms]'], wavefrontData['Position [mm]'])
+axs[0].plot(wavefrontData['Time [ms]'], wavefrontData['Position [mm]'], '.')
+axs[0].plot(wavefrontData['Time [ms]'], 
+            speedmodel(wavefrontData['Time [ms]'], *popt), '--',
+            label='Square-root fit')
 axs[0].set_ylabel('Position [mm]')
 
 # Plot the second column ('Speed [mm/s]')

@@ -75,6 +75,10 @@ if __name__ == '__main__':
         p0=[Gas.Argon.value['p2Ph'], Gas.Argon.value['Pr']]
     )
     exp_params = {'p2Ph': popt[0], 'Pr': popt[1]}
+    print('p2Ph = {:.1f} bar^2 kW\nPr = {:.1f} W'.format(
+        exp_params['p2Ph']/(1000*(1e5)**2),
+        exp_params['Pr']
+    ))
 
     # zimakovData = np.asarray(Image.open('../rawdata/zimakov2.png'))
 
@@ -101,12 +105,13 @@ if __name__ == '__main__':
                  STI_successes[front_mask]['Laser Setpoint']*3080, fmt='o', 
                  yerr=y_e, ecolor=(0,0,0,0.5), elinewidth=1.0, capsize=3,
                  label='Wire Ignition', linewidth=1)
+
     # plt.semilogy(exp_success[:,0], exp_success[:,1], 
     #              'o', label='Successful LSP', markerfacecolor='#fff0',
     #              markeredgecolor='g')
     # plt.semilogy(exp_failure[:,0], exp_failure[:,1], 'x', label='Failed LSP')
     plt.xlabel('Pressure $p$ [bar]')
-    plt.ylabel('Laser threshold power $P_t$ [W]')
+    plt.ylabel(r'Laser threshold power $P_\mathrm{t}$ [W]')
     # plt.xlim((0, 16e5))
     # plt.ylim((1e2, 1e4))
     # plt.yscale('log')

@@ -20,14 +20,14 @@
     }
 \addcontentsline{toc}{chapter}{Nomenclature}
 \markboth{\MakeUppercase{Nomenclature}}{}
-\begin{multicols*}{2}
+\begin{multicols}{2}
     % \setlength{\columnseprule}{1pt}
     \section*{Abbreviations}
 
     \begin{nomlist}
         \item[DEP]              Directed-Energy Propulsion
         \item[FDL]              (McGill) Fluid Dynamics Laboratory
-        \item[IB]               Inverse-Brehmsstrahlung 
+        \item[IB]               Inverse Bremsstrahlung 
         \item[IFERG]            Interstellar Flight Experimental Research Group
         \item[LSP]              Laser-Sustained Plasma
         \item[LTP]              Laser-Thermal Propulsion
@@ -38,39 +38,57 @@
 
     \section*{Latin symbols}
     \begin{nomlist}
+        \item[$A$]              Probability of atomic energy transition [\unit{s^{-1}}]
+        \item[$\mathsf{A}$]     Empirically derived parameter A for Paschen's law 
+        \item[$\mathsf{B}$]     Empirically derived parameter B for Paschen's law 
+        \item[$c$]              Speed of light in a vacuum (\qty{2.99792e8}{m.s^{-1}}) 
         \item[$c_p$]            Specific heat of enthalpy
+        \item[$c_V$]            Specific heat of internal energy
         \item[$D$]              Diameter
         \item[$d$]              Distance
         \item[$E$]              Energy
-        \item[$g_0$]            Standard gravity (9.80665~\unit{m/s^2}) 
+        \item[$e$]              Elementary charge (\qty{1.60218e-19}{C})
+        \item[$g$]              Degeneracy of atomic energy level
+        \item[$g_0$]            Standard gravity (\qty{9.80665}{m.s^{-2}}) 
         \item[$h$]              Enthalpy
         \item[$\hbar$]          Reduced Planck constant (\qty{1.05457e-34}{J.s})
-        \item[$I$]              Local laser flux [W/m$^2$]
-        \item[$I_\text{sp}$]    Specific impulse [s]
-        \item[$k_\mathrm{B}$]   Boltzmann constant (\qty{1.38065e-23}{J/K})
+        \item[$I$]              Local laser flux [\unit{W.m^{-2}}]
+        \item[$I_\text{sp}$]    Specific impulse [\unit{s}]
+        \item[$k_\mathrm{B}$]   Boltzmann constant (\qty{1.38065e-23}{J.K^{-1}})
         \item[$L$]              Leak rate
+        \item[$\ell$]           Relative power loss
         \item[$m$]              Mass
         \item[$\mathcal{M}$]    Molar mass
+        \item[$N$]              Number of moles 
+        \item[$N_\mathrm{A}$]   Avogadro's number (\qty{6.02214e+23}{mol^{-1}})
         \item[$n$]              Number density 
+        \item[$n_\mathrm{sp}$]  Laser setpoint 
+        \item[$P$]              Power 
         \item[$p$]              Pressure
         \item[$q$]              Charge
-        \item[$R$]              Gas constant
+        \item[$R_\mathrm{g}$]   Specific gas constant
+        \item[$R_\mathrm{u}$]   Universal gas constant (\qty{8.31446}{J.K^{-1}.mol^{-1}})
         \item[$T$]              Temperature
         \item[$t$]              Time
+        \item[$V$]              Volume
         \item[$V_\mathrm{B}$]   Breakdown Voltage
         \item[$v$]              Velocity
-        \item[$Z$]              Partition function
+        \item[$Z$]              Ion charge state
+        \item[$\mathcal{Z}$]    Partition function
     \end{nomlist}
 
     \section*{Greek symbols}
     \begin{nomlist}
-        \item[$\alpha$]         Radiation absorption coefficient [1/m]
+        \item[$\alpha$]         Radiation absorption coefficient [\unit{m^{-1}}]
         \item[$\gamma$]         Specific heat ratio
         \item[$\gamma_\mathrm{se}$]         Secondary-electron-emission coefficient
+        \item[$\epsilon$]       Integrated line emission intensity 
+        \item[$\epsilon_0$]     Permittivity of free space (\qty{8.85419e-12}{F.m^{-1}})
         \item[$\Lambda_\mathrm{th}$]        Thermal DeBroglie wavelength
         \item[$\lambda$]        Wavelength
         \item[$\nu$]            Frequency
         \item[$\rho$]           Density
+        \item[$\rho_\mathrm{min}$]  Electron-ion collision minimum impact parameter
     \end{nomlist}
 
     \section*{Subscripts}
@@ -79,10 +97,13 @@
         \item[e]                Electron
         \item[ex]               Exhaust
         \item[f]                Focusing length
-        \item[g]                Specific (gas constant)
+        \item[$i$]              Lower atomic energy level 
         \item[ion]              Ionization
-        \item[r]                Laser receiver
-        \item[u]                Universal (gas constant)
+        \item[$k$]              Upper atomic energy level 
+        \item[l]                Lens
+        \item[m]                Measured
+        \item[r]                Laser receiver, or reference
+        \item[w]                Window
     \end{nomlist}
 
     % \section*{Superscripts}
@@ -90,4 +111,4 @@
     %     \item[$n$]  time index
     % \end{nomlist}
 
-\end{multicols*}
+\end{multicols}

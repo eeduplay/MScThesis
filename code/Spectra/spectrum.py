@@ -2,6 +2,7 @@ from dotenv import load_dotenv
 load_dotenv()
 import numpy as np
 from numpy.polynomial import polynomial
+from matplotlib import figure, axes
 import matplotlib.pyplot as plt
 from scipy import constants, signal, integrate, optimize, special
 from os import listdir, getenv
@@ -117,7 +118,7 @@ class Spectrum:
         self.counts = irradiance_coeffs*(self.counts-DL_exp)
                 
 
-    def plot(self, metadata=False, semilog=False):
+    def plot(self, metadata=False, semilog=False) -> tuple[figure.Figure, axes.Axes]:
         fig, ax = plt.subplots()
         if semilog:
             ax.semilogy(self.wavelengths, self.counts, linewidth=0.5)
