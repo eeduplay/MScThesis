@@ -116,8 +116,27 @@ def plot_pulseshape(pulseID):
     plt.tight_layout()
     plt.show()
 
+def db_to_latex(**kwargs):
+    buf='report/assets/appendices/pulseDB.tex'
+    out = pulseDB.to_latex(
+            index=False,
+            columns=['ID', 'High SP', 'Low SP', 'Duration [ms]', 'High duration [ms]', 'Low duration [ms]', 'Energy [J]'],
+            header=['ID', r'High $n_\mathrm{sp}$ [-]', r'Low $n_\mathrm{sp}$ [-]', '$t$ [ms]', r'$t_\mathrm{high}$ [ms]', r'$t_\mathrm{low}$ [ms]', '$E$ [J]'],
+            float_format='%.3f',
+            formatters={'ID': '\\verb|{}|'.format},
+            column_format=r'@{}lrrrrrr@{}',
+            escape=False,
+            caption=(r'Programmed pulse specifications. $n_\mathrm{sp}$ is the laser setpoint; $t$, $t_\mathrm{high}$, and $t_\mathrm{low}$ are the total pulse, high setpoint, and low setpoint durations, respectively; and $E$ is the pulse energy.', 'Programmed pulse specifications'),
+            label='tab:app_pulseShapes',
+            position='h',
+            **kwargs
+        )
+    if out: print(out)
+
 if __name__ == '__main__':
     if len(sys.argv) == 3 and sys.argv[1] == 'pulse':
         plot_pulseshape(sys.argv[2])
+    elif len(sys.argv) > 1 and sys.argv[1] == 'latex':
+        db_to_latex(buf=sys.argv[2] if len(sys.argv) == 3 else None)
     else:
         generate_database()

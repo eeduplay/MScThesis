@@ -7,7 +7,7 @@
     
     This chapter will discuss the major design requirements of such a system, the selection of appropriate solutions, and the assembly, integration, and testing process. Several practical issues were encountered in developing the LSP generator, which are rarely mentioned in the experimental LSP literature. They will be documented in detail in this report in the hopes that this can facilitate future work in this field.
 
-    \section{Existing hardware and OTS components}
+    \section{Existing hardware and OTS components} \label{sec:design_ots}
         As seen in \autoref{sec:background_exp} and shown in \autoref{fig:exp_subsys}, an experimental LTP test facility consists of at least 5 subsystems:
         \begin{enumerate}
             \item A laser source and any beam-shaping optics
@@ -37,7 +37,7 @@
                 \label{tab:laser_spec}
                 \begin{tabular}{@{}lrl@{}}
                     \toprule
-                    \textbf{Parameter}            & \textbf{Quantity} & \textbf{Unit} \\ \midrule
+                    Parameter            & Quantity & Unit \\ \midrule
                     Wavelength                    & 1070              & nm            \\
                     Maximum CW Power              & 300               & W             \\
                     Maximum Pulse Power           & 3000              & W             \\
@@ -80,7 +80,7 @@
                     \label{tab:laserPM_spec}
                     \begin{tabular}{@{}lrl@{}}
                         \toprule
-                        \textbf{Parameter}            & \textbf{Quantity} & \textbf{Unit} \\ \midrule
+                        Parameter            & Quantity & Unit \\ \midrule
                         Calibrated Spectral Range     & 248--2100         & nm            \\
                         Maximum Average Power         & 300               & W             \\
                         Maximum Average Power Density & 45                & \unit{kW\per cm^2}             \\
@@ -104,15 +104,19 @@
 
                 
 
-            \subsubsection*{Pressure transducer}
+            \subsubsection*{Pressure transducer} \label{sec:design_pressuresensor}
                 While simple pressure gauges were sufficient for experiment set-up, pressure data with high temporal resolution (minimum \qty{1}{kHz}) was also of interest to study the effect of LSP ignition on the gas pressure, potentially using it as a proxy for temperature change and heat deposition within the test section. PCB Piezotronics 113B28 pressure transducers were sourced within the laboratory. Such transducers are used to detect changes from an initial pressure. With a rise time of less than \qty{1}{\um} and a nominal sensitivity of \qty{14.5}{mV\per kPa}, these sensors are well suited to detect rapid and minute changes in pressure that would be expected in this experiment. The transducer's calibration report can be found in \autoref{chp:app_calibration} page \pageref*{ds:pcbPressure}.
 
+                A possible concern regarding pressure from a safety, design, and measurement standpoint is that the pressure rise resulting from heat deposition would remain within the measurement range of the transducer, and would also not exceed the design pressures of the test section. The maximum possible pressure rise can be calculated assuming complete deposition of a laser pulse energy (\qty{30.8}{J}) into the working gas as heat. With the test section parameters seen in \autoref{sec:design_testSection} and \autoref{chp:app_CavitatorDrawings}, the maximum expected pressure rise is \qty{37.5}{kPa}, less than 2~\% of the maximum design pressure, and equivalent to a \qty{0.56}{V} rise from the pressure transducer, well within its design range.
+
             \subsubsection*{Spectrometer}
-                Spectrometry was identified as one of the primary methods to determine the LSP temperature. Indeed, the high expected plasma temperature (above \qty{10000}{K}) and the timescale of the event (\~10~ms) meant that most intrusive methods (and some non-intrusive methods such as IR thermometers) were inadequate.
+                Spectrometry was identified as one of the primary methods to determine the LSP temperature. Indeed, the high expected plasma temperature (above \qty{10000}{K}) and the timescale of the event (\~10~ms) meant that most intrusive methods (and some non-intrusive methods such as infrared thermometers) were inadequate.
 
                 Spectrometry is commonly used in neighboring McGill laboratories studying combustion and metal fuels, so a portable USB spectrometer was easily sourced for this experiment. The Ocean Optics (now Ocean Insight) USB4000 \cite{oceanopticsUSB4000FiberOptic2008} is a compact spectrometer with a measurement range of \qtyrange{200}{1100}{nm} and a minimum integration time (analogous to exposure time for a camera) of 3.8~ms. Varying diameters of fiber optics were tested to determine the optimal fiber size: as this spectrometer was used without a diffraction grating, the fiber core diameter determined the spectral resolution, with smaller diameters providing finer wavelength separation, at the cost of reduced brightness. However, the LSP brightness was found to be sufficient to provide a clear spectrum even with the narrowest available \qty{10}{\um} fiber. The spectrometer was calibrated using an Ocean Optics HG-1 Mercury Argon Light Source for wavelength calibration, and an Ocean Insight HL-2000 Halogen Light Source for relative intensity calibration.
 
     \section{Design process}
+        The design of custom hardware was necessary for this experiment. This included a pressurized test section and an ignition system. As mentioned in \autoref{sec:design_ots}, a thrust stand was also needed, but its design was delegated to a team of students assisting in the project. These design activities, along with the thrust stand requirements given to the students, will be documented here.
+
         \subsection{Test section} \label{sec:design_testSection}
             The requirements for the Laser-Thermal Thruster Laboratory Model (LTTLM) are listed in \autoref{tab:lttmReq}. In summary, the thruster model should be a pressurized vessel featuring one or more windows to allow laser input and optical viewing of the LSP. Furthermore, this vessel should allow the integration of various instrumentation systems. The design and manufacture of such a vessel would have required a significant amount of time, so the alternative of re-purposing hardware from a different project was considered first. This hardware's specifications could be compared to the requirements, and modifications could be made if necessary.
 
@@ -123,7 +127,7 @@
                 \label{tab:lttmReq}
                 \begin{tabular}{l>{\raggedright}p{0.4\textwidth}p{0.4\textwidth}<{\raggedright}}
                     \toprule
-                    \textbf{Identifier}  & \textbf{Requirement}   & \textbf{Rationale} \\
+                    Identifier  & Requirement   & Rationale \\
                     \midrule
                     LTTLM-1     & The thruster shall operate at a maximum laser power of \qty{3}{kW} at a wavelength of \qty{1070}{nm}    & This is the laser system made available for this experiment \\
                     LTTLM-2     & The thruster shall operate using gaseous argon at room temperature as a propellant & The past experiments used for comparison also used argon \\
@@ -165,7 +169,7 @@
                 \label{tab:lttmReq_partialVerif}
                 \begin{tabular}{l>{\raggedright}p{0.53\textwidth}p{0.27\textwidth}<{\raggedright}}
                     \toprule
-                    \textbf{Identifier} & \textbf{Requirement}                                                                   & \textbf{Status}                   \\ \midrule
+                    Identifier & Requirement                                                                   & Status                   \\ \midrule
                     LTTLM-1             & The thruster shall operate at a maximum laser power of \qty{3}{kW} at a wavelength of \qty{1070}{nm} & Requires laser windows            \\
                     LTTLM-2             & The thruster shall operate using gaseous argon at room temperature as a propellant     & Fulfilled                         \\
                     LTTLM-3             & The thruster shall operate at a maximum design pressure of 2 MPa                       & Fulfilled                         \\
@@ -185,7 +189,7 @@
             The alternative was to work on a clean-sheet design that would perfectly satisfy the requirements set in \autoref{tab:lttmReq}, without the drawbacks of the existing apparatus listed above. While this may have avoided many difficulties encountered later in this project, opting for a custom design would have introduced significant risks in terms of timeline, compounded by the many uncertainties surrounding the operation of an LSP generator/LTP thruster. In order to quickly move forward with the project, it was decided to retrofit the existing cavitation apparatus into an LSP generator. It was reasoned that the lessons learned in attempting experiments with an unoptimized system would still be valuable to document, and would be very effective in informing the design of a custom thruster laboratory model.
 
         \subsection{Laser window mount} \label{sec:design_lwm}
-            The first and most important retrofitting task was the implementation of windows allowing the laser to enter the test section, then exit it, with minimal power losses. In terms of methodology, significant power losses would be acceptable as long as they are measureable and consistent, such that they can be accounted for. However, minimizing them is beneficial to allow the complete use of the laser's power range. As anti-reflection coated optics could readily be found with less than 1~\% power losses, this was deemed as an acceptable threshold.
+            The first and most important retrofitting task was the implementation of windows allowing the laser to enter the test section, then exit it, with minimal power losses. In terms of methodology, significant power losses would be acceptable as long as they are measurable and consistent, such that they can be accounted for. However, minimizing them is beneficial to allow the complete use of the laser's power range. As anti-reflection coated optics could readily be found with less than 1~\% power losses, this was deemed as an acceptable threshold.
 
             Two major requirements thus drove the laser window design:
             \begin{enumerate}
@@ -232,7 +236,7 @@
             As seen in \autoref{sec:background_exp}, several methods were devised to ignite LSP, i.e. create a seed plasma that could initiate the inverse \emph{bremsstrahlung} laser absorption mechanism. These include:
             \begin{itemize}
                 \item Inducing a plasma using a separate high power laser pulse
-                \item Focusing the laser onto a solid tungsten or titanium target, releasing an electron cloud that could initiate LSP
+                \item Focusing the laser onto a solid tungsten or titanium target, releasing an electron cloud by thermionic emission (\textcite{schwartzLasersustainedGasPlasmas1989}) that could initiate LSP
                 \item Focusing the laser onto an electrical arc discharge across two electrodes
             \end{itemize}
             An ignition mechanism was selected based on available resources and experimental requirements, namely:
@@ -286,7 +290,29 @@
             This initial model was sufficient to proceed with prototyping spark plugs. Several prototypes were fabricated with varying electrode spacing to determine the maximum electrode gap that could spark across the range of operating pressures. The plugs were then tested to compare their performance to the limit predicted by Paschen's law. The results are shown in \autoref{fig:sparkTests}. One can distinctly see that the spark plugs appear to successfully spark beyond the pressure limit predicted by Paschen. This is thought to be due to the electrode geometry. Indeed, the $\mathsf{A}$ and $\mathsf{B}$ parameters used above were determined for parallel flat plate electrodes, whereas the pointed electrodes are more favorable for arcs by concentrating the electric field near the tips. Furthermore, more sophisticated Particle-In-Cell simulations for spark formation implemented by \textcite{theisComputingPaschenCurve2021} suggest that Paschen's Law overestimates the necessary breakdown voltage for $pd$ values above \qty{10}{Torr.cm}.
 
             As far as the experiment was concerned, the test showed that a single spark plug with electrodes spaced by 4.8~mm was sufficient to spark throughout the range of operating pressures considered for the experiment. The 4.8~mm gap sparked reliably while still leaving ample space for the laser beam. Initial LSP ignition tests would later show that this design approach is not optimal, as will be discussed in \autoref{sec:ignitiontest}.
+        
+        \subsection{Thrust stand}
+            In order to perform preliminary thrust experiments, the LTTLM would have to be mounted on a custom thrust stand. The design and assembly of this thrust stand was delegated to a team of students collaborating on the project. A set of requirements were given to them, which would be verified upon delivery of the thrust stand.
 
+            \begin{table}[h]
+                \renewcommand{\arraystretch}{1.3}
+                \centering
+                \caption[Top-level design requirements for the thrust stand]{Top-level design requirements for the thrust stand (the ``system'')}
+                \label{tab:tsReq}
+                \begin{tabular}{l>{\raggedright}p{0.4\textwidth}p{0.4\textwidth}<{\raggedright}}
+                    \toprule
+                    Identifier  & Requirement   & Rationale \\
+                    \midrule
+                    TS-1 &  The system shall hold up the thruster such that its thrust axis is horizontal & This ensures the horizontal laser beam can be lined up with the thrust axis \\
+                    TS-2 &  The system shall have a maximum measurable thrust rating of at least 10 N, and no greater than 20 N &  \\
+                    TS-3 &  The system shall provide thrust measurements with a sample rate of at least 1000 S/s & This provides at least 10 thrust readings during a laser pulse \\
+                    TS-4 &  The system shall not impede laser focusing into the thruster & The laser must be able to focus into the chamber to sustain LSP \\
+                    TS-5 &  The system shall allow known loads to be applied for calibration and pre-loading & Applying these loads allows correction for friction and backlash in the system \\
+                    TS-6 &  The system shall mount to existing optical benchtop & This facilitates integration with the optical hardware \\
+                    TS-7 &  The system shall not impede existing measurement equipment & Impeding other instrumentation would limit the type of experiments that can be performed \\
+                    \bottomrule
+                \end{tabular}
+            \end{table}
 
     \section{Integration and test}
         As part of the design process and the progressive integration of all the experimental apparatus, a series of tests were performed on various components of the experiment. This was done to verify each component performed as expected and to a degree deemed sufficient for the experiment.
@@ -328,7 +354,7 @@
                 \label{tab:pressureTests_og}
                 \begin{tabular}{lrrrl}
                     \toprule
-                    \textbf{Test \#}  & \textbf{$p_0$ [bar]}  & \textbf{$\overline{dp/dt}$ [bar/min]}   & \textbf{$\Delta p/p_0$ (5~min)} & \textbf{Comments} \\
+                    Test \#  & $p_0$ [bar]  & $\overline{dp/dt}$ [bar/min]   & $\Delta p/p_0$ (5~min) & Comments \\
                     \midrule
                     1   & 3.01  & 0.0138    & 2.3~\%    &   \\
                     2   & 6.92  & 0.1007    & 7.3~\%    &   \\
@@ -401,7 +427,7 @@
                     \label{tab:opticalLoss}
                     \begin{tabular}{lrrrr}
                         \toprule
-                        \textbf{Test}        & \textbf{$P$ [W]}   & \textbf{$P_\mathrm{m}$ [W]}    & \textbf{$P-P_\mathrm{m}$ [W]}  & \textbf{$1-P_\mathrm{m}/P$ [-]} \\
+                        Test        & $P$ [W]   & $P_\mathrm{m}$ [W]    & $P-P_\mathrm{m}$ [W]  & $1-P_\mathrm{m}/P$ [-] \\
                         \midrule
                         Front optics    & 100.19    & 99.60 & 0.587  & 0.586 \% \\
                         Full test section    & 100.92    & 95.32 & 5.602  & 5.551 \% \\
@@ -428,7 +454,7 @@
                     \label{tab:expTimeline}
                     \begin{tabularx}{\textwidth}{rX}
                         \toprule
-                        \textbf{Time [ms]}   & \textbf{Event} \\
+                        Time [ms]   & Event \\
                         \midrule
                         0.0         & Experiment is triggered manually. High speed camera begins recording. Spark igniter gate signal is opened to charge it. \\
                         6.0         & EMISSION START signal is sent to laser. Oscilloscope begins recording pressure transducer signal. \\

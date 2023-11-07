@@ -3,13 +3,40 @@
     "cSpell.enabled": true,
     "cSpell.language": "en-US",
     "cSpell.words": [
+        "Delrin",
+        "endcap",
+        "endcaps",
         "FASTCAM",
+        "GCNR",
+        "Gentec",
+        "IFERG",
+        "leadscrew",
+        "lightsails",
+        "LTTLM",
+        "Paschen",
+        "Paschen's",
         "Photron",
+        "Piezotronics",
+        "plasmotron",
         "PPPL",
-        "Tokamak"
+        "Sankey",
+        "setpoint",
+        "setpoints",
+        "Thorlabs",
+        "Tokamak",
+        "UIUC",
+        "unoptimized",
+        "UTSI",
+        "UVFS"
     ],
     "cSpell.ignoreWords": [
+        "Jeng",
+        "Krier",
         "LEED",
+        "Mazumder",
         "NSTX"
+    ],
+    "cSpell.ignoreRegExpList": [
+        "/\\\\\\w*cite\\{[\\w\\s,]*\\}/gi"
     ]
 }

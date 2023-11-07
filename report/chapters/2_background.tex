@@ -51,7 +51,147 @@
         \begin{equation}
             \ibalphaeq \label{eq:ib_absorption}
         \end{equation}
+        Since such free electrons are only present once gas has ionized, absorption of 1.06-\unit{\um}-wavelength radiation by IB can only occur in plasma for gases that do not exhibit \qty{1.06}{\um} line transitions.
+
+        While this poses a problem to initiate the LSP process, \textcite{raizerSUBSONICPROPAGATIONLIGHT1970} theorized that once properly initiated, an LSP wave (also referred to as ``light spark'', ``optical plasmotron'', ``continuous optical discharge'', or ``laser-supported combustion wave'' in the literature) could be sustained in flowing gas. This was soon confirmed experimentally by \textcite{generalovContinuousOpticalDischarge1970}, who sustained a Xenon plasma using a 150~W CW \ce{CO_2} laser. In addition to showing the feasibility of LSP, \citeauthor{generalovContinuousOpticalDischarge1970} also note that the chamber pressure affects the ease of maintaining an LSP wave: in their experiments, they failed to maintain it below 3~\unit{atm}, and pressures above 4~\unit{atm} were too unstable.
+
+        Once a plasma is initiated, its shape and position will stabilize at an equilibrium point where the local laser intensity is just sufficient to compensate for thermal losses of the plasma front (\textcite{keeferLaserSustainedPlasmas1989}). This state and its stability will be affected by beam geometry and flow conditions (\textcite{welleEnergyConversionEfficiency1986}). Experiments by \textcite{fowlerIgnitionMaintenanceSubsonic1975} show that a key aspect of beam geometry is the ratio of the converging beam's focal length to its initial diameter at the focusing lens, known as the f-number, often denoted $f/N$, where $N$ is the f-number. Low f-numbers---i.e., short focal lengths with a wide initial beam diameter---produce stable plasmas which will remain close to the beam's focal point thanks to the rapid decrease in laser intensity, while the plasmas of high f-number optics will propagate away from the focus (\textcite{keeferLaserSustainedPlasmas1989}) and may be too unstable to be maintained continuously: \citeauthor{fowlerIgnitionMaintenanceSubsonic1975} have found that optical systems of $f/10$ and greater could not sustain a stable plasma.
+
+        Since the first model derived by \citeauthor{raizerSUBSONICPROPAGATIONLIGHT1970}, theoretical/numerical models of LSP saw progressive improvements, providing greater insight into the optimal conditions for plasma maintenance and laser absorption. Notably, \textcite{jengNumericalStudyLasersustained1986} developed a fully two-dimensional numerical model of hydrogen LSP in 1986 that suggests close to complete laser absorption can be achieved under certain conditions (3~atm of static pressure, 10~kW input power). This model also showed that radial velocity components of the flow were significant, meaning that the one-dimensional or quasi-two-dimensional models developed earlier, such as the one by \textcite{battehTwoDimensionalGeneralization1974}, were unsuitable for the analysis of LSP problems. \citeauthor{jengNumericalStudyLasersustained1986}'s model also allowed for the study of the laser wavelength's effect on the resulting plasma, an analysis that was impractical to perform experimentally. \citeauthor{jengNumericalStudyLasersustained1986} found that due to the gas absorption length's dependence on the applied electric field frequency, reducing the laser wavelength from \qtyrange{10.6}{3.9}{\um} led to lower absorption rates and longer plasmas along the beam axis, due to the inversely proportional relation seen in \autoref{eq:ib_absorption} (\textcite{keeferLaserSustainedPlasmas1989}). This is a highly relevant factor to consider for an experiment looking to study LSP using modern fiber lasers operating at \qty{1.06}{\um}.
+
+        Several experiments on LSP have been performed since \citeauthor{generalovContinuousOpticalDischarge1970}'s first plasmotron in 1970. Early studies explored the parameter space for the successful maintenance of LSP, with specific attention given to the ranges of pressures and laser power (threshold power) required. \textcite{moodyMaintenanceGasBreakdown1975} provides a thorough exploration of this parameter space for Argon plasmas sustained by a \qty{10.6}{\um} laser, showing a $P \propto 1/p^2$ relation between the laser power $P$ and the gas pressure $p$ at $<10$~atm, as shown in \autoref{fig:4_moodyArgon}. In his study, the minimum pressure at which an LSP was achieved was 2~atm, for a laser power approaching 300~W. Higher pressures allow for a lower input power, and can enable ambient atmosphere operation of a thruster, greatly simplifying experimental design. Similar experiments performed for other gases showed that the threshold power was typically greater for molecular gases (e.g., Hydrogen) (\textcite{keeferLaserSustainedPlasmas1989}).
+
+        Another parameter affecting successful LSP maintenance is flow velocity, as shown by the studies of \textcite{welleEnergyConversionEfficiency1986,krierContinuousWaveLaser1986,gerasimenkoLaserPlasmatron1983}. While early experiments were typically performed in static gas, with natural convection being the only source of flow, the effect of forced convective flow was studied both for its benefits to the resulting LSP, and the application of LSP within a laser-thermal thruster. \citeauthor{welleEnergyConversionEfficiency1986} varied the flow speed from \qtyrange{0.4}{4.5}{m/s} in Argon plasmas sustained by a 1~kW laser, measuring laser absorption and thermal radiation losses. They found that there are optimal pressure and flow speed conditions to maximize laser absorption, and that thermal radiation correlates with laser absorption. For pressures above 1.5~atm, increased flow speed appears to improve absorption compared to the static case. The authors suggest that the flow forced the plasma closer to the high-intensity laser focus, as seen in \autoref{fig:4_LSPTProfile}, improving absorption characteristics. In the case of \autoref{fig:4_LSPTProfile}, this translated to an improvement from \qtyrange{66}{83}{\percent}. \citeauthor{gerasimenkoLaserPlasmatron1983} found that in some cases, forced convection enables the maintenance of LSP under pressure and laser power conditions that would otherwise not allow it.
+
+        \begin{figure}[h]
+            \centering
+            \begin{subfigure}[t]{0.50\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{assets/2 background/moody_ArgonLSP.png}
+                \caption[Pressure dependence on required laser input power to maintain LSP in Argon]{Pressure dependence on required laser input power to maintain LSP in Argon, reproduced from \textcite{moodyMaintenanceGasBreakdown1975}}
+                \label{fig:4_moodyArgon}
+            \end{subfigure}
+            \hfill
+            \begin{subfigure}[t]{0.45\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{assets/2 background/welle_TProfile.png}
+                \caption[Temperature profile of Argon plasmas at two flow velocities]{Temperature profile of Argon plasmas at two flow velocities, reproduced from \textcite{welleEnergyConversionEfficiency1986}. Intervals of 500~K with outer contour at 10~500~K.}
+                \label{fig:4_LSPTProfile}
+            \end{subfigure}
+            \caption{Dependence of LSP on pressure and flow velocity}
+            \label{fig:4_conditions}
+        \end{figure}
 
     \section{Past experiments} \label{sec:background_exp}
+        LSP and LTP experiments have been performed since the 1970s, with the very first LSP achieved by \textcite{generalovContinuousOpticalDischarge1970}, who used a \ce{CO_2} laser operating at \qty{10.6}{\um} to sustain a Xenon LSP. The use of \ce{CO_2} lasers is common in the literature that followed, though the optical setups, diagnostics, working gases, and configurations of LSP and LTP experiments vary greatly. Facilities from three research groups will be discussed in particular, for their significant published research output and relevance to propulsion applications: the facility at the University of Illinois (late 1980s), at the University of Tennessee (late 1980s), and in Japan, where LSP experiments were performed as recently as 2019. 
 
-    \section{Research objectives}
+        \begin{figure}[h]
+            \centering
+            \begin{subfigure}[b]{0.55\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{assets/2 background/uiuc_setup2.png}
+                \caption{UIUC LSP experiment \cite{krierEnergyConversionMeasurements1988}.}
+                \label{fig:4_uiucLSP}
+            \end{subfigure}
+            \hfill
+            \begin{subfigure}[b]{0.43\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{assets/2 background/uiuc_thrustStand.png}
+                \caption{Thruster and thrust stand \cite{blackLaserPropulsion10kW1995}}
+                \label{fig:4_uiucThrust}
+            \end{subfigure}
+            \caption{UIUC experimental configurations}
+            \label{fig:4_uiuc}
+        \end{figure}
+        
+
+        \subsection{University of Illinois Urbana-Champaign (UIUC)}
+            This facility (depicted in \autoref{fig:4_uiucLSP}) was operated principally by Krier and Mazumder and was designed to characterize the energy conversion ability of LSPs, using Argon as a working fluid in most cases. According to \textcite{schwartzLasersustainedGasPlasmas1989}, the LSP was sustained using a \ce{CO_2} laser with a maximum power of \qty{10}{kW}. The beam was focused into the absorption chamber with an elaborate set of reflective optics, that allowed the maintenance of dual-plasma geometry, which was thought to reduce radiative losses and improve heat retention. Initiation of the plasma was achieved using a tungsten rod as a solid target, which was removed directly after plasma initiation using a solenoid actuator. The working fluid was Argon for most experiments, at \qtyrange{1.0}{2.7}{atm} of gauge pressure. The absorption chamber design features devices to straighten and accelerate gas flow upstream of the LSP, facilitating the maintenance of a plasma at high flow rates, as turbulent flow were prone to blow out the plasma. These design features include a flow straightener as the gas inlet section, and a converging quartz nozzle, which enabled the acceleration of the chamber flow without the need to manufacture a narrower thrust chamber, as the facility was initially designed for low flow speeds ($< 2$~m/s) (\textcite{krierEnergyConversionMeasurements1988}). Most of their experiments revolved around laser absorption and thermal radiation, with little interest in thrust characteristics, so the heated gas exhaust was simply feed through exit ports. Nevertheless, experiments at this facility eventually led to the design and operation of a 10-kW-class thruster by \textcite{blackLaserPropulsion10kW1995}, with a 15:1 expansion ratio nozzle, achieving a specific impulse of up to 350~s, efficiencies near 40 \%, and thrust exceeding 3~N using hydrogen propellant. In their study, efficiency $\eta$ is the thrust efficiency, calculated using \autoref{eq:thrust_efficiency}, based on a mass flow rate $\dot{m}$, thrust force $F_\mathrm{T}$, and laser power entering the thruster $P_\mathrm{in}$.
+            \begin{equation} \label{eq:thrust_efficiency}
+                \eta = \frac{F_\mathrm{T}^2}{2\dot{m}P_\mathrm{in}}
+            \end{equation}
+            Their thrust stand, like their LSP experiments, used a vertical configuration with a pulley and counterweight. The entire stand was encapsulated in a vacuum chamber. Thrust measurements were performed using  a combination of a linear variable differential transformer, which senses the displacement of the thruster, and a ``counterforce coil'', which uses the detected displacement and attempts to counteract it. The current supplied to the coil can be correlated to the thrust force $F_\text{T}$. This force could then be used with a mass flow rate $\dot{m}$ measured with mass flow meters to compute specific impulse $I_\text{sp}$ with \autoref{eq:ispcalc}, which follows from thermal rocket theory (\textcite{zandbergenAE4S01ThermalRocket2020}).
+            \begin{equation}
+                I_\text{sp} = \frac{F_\text{T}}{\dot{m}g_0}
+                \label{eq:ispcalc}
+            \end{equation}
+
+        \subsection{University of Tennessee Space Institute (UTSI)}
+            The UTSI experiments were run using a 1.5-kW-class \ce{CO_2} laser. This facility is contemporary of the one at UIUC and shares similar design features, such as the vertical configuration and the converging gas inlet. Both facilities' absorption chambers are made in large parts out of quartz walls to allow for spectroscopic measurements to determine a spatial temperature distribution. In experiments performed by \textcite{keeferPowerAbsorptionLasersustained1986}, Argon was used as the working fluid, at pressures ranging from \qtyrange{1.3}{2.3}{atm}, and laser powers as low as 360~W. A significant feature of their facility is the presence of specialized laser beam dump integrated within the converging exit nozzle.
+
+            \begin{figure}[h]
+                \centering
+                \includegraphics[width=0.5\textwidth]{assets/2 background/utsi_facility.png}
+                \caption[UTSI LSP apparatus]{UTSI LSP apparatus \cite{keeferPowerAbsorptionLasersustained1986}}
+                \label{fig:4_utsiExp}
+            \end{figure}
+
+        \subsection{Japanese experiments}
+            The most recent LSP experiments have been performed at the University of Tokyo and Shizuoka University, studying not only the characteristics of LSP (\textcite{inoueOscillationPhenomenonLasersustained2004}), but also investigating its propulsion performance, and its applications for replicating atmospheric re-entry conditions in wind tunnels (\textcite{matsuiAtomicOxygenFlowGenerationLaserDriven2014}). The Japanese facility (illustrated in \autoref{fig:4_tokyoThrust}) took a different approach to that of UIUC and UTSI, opting for a horizontally configured thrust stand. Instead of running the entire thruster within a vacuum chamber, the nozzle was connected to a separate vacuum tank by means of an expansion joint. This allowed the thruster to exhaust to vacuum conditions with reduced complexity, and without preventing the thruster from applying a force to the load cell. The Tokyo research group performed experiments using a variety of working gases, laser powers, and plasma initiation methods. \textcite{matsuiGeneratingConditionsArgon2019} even performed experiments with disk, fiber, and diode lasers, a major change from the traditional use of \ce{CO_2} lasers.
+
+            \begin{figure}[h]
+                \centering
+                \begin{subfigure}[t]{0.60\textwidth}
+                    \centering
+                    \includegraphics[width=\textwidth]{assets/2 background/tokyo_thrust.png}
+                    \caption{Thrust measurement \cite{toyodaThrustPerformanceCW2002}}
+                    \label{fig:4_tokyoThrust}
+                \end{subfigure}
+                \hfill
+                \begin{subfigure}[t]{0.35\textwidth}
+                    \centering
+                    \includegraphics[width=\textwidth]{assets/2 background/tokyo_arc.png}
+                    \caption{LSP initiation through arc discharge \cite{matsuiGeneratingConditionsArgon2019}}
+                    \label{fig:4_tokyoArc}
+                \end{subfigure}
+                \caption{University of Tokyo LSP apparatus}
+                \label{fig:4_tokyo}
+            \end{figure}
+
+            The Japanese LSP chambers generally follow a similar design as those of UIUC and UTSI, i.e., a cylindrical section followed by a converging-diverging nozzle. However, they do not feature some of the additional flow control devices seen in the other facilities, such as the converging gas inlet channel. Instead, it appears many of their LSPs are maintained just downstream of the cylindrical section, which then allows the flow to naturally develop before it reaches the plasma. The gas inlet is also placed close to the nozzle, forcing the gas to flow between the internal and external walls of the thruster before entering the main chamber near the laser window, acting as a regenerative cooling system. The thruster also features a two-stage converging nozzle, with a sub-chamber in which the LSP is moved to after initiation, resulting in improved thrust levels (\textcite{toyodaThrustPerformanceCW2002}). This is likely due to the improved absorption ability of LSP at higher flow speeds observed by \textcite{welleEnergyConversionEfficiency1986}.
+
+            The thrust measurement method used by \textcite{toyodaThrustPerformanceCW2002} is also considerably simpler than the implementation used by \textcite{blackLaserPropulsion10kW1995}. The thruster is mounted on low-friction linear rails and placed in contact with a load-cell. Weights on a pulley are used to balance the initial loads on the thruster. When operating the thruster to vacuum exhaust, the spring constant of the expansion joint was taken into account and compensated for. Furthermore, the motor was first run as a cold-gas thruster, using this initial thrust level as a reference to quantify the effect of the LSP. Efficiency was measured differently than in UIUC experiments, using \autoref{eq:japan_thrustefficiency}~\cite{toyodaThrustPerformanceCW2002}\footnote{The cited reference appears to have a typographical error, as the units are inconsistent. This equation can be derived from the conventional thrust efficiency equation, assuming a constant mass flow rate.}, to separate the effect of the LSP from the baseline cold thrust $F_\text{T, cold}$. This provides a more meaningful measurement of the energy-conversion efficiency of LSP for propulsion applications.
+            \begin{equation} \label{eq:japan_thrustefficiency}
+                \eta = \frac{F_\text{T, hot}^2-F_\text{T, cold}^2}{2\dot{m}P_\mathrm{in}}
+            \end{equation}
+
+            Two methods of plasma initiation were used throughout their experiments. Early thruster studies used a tungsten rod in the same manner as \textcite{schwartzLasersustainedGasPlasmas1989} at UIUC. A later study by \textcite{matsuiGeneratingConditionsArgon2019} used an arc discharge at the laser focus point, seen in \autoref{fig:4_tokyoArc}. This solid-state method of plasma initiation is attractive for its mechanical simplicity and its ability to quickly react to control inputs compared to solenoid-actuated ignition rods.
+
+        \subsection{Other LSP facilities}
+            In addition to the LTP experiment described above, two recent experimental studies are considered for comparison with this project: those of \textcite{zimakovInteractionNearIRLaser2016,luCharacteristicDiagnosticsLaserStabilized2022}, pictured in \autoref{fig:recentLSPsystems}. While they do not study LSP for thrust applications, they are of interest as they are some of only a few experiments using \qty{1.06}{\um} fiber lasers to sustain plasma in Argon, like in this project. In addition, both experiments appear to successfully use an arc discharge for LSP ignition, which differs from much of the older experimental literature.
+
+            \textcite{zimakovInteractionNearIRLaser2016}'s investigation focuses on determining the power necessary to sustain a steady Argon and Xenon LSP, providing a simple model to plot this power threshold in terms of gas pressure, using experimentally determined parameters. Comparing their power threshold data with that of \textcite{moodyMaintenanceGasBreakdown1975} shows a drastic increase in required laser power for similar pressures, going from around \qtyrange{50}{1000}{W} at \qty{6}{bar}, due to the change of laser wavelength from \qtyrange{10.6}{1.07}{\um}. This can be expected due to the reduced IB absorption coefficient, as seen in \autoref{eq:ib_absorption}. They also attempt to determine plasma temperature by comparing the continuum emission spectrum of the LSP with the predicted spectrum of a plane slab plasma of comparable dimensions, approximating the LSP temperature to be \qty{15000}{K} for laser powers ranging from 65 to \qty{230}{W} at \qty{22}{bar}.
+            
+            \begin{figure}[h]
+                \centering
+                \begin{subfigure}[t]{0.47\textwidth}
+                    \centering
+                    \includegraphics[width=\textwidth]{assets/2 background/zimakov.png}
+                    \caption{\textcite{zimakovInteractionNearIRLaser2016} (2016): (1) pressurized bulb, (2) LSP, (3) laser beam boundaries, (4) lens with focal length $f$}
+                    \label{fig:recentLSPsystems_zimakov}
+                \end{subfigure}
+                \hfill
+                \begin{subfigure}[t]{0.47\textwidth}
+                    \centering
+                    \includegraphics[width=\textwidth]{assets/2 background/LuYuanSongetal.png}
+                    \caption{\textcite{luCharacteristicDiagnosticsLaserStabilized2022} (2022)}
+                    \label{fig:recentLSPsystems_lu}
+                \end{subfigure}
+                \caption{Recent Argon LSP generator designs}
+                \label{fig:recentLSPsystems}
+            \end{figure}
+
+            \textcite{luCharacteristicDiagnosticsLaserStabilized2022} performed in-depth spectroscopic analysis to determine plasma parameters, namely temperature and electron density. By using a line-to-continuum spectral analysis method, they estimated the LSP temperature to be approximately \qty{13000}{K} at \qty{13}{bar} and \qty{200}{W} of laser power.
+
+    \section{Takeaways and research objectives}
+        Research on LTP and LSP, beginning in the 1970s, suggest that LTP has a great potential as a high-efficiency, high-thrust propulsion concept with performance rivaling that of NTP systems. Although concerns regarding laser tracking, thrust chamber cooling, and engine efficiency present engineering challenges, no fundamental issues have been identified. Extensive literature on LSP sustained by \ce{CO_2} lasers exists and have shown promising results in terms of laser absorption by the LSP, one of the major potential loss factors for an LTP system: very high absorption was experimentally achieved under a variety of conditions. On the other hand, heat deposition from the LSP into the surrounding cold propellant is far less efficient, but potential solutions have been proposed, such as seeding the propellant flow with carbon or tungsten particles to improve radiative absorption.
+
+        LTP thruster laboratory models have been operated, but not since the early 2000s, never with fiber lasers, and some of the radiative absorption strategies mentioned earlier have yet to be tested to improve thrust efficiency. Recent research has nevertheless begun experimenting with fiber laser-powered LSP, namely with Argon, but not for propulsion applications. They have demonstrated the feasibility of LSP using such lasers, with peak temperatures on the same order of magnitude as those sustained by \ce{CO_2} lasers, though the necessary power required was approximately an order of magnitude higher, due to the lower absorption coefficient predicted by IB theory. There is still lacking experimental work on the resulting heat deposition into the working gas from the LSP, a critical metric for thruster design, as this heat should ideally be retained in the exhausted propellant to maximize jet power and thrust efficiency.
+
+        Considering the current context of directed-energy propulsion favoring fiber lasers operating at \qty{1.06}{\um} rather than the \ce{CO_2} lasers historically considered for LTP, there is a rationale to pursue and update research on LTP and LSP at a fiber laser wavelength. This is \emph{despite} the less favorable IB absorption characteristics at this wavelength. With the long-term objective of developing fully-fledged LTP experimental capabilities at McGill University, the following near-term research objectives were set for this project:
+        \begin{enumerate}
+            \item Build an Argon LSP generator/thruster model to replicate the results of recent, comparable experiments (\cite{matsuiGeneratingConditionsArgon2019,zimakovInteractionNearIRLaser2016,luCharacteristicDiagnosticsLaserStabilized2022}) \\
+                \textit{Rationale: This establishes a baseline that can be validated against the literature.}
+            \item Determine heat deposition from the LSP into the working gas \\
+                \textit{Rationale: Understanding the resulting heat deposition can be used to predict thruster performance and/or optimize an LTP thruster using conventional thermal rocket theory.}
+        \end{enumerate}

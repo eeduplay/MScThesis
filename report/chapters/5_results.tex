@@ -1,4 +1,15 @@
 \chapter{Experiments}
+    The results of the first experiments performed on the LSP facility are presented here. These include an exploration of ignition methods and their reliability, the attempted replication of power-threshold experiments seen in LSP literature, and the analysis of LSP's absorption, heat deposition, and spectral characteristics. Preliminary flowing data is also presented and contrasted with the static case.
+
+    \autoref{fig:finalsetup_static} provides an overview of the instrumentation used in static experiments and their relative positions.
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.85\textwidth]{assets/5 results/finalsetup_static}
+        \caption{Static configuration of the test section}
+        \label{fig:finalsetup_static}
+    \end{figure}
+
     \section{Preliminary ignition experiments} \label{sec:ignitiontest}
         Once the necessary components of the experiment were integrated, a preliminary testing campaign began to attempt to ignite LSP. The hope was to resolve any unforeseen practical issues, then quickly move on to replicating the power threshold experiments of past LSP literature~\cite{zimakovInteractionNearIRLaser2016,matsuiGeneratingConditionsArgon2019,luCharacteristicDiagnosticsLaserStabilized2022}. The test campaign aimed to answer two questions:
         \begin{itemize}
@@ -115,7 +126,7 @@
             \begin{figure}[h]
                 \centering
                 \includegraphics[]{assets/5 results/pulse_profile}
-                \caption{Typical stepped-pulse profile: \texttt{05L33\_15}}
+                \caption[Typical stepped-pulse profile: \texttt{05L33\_15}]{Typical stepped-pulse profile: \texttt{05L33\_15}. A complete list of stepped-pulse specifications can be found in \autoref{chp:app_pulseShapes}.}
                 \label{fig:pulse_stepProfile}
             \end{figure}
 
@@ -127,11 +138,7 @@
             As plasma brightness changed with laser power, the variable ND filter would be adjusted to determine whether a vanishing plasma was unstable or simply too dim to be picked up through the lens filters.
 
         \subsection{Results}
-            The resulting power threshold plot can be seen in \autoref{fig:powerthreshold}. Both spark and wire ignition experiments are shown, along with data reported by \textcite{zimakovInteractionNearIRLaser2016,matsuiGeneratingConditionsArgon2019,luCharacteristicDiagnosticsLaserStabilized2022}. The use of wire ignition shows a significant improvement in the minimum power required to sustain LSP over the spark ignition method. The improved reliability and ease of alignment afforded by wire ignition enabled sustaining LSP down to hundreds of Watts, whereas spark ignition struggled to ignite and sustain LSP below \qty{1}{kW}. Note that the uncertainties indicated on the wire ignition data reflect the possible range in which the true power threshold lies, and is not related to an uncertainty in the power measurement.
-            
-            Qualitative observations were made on the LSP's response to the step-down in laser power. As seen in \autoref{fig:lsp_stepdown}, the decrease in input power is immediately apparent, with the plasma shrinking and dimming as soon as the power is dropped. The LSP re-adjusts to new power conditions in less than a millisecond. In this particular case, the LSP remained stable until the end of the laser pulse, \qty{14.8}{ms} after the step-down in power.
-
-            \textcite{zimakovInteractionNearIRLaser2016} presented a model based on balancing input power with heat conduction ($P_\mathrm{h}$) and radiative losses ($P_\mathrm{r}$), to evaluate the power threshold as a function of pressure $P_\mathrm{t}(p)$. This expression is reproduced here as \autoref{eq:zimakov_threshold}:
+            The resulting power threshold plot can be seen in \autoref{fig:powerthreshold}. Both spark and wire ignition experiments are shown, along with data reported by \textcite{zimakovInteractionNearIRLaser2016,matsuiGeneratingConditionsArgon2019,luCharacteristicDiagnosticsLaserStabilized2022}. The use of wire ignition shows a significant improvement in the minimum power required to sustain LSP over the spark ignition method. The improved reliability and ease of alignment afforded by wire ignition enabled sustaining LSP down to hundreds of Watts, whereas spark ignition struggled to ignite and sustain LSP below \qty{1}{kW}. Note that the uncertainties indicated on the wire ignition data reflect the possible range in which the true power threshold lies, and is not related to an uncertainty in the power measurement. \textcite{zimakovInteractionNearIRLaser2016} presented a model based on balancing input power with heat conduction ($P_\mathrm{h}$) and radiative losses ($P_\mathrm{r}$), to evaluate the power threshold as a function of pressure $P_\mathrm{t}(p)$. This expression is reproduced here as \autoref{eq:zimakov_threshold}:
             \begin{equation} \label{eq:zimakov_threshold}
                 P_\mathrm{t}(p) = \frac{P_\mathrm{h}}{p^2} + P_\mathrm{r}
             \end{equation}
@@ -139,70 +146,138 @@
 
             The discrepancy in the power thresholds achieved across different experiments is due in part to the optical quality of the focused beam, as suggested by \textcite{luCharacteristicDiagnosticsLaserStabilized2022}, who have so far achieved the best power-threshold results for fiber-laser-sustained Argon plasma. As the literature data is all from spark-ignited experiments, direct comparisons to wire ignition tests may be limited. However, this suggests that a low power threshold can be readily achieved by a basic optical train and a simple wire-ignition system combined with stepped pulse profiles, competing with methodologies that require far greater precision and optical quality.
 
+            Qualitative observations were made on the LSP's response to the step-down in laser power. As seen in \autoref{fig:lsp_stepdown}, the decrease in input power is immediately apparent, with the plasma shrinking and dimming as soon as the power is dropped. The LSP re-adjusts to new power conditions in less than a millisecond. In this particular case, the LSP remained stable until the end of the laser pulse, \qty{14.8}{ms} after the step-down in power.
 
-    \begin{figure}[h]
-        \centering
-        \includegraphics[]{assets/5 results/powerthreshold}
-        \caption[Pressure-Power LSP threshold exploration]{Pressure-Power LSP threshold exploration. Experimental data for two different ignition methods is compared to past literature. \textcite{zimakovInteractionNearIRLaser2016}'s model is fitted to wire ignition data as the blue dashed line.}
-        \label{fig:powerthreshold}
-    \end{figure}
 
-    \begin{figure}[h]
-        \centering
-        \begin{subfigure}[t]{0.32\textwidth}
-            \centering
-            \includegraphics[trim=7.6in 5.3in 2.4in 5.3in, clip, width=\textwidth]{assets/5 results/LSP34_PS28/20.jpg}
-            \caption{\qty{2.0}{ms}, before step-down}
-            \label{fig:lsp_stepdown_20}
-        \end{subfigure}
-        \hfill
-        \begin{subfigure}[t]{0.32\textwidth}
-            \centering
-            \includegraphics[trim=7.6in 5.3in 2.4in 5.3in, clip, width=\textwidth]{assets/5 results/LSP34_PS28/21.jpg}
-            \caption{\qty{2.1}{ms}, after step-down}
-            \label{fig:lsp_stepdown_21}
-        \end{subfigure}
-        \hfill
-        \begin{subfigure}[t]{0.32\textwidth}
-            \centering
-            \includegraphics[trim=7.6in 5.3in 2.4in 5.3in, clip, width=\textwidth]{assets/5 results/LSP34_PS28/28.jpg}
-            \caption{\qty{2.8}{ms}, steady-state}
-            \label{fig:lsp_stepdown_28}
-        \end{subfigure}
-        \caption[LSP adjusting to step-down in power]{LSP adjusting to step-down in power, from 100~\% to 8.5~\% (\qty{255}{W}). \shotsettings{LSP34\_PS28}{0.1}{4}{2048}, pulse profile: \texttt{05L8.5\_15}, pressure: \qty{10.23}{bar}}
-        \label{fig:lsp_stepdown}
-    \end{figure}
+            \begin{figure}[h]
+                \centering
+                \includegraphics[]{assets/5 results/powerthreshold}
+                \caption[Pressure-Power LSP threshold exploration]{Pressure-Power LSP threshold exploration. \textcite{zimakovInteractionNearIRLaser2016}'s model is fitted to wire ignition data as the blue dashed line.}
+                \label{fig:powerthreshold}
+            \end{figure}
+
+            \begin{figure}[h]
+                \centering
+                \begin{subfigure}[t]{0.32\textwidth}
+                    \centering
+                    \includegraphics[trim=7.6in 5.3in 2.4in 5.5in, clip, width=\textwidth]{assets/5 results/LSP34_PS28/20.jpg}
+                    \caption{\qty{2.0}{ms}, before step-down}
+                    \label{fig:lsp_stepdown_20}
+                \end{subfigure}
+                \hfill
+                \begin{subfigure}[t]{0.32\textwidth}
+                    \centering
+                    \includegraphics[trim=7.6in 5.3in 2.4in 5.5in, clip, width=\textwidth]{assets/5 results/LSP34_PS28/21.jpg}
+                    \caption{\qty{2.1}{ms}, after step-down}
+                    \label{fig:lsp_stepdown_21}
+                \end{subfigure}
+                \hfill
+                \begin{subfigure}[t]{0.32\textwidth}
+                    \centering
+                    \includegraphics[trim=7.6in 5.3in 2.4in 5.5in, clip, width=\textwidth]{assets/5 results/LSP34_PS28/28.jpg}
+                    \caption{\qty{2.8}{ms}, steady-state}
+                    \label{fig:lsp_stepdown_28}
+                \end{subfigure}
+                \caption[LSP adjusting to step-down in power]{LSP adjusting to step-down in power, from 100~\% to 8.5~\% (\qty{255}{W}). \shotsettings{LSP34\_PS28}{0.1}{4}{2048}, pulse profile: \texttt{05L8.5\_15}, pressure: \qty{10.23}{bar}}
+                \label{fig:lsp_stepdown}
+            \end{figure}
 
     \clearpage
+    \section{Laser Absorption} \label{sec:exp_absorption}
+        
     \section{Heat deposition}
+        To fulfill this project's second research objective, i.e., determining LSP heat deposition in the working gas, the change in pressure from initial conditions was monitored with a PCB Piezotronics pressure transducer. As discussed on page \pageref{sec:design_pressuresensor}, this would theoretically allow the estimation of heat deposition without the need to directly track the temperature of the gas, which would have been a major challenge for a millisecond-scale event.
 
-        \begin{figure}[h]
-            \centering
-            \includegraphics[]{assets/5 results/pressure_noise}
-            \caption[Typical pressure change during and after LSP]{Typical pressure change during and after LSP at \qty{3080}{W}, \qty{20.29}{bar}. Both the raw noisy signal and the filtered signal are shown.}
-            \label{fig:pressure_noise}
-        \end{figure}
+        \subsection{Methodology}
+            The pressure data was collected in parallel with other experiments, all ignited using a wire-ignition method. As seen in \autoref{fig:finalsetup_static}, the pressure transducer was integrated using an instrumentation plug on top of the test section, \qty{1.5}{in} downstream from the ignition point. The transducer's signal was then processed by a signal conditioner whose output was recorded on an oscilloscope, along with the laser's internal power meter reading. This allowed the synchronization of both the laser's power and the pressure in the test section.
 
-        \begin{figure}[h]
-            \centering
-            \includegraphics[]{assets/5 results/pressure_pressures}
-            \caption{Effect of varying initial pressure on pressure rise resulting from LSP}
-            \label{fig:pressure_pressures}
-        \end{figure}
+            A sample pressure signal is provided in \autoref{fig:pressure_noise}. The oscilloscope data featured significant noise, which was filtered out with an infinite impulse response filter to facilitate analysis. Pressure data was acquired for a variety of initial pressures and laser power levels.
 
-        \begin{figure}[h]
-            \centering
-            \includegraphics[]{assets/5 results/pressure_powers}
-            \caption{Effect of varying the laser pulse energy on the pressure rise resulting from LSP}
-            \label{fig:pressure_powers}
-        \end{figure}
+            \begin{figure}[h]
+                \centering
+                \begin{subfigure}[t]{0.47\textwidth}
+                    \centering
+                    \includegraphics[width=\textwidth]{assets/5 results/pressure_noise}
+                    \caption{Typical pressure change during and after LSP at \qty{3080}{W}, \qty{20.29}{bar}}
+                    \label{fig:pressure_noise}
+                \end{subfigure}
+                \hfill
+                \begin{subfigure}[t]{0.47\textwidth}
+                    \centering
+                    \includegraphics[width=\textwidth]{assets/5 results/pressure_elim}
+                    \caption{Pressure rise due to alternate heat transfer mechanisms}
+                    \label{fig:pressure_elim}
+                \end{subfigure}
+                \caption{Denoising of pressure data and comparison to other sources of heat}
+            \end{figure}
 
-        \begin{figure}[h]
-            \centering
-            \includegraphics[]{assets/5 results/pressure_an_LSP16_PS16}
-            \caption[Detailed analysis of pressure rise profile]{Detailed analysis of pressure rise profile, \qty{3080}{W}, \qty{12.5}{bar}.}
-            \label{fig:}
-        \end{figure}
+            
+            To ensure that the resulting pressure rise was primarily caused by the LSP, two tests were performed to rule out the effects of other potential factors:
+            \begin{enumerate}
+                \item The laser directly incident on the test section walls could heat up the walls which would then heat up the gas
+                \item The ignition wire heating up could transfer its heat to the surrounding gas.
+            \end{enumerate}
+            While either scenario does ultimately heat up the gas, neither mechanism reflects the ideal operation of a laser-thermal thruster, where the plasma itself should be the dominant heat source. To quantify these effects, the following tests were performed at an initial pressure of \qty{10}{bar} and the resulting pressure rise was recorded:
+            \begin{enumerate}
+                \item The laser (\qty{10}{ms}, 100~\%) was pointed into an empty test section, such that the laser would be directly incident on an opaque backplate.
+                \item A constant 20~\%, \qty{19.8}{ms} pulse (equivalent in energy to a \texttt{1L20\_15} stepped pulse) was focused on the ignition wire. The low constant power pulse is necessary to avoid igniting LSP.
+            \end{enumerate}
+            The pressure rise of these tests was then compared to that of a successful LSP at \qty{10}{bar}, sustained with a \texttt{1L20\_15} stepped pulse (\qty{12.1}{J}). This is shown in \autoref{fig:pressure_elim}. Some measurable effect on pressure is detected from both of these mechanisms, however, the pressure rise from LSP is greater by a factor 3 compared to direct heating of the ignition wire. Furthermore, the tests mentioned above represent an absolute worst case scenario for the magnitude of these heat transfer mechanisms. Absorption measurements discussed in \autoref{sec:exp_absorption} show that the majority of the laser power is absorbed by the LSP. This leaves less power for heat transfer by wire or chamber wall heating. Heating via the chamber walls in particular is not expected to significantly contribute to overall heat transfer, as the ignition wire would absorb most of any laser power transmitted through the LSP, and direct irradiation had only a minor effect in the first place.
+
+        \subsection{Results}
+            The pressure rise seen in \autoref{fig:pressure_noise} exhibits features that were consistently observed at different initial pressures and different laser powers. Namely, the pressure appears to rise continuously while the laser and the LSP is active. As soon as the laser is off and the LSP is extinguished, a small drop in pressure is observed, which is then followed by another, higher rise in pressure. Once the pressure reaches a maximum, usually around \qty{40}{ms} after the end of the laser pulse, it decreases a at slower rate relative to the rise, as the gas loses heat through conduction with the chamber walls. Such a pressure variation is unlikely to be from traveling pressure waves: The speed of sound in Argon at \qty{20}{\degreeCelsius} is \qty{319}{mm.ms^{-1}}, i.e., the test section's length every millisecond, while the observed pressure variation occurs over several hundredths of a second. This suggests that the pressure change observed by the pressure transducer reflects that of the overall test section static pressure.
+
+            \autoref{fig:pressure_pressures} shows the pressure variation for a range of initial nominal pressures. As mentioned earlier, the features of this pressure rise remain consistent with a local maximum reached at the end of the laser pulse (\qty{10}{ms}). The magnitude of the pressure change does not appear to be strongly affected by the initial pressure. Assuming an even distribution of heat added into a closed system, the resulting pressure change $\Delta p$ can be expressed using the ideal gas equation and the change in temperature $\Delta T$ caused by a constant volume heat addition $Q_\mathrm{in}$:
+            \begin{gather*}
+                \Delta pV = mR_\mathrm{g}\Delta T \\
+                Q_\mathrm{in} = mc_V\Delta T \\
+                \Delta p = \frac{R_\mathrm{g}Q_\mathrm{in}}{Vc_V}
+            \end{gather*}
+            The resulting change in pressure is independent of the gas mass, and therefore, independent of the initial pressure for a set volume. This however would only hold as long as the heat deposited in the gas $Q_\mathrm{in}$ is also independent on the initial pressure.
+
+            \begin{figure}[h]
+                \centering
+                \includegraphics[]{assets/5 results/pressure_pressures}
+                \caption{Effect of varying initial pressure on pressure rise resulting from LSP}
+                \label{fig:pressure_pressures}
+            \end{figure}
+
+            \autoref{fig:pressure_powers} shows the effect of reducing the laser pulse energy on the resulting pressure rise. In this case, the peak pressure appears to be correlated with pulse energy, decreasing consistently with decreasing energy. Here again, the change from \qtyrange{20}{10}{bar} of initial pressure does not appear to have an effect on the resulting heat deposition. The intermediate peak in pressure appears to occur later for lower energy pulses, this is due in part to the longer pulse duration. Another feature of the lower energy pressure rises is a decrease in the rate of change of pressure during the pulse---there is a clear change as the pulse switched from the high setpoint for ignition, to the lower sustained setpoint.
+
+            \begin{figure}[h]
+                \centering
+                \includegraphics[]{assets/5 results/pressure_powers}
+                \caption{Effect of varying the laser pulse energy on the pressure rise resulting from LSP}
+                \label{fig:pressure_powers}
+            \end{figure}
+
+            A first estimation of the heat deposited in the working gas can be made based on the pressure change, assuming that the observed maximum pressure reflects a state where the heat has been distributed throughout the test section. 
+            \begin{equation}
+                Q_\mathrm{in} = \frac{\Delta pVc_V}{R_\mathrm{g}}
+            \end{equation}
+            The heat deposition efficiency $\eta$ can then be calculated as the ratio $Q_\mathrm{in}/E_\mathrm{in}$, which captures the overall efficiency of converting the incident laser power on the LSP into heat remaining in the propellant. This would include losses from incomplete laser absorption by the LSP, along with heat lost in the form of radiation, which would heat the chamber walls without really affecting the gas temperature.
+
+            The detailed results of such a calculation are shown for a single LSP test in \autoref{fig:pressure_annotated}.
+
+            \begin{figure}[h]
+                \centering
+                \includegraphics[]{assets/5 results/pressure_an_LSP16_PS16}
+                \caption[Detailed analysis of pressure rise profile]{Detailed analysis of pressure rise profile, \qty{3080}{W}, \qty{12.5}{bar}.}
+                \label{fig:pressure_annotated}
+            \end{figure}
+
+            Repeating this efficiency calculation for several LSPs sustained at various pressures and pulse energies yields \autoref{fig:heatEfficiency}. Heat deposition efficiency is seen to be consistent at around 15~\%, regardless of laser power or gas pressure.
+
+            \begin{figure}[h]
+                \centering
+                \includegraphics[]{assets/5 results/heatEfficiency}
+                \caption[Heat deposition efficiency of LSP]{Heat deposition efficiency of LSP. Left: calculation at 20 and 10~bar; right: consistency across a range of pressures, for two different pulse energies}
+                \label{fig:heatEfficiency}
+            \end{figure}
+
+            Though useful to estimate heat deposition, the even distribution of heat in the test-section does not accurately reflect the actual processes taking place during LSP growth and shortly afterward. This simplifying assumption does not explain the intermediate rise in pressure followed by a short drop immediately after the end of the laser pulse.
+
+            Finally, this simple method of determining heat deposition and its efficiency could be improved on in a few ways. First, replicating these experiments using (a more reliable) spark ignition system would likely mitigate any heat transfer (though already estimated to be small) occuring via the ignition system. This would also allow the LSP to extend downstream past the ignition point, which may have implications on both laser absorption and overall heat deposition. Second, heat transfer to the walls should be quantified to determine whether this would explain the observed pressure drop after the (global) maximum, and to correct, if deemed necessary, for heat transfer to the walls as the gas is heating up. These changes would likely improve the calculated heat deposition efficiency.
     
     \clearpage
     \section{Spectroscopic temperature measurement} \label{sec:results_spectroscopy}
@@ -228,11 +303,11 @@
             \end{equation}
             The second term is a constant for a given temperature, so $E_k$ can be plotted against the left-hand side of \autoref{eq:boltzmannplot}, resulting (in theory) in a straight line with gradient $-1/k_\mathrm{B}T$. This can then be used to evaluate $T$. However, as noted by \textcite{volkerImportancePhysicalUnits2022}, $\epsilon_{ki}\lambda_{ki}/A_{ki}g_k$ is not dimensionless, and a measure of absolute emission intensity can only be done with appropriate spectrometer calibration, which was not done in this study. There are several methods to resolve these issues, including one that can be used with the relative spectrometry data of this project: This ratio can be normalized by using a reference transition, denoted with the subscript $r$:
             \begin{equation} \label{eq:reference_transition}
-                \left[\frac{\epsilon_{ki}\lambda_{ki}}{A_{ki}g_k}\right]_r = \frac{\hbar cn_r}{2 \mathcal{Z}_r(T)}\exp{\left(-\frac{E_k}{k_\mathrm{B}T}\right)_r}
+                \left[\frac{\epsilon_{ki}\lambda_{ki}}{A_{ki}g_k}\right]_\mathrm{r} = \frac{\hbar cn_\mathrm{r}}{2 \mathcal{Z}_\mathrm{r}(T)}\exp{\left(-\frac{E_k}{k_\mathrm{B}T}\right)_\mathrm{r}}
             \end{equation}
             Multiplying either side of the original equation by the reciprocal of the above, then linearizing, yields the following, with the constant term bundled as $C$:
             \begin{equation}
-                \ln{\left(\frac{\epsilon_{ki}\lambda_{ki}}{A_{ki}g_k}\left[\frac{A_{ki}g_k}{\epsilon_{ki}\lambda_{ki}}\right]_r\right)} = \frac{-E_k+[E_k]_r}{k_\mathrm{B}T} + C
+                \ln{\left(\frac{\epsilon_{ki}\lambda_{ki}}{A_{ki}g_k}\left[\frac{A_{ki}g_k}{\epsilon_{ki}\lambda_{ki}}\right]_\mathrm{r}\right)} = \frac{-E_k+[E_k]_\mathrm{r}}{k_\mathrm{B}T} + C
             \end{equation}
             This normalization enables a temperature to be determined using relative spectral data, as they are all compared to the same reference line in the spectrum. This manipulation has no effect on the gradient of the plot.
 
@@ -243,7 +318,7 @@
                 \centering
                 \caption[Ar I transitions used to generate Boltzmann plot]{Ar I transitions used to generate Boltzmann plot. $\lambda_{ki}$ is the transition wavelength, $g_k$ is the degeneracy of the energy level $k$, $A_{ki}$ the transition probability from level $k$ to $i$, $\Delta A_{ki}/A_{ki}$ is the relative uncertainty of $A_{ki}$, and $E_k$ is the energy of level $k$. Taken from \textcite{kramidaNISTAtomicSpectra2022}.}
                 \label{tab:ArI_transitions}
-                \begin{tabular}{@{}rrrr@{}}
+                \begin{tabular}{@{}Srrr@{}}
                     \toprule
                     $\lambda_{ki}$ [nm] & $g_kA_{ki}$ [\unit{s^{-1}}] & $\Delta A_{ki}/A_{ki}$ [-] & $E_k$ [eV]  \\ \midrule
                     696.54         & \num{1.90E+07}                    & 0.07                       & 13.328 \\
@@ -276,6 +351,6 @@
                 \label{fig:boltzmannplot}
             \end{figure}
 
-            There may be several reasons for this poor accuracy. The first is that the upper energy levels $E_k$ of most Ar I emission lines are clustered near \qty{13.25}{eV}, providing a poor sampling range for a linear regression. This is often the case when considering the relative line intensities only for a given atom or ion, as pointed out by \textcite{griemSpectroscopicTemperatureMeasurements1997}: excitation energies are often clustered together. This could be improved in two ways: the \qty{750.39}{nm} transition of Ar I has an excitation energy of \qty{14.95}{eV}, significantly greater than the other transitions. However, its closeness to the \qty{751.47}{nm} transition requires more sophisticated processing to discriminate its emission contribution from that of its neighboring line. Alternatively, a line emission of Ar I could be compared to an Ar II line. This however requires knowledge of electron density, and a measure of Ar II emission lines. These lines are present in the experimental data, in the \qtyrange{400}{500}{nm}, but are much fainter than the Ar I lines, far more clustered together, and blended into the continuum radiation of the plasma, making detection and integration difficult.
+            There may be several reasons for this poor accuracy. The first is that the upper energy levels $E_k$ of most Ar I emission lines are clustered near \qty{13.25}{eV}, providing a poor sampling range for a linear regression. This is often the case when considering the relative line intensities only for a given atom or ion, as pointed out by \textcite{griemSpectroscopicTemperatureMeasurements1997}: excitation energies are often clustered together. This could be improved in two ways: the \qty{750.39}{nm} transition of Ar I has an excitation energy of \qty{14.95}{eV}, significantly greater than the other transitions. However, its closeness to the \qty{751.47}{nm} transition requires more sophisticated processing to discriminate its emission contribution from that of its neighboring line. Alternatively, a line emission of Ar I could be compared to an Ar II line. This however requires knowledge of electron density, and a measure of Ar II emission lines. These lines are present in the experimental data, in the \qtyrange{400}{500}{nm} range, but are much fainter than the Ar I lines, far more clustered together, and blended into the continuum radiation of the plasma, making detection and integration difficult.
 
             Another possible factor for poor temperature results is that the spectrometer fiber sampled a relatively large area in the test section, and that contrary to the assumption made before this experiment, the emitted radiation of the hottest parts of the LSP do not dominate over colder areas, at least not for the emission lines.  \textcite{nassarInvestigationLasersustainedPlasma2012} used a collimator to sample the spectrum from specific points in the plasma and had better success in determining temperature. 
