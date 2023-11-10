@@ -49,7 +49,7 @@ def plot_point(axes, x, y, label: str, above=False):
               ha='center', va=align, fontfamily='monospace', 
               fontsize='x-small', backgroundcolor='white', bbox=bbox_props)
 
-def analyze(shot_id: str, plot=False, save='', noisy=False):
+def analyze(shot_id: str, plot=False, save='', noisy=False, use_cp=False):
     '''
         Analyzes the pressure profile of a shot and determines heat deposition 
         and efficiency.
@@ -77,6 +77,7 @@ def analyze(shot_id: str, plot=False, save='', noisy=False):
     pressure.filter_data()
     window_right_edge = int(0.4*power.shape[0])
     power -= np.mean(power[:window_right_edge, 1])
+    heat_cap = Ar_cp if use_cp else Ar_cv
 
     # time slicing indices
     a, b = (window_right_edge, -50)
@@ -109,7 +110,7 @@ def analyze(shot_id: str, plot=False, save='', noisy=False):
     input_energy = util.entryFactor*laser_energy  # J
     Ar_mass = nomp*volume/(Ar_R*init_T)  # kg, approximate Argon mass
     deltaT = (peak2_p*1e3/nomp) * init_T  # K
-    Qin = Ar_mass*Ar_cv*deltaT  # J
+    Qin = Ar_mass*heat_cap*deltaT  # J
     thermal_efficiency = Qin/input_energy
     rel_uncertainty = np.sqrt((U_DP/peak2_p)**2 + (U_P/nomp)**2 + Ur_V**2)
     report_text = REPORT_STRING.format(shot_id, pulse_type, pw, nomp/1e5, 

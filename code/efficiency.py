@@ -44,7 +44,8 @@ Pressure_shots_33 = [
     'LSP97_PP7',
     'LSP98_PP8',
     'LSP99_PP9',
-    'LSP100_PP10'
+    'LSP100_PP10',
+    'LSP103_PP13'
 ]
 
 # Effect of changing pulse energy on heat transfer efficiency

@@ -184,7 +184,64 @@
 
     \clearpage
     \section{Laser Absorption} \label{sec:exp_absorption}
+        Despite the reliability issues of spark ignition, LSP absorption data was successfully acquired at various pressures and laser pulse energies. Incomplete absorption of the incident laser radiation by IB is one of the major sources of inefficient heat deposition, so quantifying this loss is important to control it, reduce it, and  eventually optimize an LTP thruster.
         
+        \subsection{Methodology}
+            The Gentec power meter recorded the incident pulse energy for a subset of spark-ignited LSPs. Unfortunately, due to this ignition system's reliability issues, discussed in \autoref{sec:ignitiontest}, a systematic exploration of the variation in absorption due to experimental parameters could not be performed. Nevertheless, some preliminary data was acquired, with some consistency observed at \qty{20}{bar} of pressure.
+
+            Constant-power, \qty{10}{ms} laser pulses were focused into the test section to ignite LSP. As seen in \autoref{tab:expTimeline}, a buffer time of \qty{1}{ms} between the start of the pulse and the spark ignition was used to ensure that the spark was triggered while the laser was on. The laser absorption $a$ by the LSP was defined as follows:
+            \begin{equation}
+                a = 1-\frac{E_\tau}{E_\mathrm{in}}
+            \end{equation}
+            Where $E_\tau$ is the measured (transmitted) energy reaching the power meter and $E_\mathrm{in}$ is the pulse energy incident on the LSP. Both variables were determined by correcting both for the losses through the experiment optics (given in \autoref{tab:opticalLoss}) and the \qty{1}{ms} buffer time.
+
+        \subsection{Results}
+            Calculated LSP absorption is tabulated in \autoref{tab:LSP_absorption}. Though there are a few outliers, overall absorption appears to lie between 70~\% and 90~\%. This is visualized in \autoref{fig:absorption_ap}. Data for several tests performed at a nominal pressure of \qty{20}{bar} can be seen in \autoref{fig:absorption_20bar}, where a linear function was fitted to the data to determine an average absorption factor of 79~\%.
+
+            \input{assets/5 results/absorptionTable.tex}
+            
+            \begin{figure}[h]
+                \centering
+                \begin{subfigure}[t]{0.47\textwidth}
+                    \centering
+                    \includegraphics[width=\textwidth]{assets/5 results/absorption_ia}
+                    \caption{Absorption across a range of pressure. Variable pulse energy and chamber pressure.}
+                    \label{fig:absorption_ap}
+                \end{subfigure}
+                \hfill
+                \begin{subfigure}[t]{0.47\textwidth}
+                    \centering
+                    \includegraphics[width=\textwidth]{assets/5 results/absorption_20bar}
+                    \caption{Input energy vs. absorbed energy, calculation of absorption}
+                    \label{fig:absorption_20bar}
+                \end{subfigure}
+                \caption{Estimated energy absorption of LSP, \qty{20}{bar}}
+                \label{fig:LSP_absorption_data}
+            \end{figure}
+
+            Such absorption figures appear to be in agreement with LSP literature stating that most of the laser radiation can be absorbed by the LSP under the right conditions (\textcite{keeferLaserSustainedPlasmas1989}). However, much higher absorption was shown to be achievable under some conditions, such as forced convection (\textcite{fowlerIgnitionMaintenanceSubsonic1975}). For instance, experiments by \textcite{toyodaThrustPerformanceCW2002} show between 80~\% and 99~\% absorption depending on the working gas and experimental conditions.
+
+            This absorption data can also be paired with LSP footage to approximate the absorption coefficient of the LSP. For instance, \autoref{fig:LSP205_SPX6} shows the length measurement of an LSP (\qty{10}{bar}, \qty{3080}{W}) to be \qty{22}{mm} at its fullest extent.
+
+            \begin{figure}[h]
+                \centering
+                \includegraphics[width=\textwidth]{assets/5 results/LSP6_10.23_length.png}
+                \caption[Length estimation of LSP]{Length estimation of LSP. \qty{10.23}{bar}, \qty{30.8}{J} pulse. \shotsettings{LSP205\_SPX6}{0.1}{11}{2048}}
+                \label{fig:LSP205_SPX6}
+            \end{figure}
+
+            Considering the transmission of radiation through an absorbing medium using the Beer-Lambert law:
+            \begin{equation} \label{eq:beerlambert}
+                \frac{I(d)}{I_0} = e^{-\alpha d}
+            \end{equation}
+            By considering the energy transmission $E_\tau/E_\mathrm{in}$ to be equivalent to the left-hand side of \autoref{eq:beerlambert}, and approximating the path length $d$ as the LSP length, the absorption coefficient can be estimated as follows:
+            \begin{equation}
+                \alpha = \frac{\ln{(E_\tau/E_\mathrm{in})}}{-d}
+            \end{equation}
+            For \texttt{LSP205\_SPX6}, this evaluates to \qty{73}{m^{-1}}. This in fact appears to match the absorption coefficient calculations performed in \autoref{chp:models}. \autoref{fig:ib_coeff} predicts an absorption coefficient of \qty{67}{m^{-1}}, while the calculations of \textcite{matsuiGeneratingConditionsArgon2019} predict a value of \qty{58}{m^{-1}}. While not in perfect agreement with theory, this estimate does appear to provide a value on the same order as predicted by IB absorption models.
+
+            As mentioned earlier, the reliability issues of the spark ignition system prevented the systematic study of LSP absorption characteristics. The $\alpha$ estimate above unfortunately cannot account for the changing absorption/transmission as the LSP grows, and assumes a path length based on the final LSP size. Performing absorption measurements under CW regime would improve the measure of $\alpha$ considerably, as measurements could be made once the LSP is fully developed and steady.
+
     \section{Heat deposition}
         To fulfill this project's second research objective, i.e., determining LSP heat deposition in the working gas, the change in pressure from initial conditions was monitored with a PCB Piezotronics pressure transducer. As discussed on page \pageref{sec:design_pressuresensor}, this would theoretically allow the estimation of heat deposition without the need to directly track the temperature of the gas, which would have been a major challenge for a millisecond-scale event.
 
@@ -354,3 +411,53 @@
             There may be several reasons for this poor accuracy. The first is that the upper energy levels $E_k$ of most Ar I emission lines are clustered near \qty{13.25}{eV}, providing a poor sampling range for a linear regression. This is often the case when considering the relative line intensities only for a given atom or ion, as pointed out by \textcite{griemSpectroscopicTemperatureMeasurements1997}: excitation energies are often clustered together. This could be improved in two ways: the \qty{750.39}{nm} transition of Ar I has an excitation energy of \qty{14.95}{eV}, significantly greater than the other transitions. However, its closeness to the \qty{751.47}{nm} transition requires more sophisticated processing to discriminate its emission contribution from that of its neighboring line. Alternatively, a line emission of Ar I could be compared to an Ar II line. This however requires knowledge of electron density, and a measure of Ar II emission lines. These lines are present in the experimental data, in the \qtyrange{400}{500}{nm} range, but are much fainter than the Ar I lines, far more clustered together, and blended into the continuum radiation of the plasma, making detection and integration difficult.
 
             Another possible factor for poor temperature results is that the spectrometer fiber sampled a relatively large area in the test section, and that contrary to the assumption made before this experiment, the emitted radiation of the hottest parts of the LSP do not dominate over colder areas, at least not for the emission lines.  \textcite{nassarInvestigationLasersustainedPlasma2012} used a collimator to sample the spectrum from specific points in the plasma and had better success in determining temperature. 
+    
+    \section{Flowing experiments}
+        To inform the design and test of dedicated thruster prototypes, the test-section of this study was also designed such that it could be configured for flowing/thruster operation, by replacing the downstream end of the system with a backplate featuring an NPT-threaded port onto which various small nozzles could be inserted. Both the effects of forced flow on LSP properties, and the resulting thrust were of interest. This configuration is illustrated in \autoref{fig:finalsetup_flowing}. Due to the use of an opaque nozzle module, the power meter could no longer be used for absorption measurements. The facility was fitted on a thrust stand to attempt to measure any changes in the thrust of the apparatus due to the LSP.
+
+        \begin{figure}[h]
+            \centering
+            \includegraphics[width=0.85\textwidth]{assets/5 results/finalsetup_flowing}
+            \caption{Flowing configuration of the test section}
+            \label{fig:finalsetup_flowing}
+        \end{figure}
+
+        Flow rate was controlled by a delivery pressure set by a regulator and choked orifice nozzles of varying diameter, made by drilling out blank NPT plugs. The test section static pressure was set such that choking conditions could be guaranteed, i.e., the ambient pressure was lower than the sonic pressure. This allows the calculation of the mass flow rate using \autoref{eq:massflow}, with the nozzle throat diameter $D_\mathrm{t}$, stagnation pressure $p_0$, and stagnation temperature $T_0$. 
+        \begin{equation} \label{eq:massflow}
+            \dot{m} = \sqrt{\frac{\gamma}{R_\mathrm{g}}\left(\frac{2}{\gamma+1}\right)^\frac{\gamma+1}{\gamma-1}}\frac{\pi D_\mathrm{t}^2p_0}{4\sqrt{T_0}} = K_{\dot{m}}\frac{\pi D_\mathrm{t}^2p_0}{4\sqrt{T_0}}
+        \end{equation}
+        For the temperatures of interest in the overall flow (excluding the LSP), $K_{\dot{m}}$ for Argon is \qty{0.0504}{s.K^{1/2}.m^{-1}}. Assuming incompressible conditions in the test section, the bulk fluid velocity $v_\mathrm{c}$ can be determined from \autoref{eq:massflow} and conservation of mass, resulting in \autoref{eq:bulk_fluid_vel}, where $D_\mathrm{c}$ is the test section internal diameter (\qty{1.5}{in}).
+        \begin{equation} \label{eq:bulk_fluid_vel}
+            v_\mathrm{c} = K_{\dot{m}}\frac{D_\mathrm{t}^2}{D_\mathrm{c}^2}R_\mathrm{g}\sqrt{T_0}
+        \end{equation}
+        Relatively large nozzle sizes were used to force flow in the test sections at speeds on the same order as the LSP growth speed ($\sim$~\qty{10}{m.s^{-1}}), to determine the LSP could be modified or blown out by fast enough flows. This is relevant for the thrust chamber design of an LTP thruster, as this could place constraints on the chamber dimensions. Unfortunately, the maximum nozzle diameter was limited to about \qty{4}{mm}, as this was the feed system's internal diameter. Using larger nozzles would have resulted in choking at the inlet, capping the mass flow rate (and test section flow velocity). The available nozzles under this diameter provided a bulk flow velocity in the test section of 0.88, 1.15, and \qty{1.79}{m.s^{-1}}.
+
+        \autoref{fig:flow_v_static} compares the LSP size between the static and flowing case. What is apparent is a noticeably slower growth of the LSP in the upstream direction, suggesting that the forced flow does affect LSP dynamics. The upstream tip of the flowing LSP settles closer to the ignition point than for the static LSP. Forced flow also appears to help the LSP sever the ignition wire, allowing it to extend further past the ignition point, which was not always the case in static conditions. While the overall length of the flowing LSP is longer, it may not be appropriate to compare it to the static case as the wire prevents downstream growth.
+
+        \begin{figure}[h]
+            \centering
+            \includegraphics[]{assets/5 results/flow_static_lsp.jpg}
+            \caption[Comparison of LSP under forced flow (top) and static LSP (bottom)]{Comparison of LSP under forced flow (top) and static LSP (bottom). \qty{10}{bar}, \qty{3080}{W}, the bulk flow velocity was \qty{1.8}{m.s^{-1}}}
+            \label{fig:flow_v_static}
+        \end{figure}
+
+        \autoref{fig:flow_pressure} presents the acquired pressure data for some flowing tests, including heat deposition efficiency calculations. Although the data suggests a slightly lower heat deposition compared to the static case, the sample size is small, and the flow velocities remain low, almost comparable to static conditions. Definite conclusions based on this limited data may thus be premature. Nevertheless, one noticeable and consistent difference between the static and flowing cases is the intermediate pressure maximum---it appears to be 40~\% greater than in the static case. 
+
+        \begin{figure}[h]
+            \centering
+            \begin{subfigure}[t]{0.47\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{assets/5 results/flow_deltap}
+                \caption{Pressure rise}
+                \label{fig:flow_pressure_rise}
+            \end{subfigure}
+            \hfill
+            \begin{subfigure}[t]{0.47\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{assets/5 results/flow_eta}
+                \caption{Calculated heat deposition efficiency}
+                \label{fig:flow_pressure_efficiency}
+            \end{subfigure}
+            \caption[Pressure change and heat deposition efficiency in flowing LSP]{Pressure change and heat deposition efficiency in flowing LSP. \qty{10}{bar}, \qty{30.6}{J} input energy.}
+            \label{fig:flow_pressure}
+        \end{figure}

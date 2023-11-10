@@ -218,6 +218,7 @@ def get_filepath_from_ID(shotID):
 
 if __name__ == '__main__':
     shot_ID = 'LSP60_S9'
+    # shot_ID = 'LSP87_F9'
     spectrum_path = get_filepath_from_ID(shot_ID)
     # s = Spectrum('rawdata/spectra/calibration/Halogen_Light.txt', trimL=5) 
     # s = Spectrum('rawdata/spectra/calibration/Mercury-Argog_Spectrum.txt')
@@ -235,17 +236,17 @@ if __name__ == '__main__':
     # plt.legend()
     # plt.xlabel(r'Wavelength $\lambda$ [nm]')
     # plt.ylabel(r'Relative Irradiance [-]')
-    observed_lines = s.find_lines(
-        [
-        696.54,
-        706.72,
-        750.39,
-        751.47,
-        763.51,
-        794.82,
-        826.45,
-    ], integrate=True, verbose=True, voigt=True, array=True
-    )
-    ax.plot(observed_lines[:,1], s.counts[np.int32(observed_lines[:,-1].flatten())], 'o')
-    plt.grid()
+    # observed_lines = s.find_lines(
+    #     [
+    #     696.54,
+    #     706.72,
+    #     750.39,
+    #     751.47,
+    #     763.51,
+    #     794.82,
+    #     826.45,
+    # ], integrate=True, verbose=True, voigt=True, array=True
+    # )
+    # ax.plot(observed_lines[:,1], s.counts[np.int32(observed_lines[:,-1].flatten())], 'o')
+    # plt.grid()
     plt.show()
