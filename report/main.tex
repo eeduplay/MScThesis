@@ -47,7 +47,7 @@
 \usepackage{wrapfig}
 \usepackage{fancyhdr}
 \usepackage{lipsum}
-% \usepackage{draftwatermark}
+\usepackage{draftwatermark}
 \usepackage{soul}
 \usepackage[
     style=ieee,
@@ -99,8 +99,9 @@
 
 \pagestyle{fancy}
 
-% \SetWatermarkText{\sffamily \textbf{EARLY DRAFT}}
-% \SetWatermarkFontSize{4cm}
+\SetWatermarkText{\sffamily \textbf{DRAFT}}
+\SetWatermarkFontSize{2cm}
+\SetWatermarkColor[gray]{0.85}
     
 \input{lstStyle.tex}
 \input{customenvs.tex}
