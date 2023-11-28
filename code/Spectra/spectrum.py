@@ -1,3 +1,11 @@
+'''
+    Author: Emmanuel Duplay
+    Provides utilities to process raw data from an Ocean Optics/Insight USB4000
+    portable spectrometer.
+    This streamlines the process of importing the spectral data, performing
+    wavelength calibration, and performing relative intensity calibration.
+'''
+
 from dotenv import load_dotenv
 load_dotenv()
 import numpy as np
@@ -36,13 +44,18 @@ class Spectrum:
         '''
             Loads spectral data from an Ocean View spectrometer output file
 
-            `path` : Path to spectral data file (.txt) \\
-            `calibrate` : Set to False to use raw data, set to True (default) to 
-                perform wavelength calibration \\
-            `trimL` : Number of pixels to reject at the start of file, usually to 
-                ignore bad pixels.
-            `trimR` : Number of pixels to reject at the end of file, usually to 
-                ignore bad pixels.
+            `path`: Path to spectral data file (.txt). X-Axis should be in "Wavelength"
+            mode.\\
+            `trimL`: Number of pixels to reject at the start of file, usually to 
+            ignore bad pixels. Default is 0.\\
+            `trimR`: Number of pixels to reject at the end of file, usually to 
+            ignore bad pixels. Default is 0.\\
+            `calibrate`: Set to False to use raw data, set to True (default) to 
+            perform wavelength calibration.Default is True.\\
+            `raw`: Does not load file metadata into the metadata property. Default is
+            False.\\
+            `coeff_path`: Path to .csv file containing wavelength calibration
+            coefficients
         '''
         self.metadata = {}
         if raw:
@@ -118,7 +131,8 @@ class Spectrum:
         self.counts = irradiance_coeffs*(self.counts-DL_exp)
                 
 
-    def plot(self, metadata=False, semilog=False) -> tuple[figure.Figure, axes.Axes]:
+    def plot(self, metadata=False, semilog=False) \
+        -> tuple[figure.Figure, axes.Axes]:
         fig, ax = plt.subplots()
         if semilog:
             ax.semilogy(self.wavelengths, self.counts, linewidth=0.5)

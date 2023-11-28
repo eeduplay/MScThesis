@@ -1,10 +1,10 @@
 \chapter{Modelling} \label{chp:models}
-    Though the work of this project was primarily experimental, some modelling work was performed in order to better understand the physics of LSP and aid in the experimental design. One major area of interest is in determining the absorption properties of LSP. High laser absorption is desirable to maximize power conversion efficiency. Furthermore, the IB absorption coefficient typically reaches a maximum at a specific temperature. According to \textcite{keeferLaserSustainedPlasmas1989}, this peak absorption temperature was found to closely correlate with LSP peak temperature. The measurement of absorption coefficient can thus be used to support LSP temperature estimates.
+    Although the work of this project was primarily experimental, some modelling work was performed in order to better understand the physics of LSP and aid in the experimental design. One major area of interest is in determining the absorption properties of LSP. High laser absorption is desirable to maximize power conversion efficiency. Furthermore, the IB absorption coefficient typically reaches a maximum at a specific temperature. According to \textcite{keeferLaserSustainedPlasmas1989}, this peak absorption temperature was found to closely correlate with LSP peak temperature. The measurement of absorption coefficient can thus be used to support LSP temperature estimates.
 
     \section{Absorption} \label{sec:models_absorption}
         A critical property of LSP is its ability to absorb laser radiation. As stated in \autoref{sec:background_lsp}, the primary mechanism for radiation absorption in LSP is inverse bremsstrahlung. Calculation of the absorption coefficient of this process is critical for modelling LSP behavior and estimating its laser absorption efficiency. The calculation method presented here aims to adapt the work of \textcite{akarapuNumericalModelLasersustained2009,nassarInvestigationLasersustainedPlasma2012}, who have developed CFD models for the use of Argon LSP in surface-treatment applications. Although their work considered \ce{CO_2} lasers, adapting the method to the fiber laser of this study is a matter of using the appropriate laser frequency in \autoref{eq:ib_absorption}. Their work was thus used to validate each calculation step, and their results will be plotted alongside this study's computations when relevant.
         
-        The absorption coefficient can be calculated using \autoref{eq:ib_absorption}, and is heavily-dependent on electron density $n_\mathrm{e}$ and radiation frequency $\nu$. The first step of absorption modelling is thus to determine electron density, which is variable with temperature $T$ according to the Saha ionization equation, developed by \textcite{sahaPhysicalTheoryStellar1997}. It is reproduced here for the single-ionization case as \autoref{eq:saha}:
+        The absorption coefficient can be calculated using \autoref{eq:ib_absorption} and is heavily dependent on electron density $n_\mathrm{e}$ and radiation frequency $\nu$. The first step of absorption modelling is thus to determine electron density, which is variable with temperature $T$ according to the Saha ionization equation, developed by \textcite{sahaPhysicalTheoryStellar1997}. It is reproduced here for the single ionization case as \autoref{eq:saha}:
         \begin{equation}
             \frac{n_\mathrm{e}^2}{n_0-n_\mathrm{e}} = \frac{n_\mathrm{e}^2}{n_\mathrm{Ar}} = \frac{2}{\Lambda_\mathrm{th}^3}\frac{\mathcal{Z}_{\mathrm{Ar}^+}}{\mathcal{Z}_\mathrm{Ar}}\exp{\left(-\frac{E_\text{ion, Ar}}{k_\mathrm{B}T}\right)}
             \label{eq:saha}
@@ -22,7 +22,7 @@
             \frac{N_\mathrm{A}p}{R_\mathrm{u}T}&= n_0
         \end{align*}
 
-        The electron density $n_\mathrm{e}$ is plotted against temperature in \autoref{fig:e_density_curves}, for a pressure of \qty{1}{bar}. The calculation by \citeauthor{nassarInvestigationLasersustainedPlasma2012} is plotted alongside it, and their relative value is compared. While the electron density plots appear to agree, there remains a difference in density of a factor~2. This appears to be due to the use of lower precision physical constants in \citeauthor{akarapuNumericalModelLasersustained2009} and \citeauthor{nassarInvestigationLasersustainedPlasma2012}'s work.
+        The electron density $n_\mathrm{e}$ is plotted against temperature in \autoref{fig:e_density_curves}, for a pressure of \qty{1}{bar}. The calculation by \citeauthor{nassarInvestigationLasersustainedPlasma2012} is plotted alongside it, and their relative value is compared. While the electron density plots appear to agree, there remains a difference in density of a factor of two. This appears to be due to the use of lower precision physical constants in \citeauthor{akarapuNumericalModelLasersustained2009} and \citeauthor{nassarInvestigationLasersustainedPlasma2012}'s work.
 
         \begin{figure}[h]
             \centering
@@ -39,11 +39,11 @@
                 \caption{$n_e$ at \qty{1}{bar}, and comparison between computed density $n_\mathrm{e, c}$ and density $n_\mathrm{e, N}$ reported by \textcite{nassarInvestigationLasersustainedPlasma2012}}
                 \label{fig:e_density_curves}
             \end{subfigure}
-            \caption{Computation of electron density $n_e$ of Argon}
+            \caption{Computation of electron density $n_\mathrm{e}$ of Argon}
             \label{fig:e_density}
         \end{figure}
 
-        Although electron density appears to plateau past \qty{20000}{K}, the caveat of this calculation is that it only considers single-ionization. While this is valid below \qty{20000}{K}, second-degree ionization begins past this temperature. The plot is extended up to \qty{25000}{K} to provide some estimate of plasma properties, though they will not be as accurate as below \qty{20000}{K}.
+        Although electron density appears to plateau past \qty{20000}{K}, the caveat of this calculation is that it only considers single-ionization. While this is valid below \qty{20000}{K}, second-degree ionization begins past this temperature. The plot is extended up to \qty{25000}{K} to provide some estimate of plasma properties, although they will not be as accurate as below \qty{20000}{K}.
 
         The absorption coefficient $\alpha$ can now be calculated with the known electron density. For convenience, the equation for $\alpha$, \autoref{eq:ib_absorption}, is reproduced here:
         \begin{equation*}
@@ -64,7 +64,7 @@
         \begin{gather}
             v_T = \sqrt{\frac{k_\mathrm{B}T}{m_\mathrm{e}}} \\
             \nu_\mathrm{p} = \frac{1}{2\pi}\sqrt{\frac{e^2n_\mathrm{e}}{\epsilon_0 m_\mathrm{e}}} \approx (\qty{8.97885}{m^{3/2}s^{-1}})\sqrt{n_\mathrm{e}}\\
-            \rho_\mathrm{min} \approx \max{\left(\frac{Ze^2}{k_BT}, \frac{\hbar}{(m_\mathrm{e}k_BT)^{1/2}}\right)}
+            \rho_\mathrm{min} \approx \max{\left(\frac{Ze^2}{k_\mathrm{B}T}, \frac{\hbar}{(m_\mathrm{e}k_\mathrm{B}T)^{1/2}}\right)}
         \end{gather}
         \textcite{johnstonCorrectValuesHighfrequency1973} state:
         \begin{quote}

@@ -44,9 +44,9 @@ for series in compiledData.columns:
     if series in ['27.0', '33.3']:
         plt.plot(compiledData.index/SAMPLE_RATE, 
              compiledData[series]/compiledData[series].max(), 
-             label=series+' %')
-plt.xlabel('Time [s]')
-plt.ylabel('Relative power [-]')
+             label=series+'%')
+plt.xlabel('Time $t$ [s]')
+plt.ylabel(r'Relative power $P/P_\mathrm{max}$ [-]')
 plt.legend()
 plt.tight_layout()
 plt.savefig('report/assets/3 design/cw_power_time.pdf')

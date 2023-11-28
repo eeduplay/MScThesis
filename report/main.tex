@@ -82,6 +82,9 @@
 
 \newcommand{\shotsettings}[4]{\texttt{#1}: #2~ms, \textit{f}/#3, ND#4}
 
+\newcommand{\dd}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}}
+\newcommand{\ddi}[2]{\mathrm{d}#1/\mathrm{d}#2}
+
 \fancypagestyle{fancy}{
     \fancyhf{}
     \fancyhfinit{\sffamily}
@@ -179,8 +182,8 @@
     \chapter{P30 collimator calibration report}
         \label{chp:app_Collimator}
         \includepdf[pages=-, pagecommand={\footeronly}]{assets/appendices/D30_Collimator_calib.pdf}
-    \chapter{Cavitation apparatus drawings}
-        These drawings were drafted by John Kokkalis at McGill University, reproduced here with his permission. Though the apparatus represented here was not the iteration used in his final work, the final iteration of this system can be found in his Master's thesis~\cite{kokkalisOnsetCavitationDynamically2023}.
+    \chapter{Test section apparatus drawings}
+        The test section used in this thesis was originally designed to study the onset of cavitation in piston-cylinder assemblies. These drawings were drafted by John Kokkalis at McGill University, reproduced here with his permission. Although the apparatus represented here was not the iteration used in his final work, the final iteration of this system can be found in his Master's thesis~\cite{kokkalisOnsetCavitationDynamically2023}.
         \label{chp:app_CavitatorDrawings}
         \includepdf[pages=-, landscape=true, pagecommand={\thispagestyle{fancy}}]{assets/appendices/FULL_DRAWINGS_V4.pdf}
     \chapter{Laser window mount drawings}

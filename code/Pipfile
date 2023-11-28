@@ -19,6 +19,7 @@ openpyxl = "*"
 colour-science = {extras = ["optional"], version = "*"}
 requests = "*"
 beautifulsoup4 = "*"
+cantera = "*"
 
 [dev-packages]
 
