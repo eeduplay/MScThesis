@@ -20,6 +20,27 @@
     }
 \addcontentsline{toc}{chapter}{Nomenclature}
 \markboth{\MakeUppercase{Nomenclature}}{}
+
+\section*{Physical Constants}
+    {\centering\sisetup{table-alignment-mode=format, table-number-alignment=right}
+        \begin{tabularx}{\textwidth}{@{}lXS[table-format = 1.5e3]@{ }lr@{}}
+            \toprule
+            Symbol      & Name    & {Value}     & Unit  & Ref. \\
+            \midrule
+            $c$ &              Speed of light in a vacuum   & 2.99792e8     & \unit{m.s^{-1}} & \cite{tiesingaFundamentalPhysicalConstants2019} \\
+            $e$ &              Elementary charge            & 1.60218e-19   & \unit{C} & \cite{tiesingaFundamentalPhysicalConstants2019} \\
+            $g_0$ &            Standard gravity             & 9.80665       & \unit{m.s^{-2}} & \cite{tiesingaFundamentalPhysicalConstants2019} \\
+            $\hbar$ &          Reduced Planck constant      & 1.05457e-34   & \unit{J.s} & \cite{tiesingaFundamentalPhysicalConstants2019} \\
+            $k_\mathrm{B}$ &   Boltzmann constant           & 1.38065e-23   & \unit{J.K^{-1}} & \cite{tiesingaFundamentalPhysicalConstants2019} \\
+            $m_\mathrm{e}$ &    Electron mass               & 9.10938e-31   & \unit{kg} & \cite{tiesingaFundamentalPhysicalConstants2019} \\
+            $N_\mathrm{A}$ &   Avogadro's number            & 6.02214e+23   & \unit{mol^{-1}} & \cite{tiesingaFundamentalPhysicalConstants2019} \\
+            $R_\mathrm{u}$ &   Universal gas constant       & 8.31446       & \unit{J.K^{-1}.mol^{-1}} & \cite{tiesingaFundamentalPhysicalConstants2019} \\
+            $\epsilon_0$ &     Permittivity of free space   & 8.85419e-12   & \unit{F.m^{-1}} & \cite{tiesingaFundamentalPhysicalConstants2019} \\
+            \bottomrule
+        \end{tabularx}
+    }
+    \bigskip
+
 \begin{multicols}{2}
     % \setlength{\columnseprule}{1pt}
     \section*{Abbreviations}
@@ -33,36 +54,46 @@
         \item[LSP]              Laser-Sustained Plasma
         \item[LTP]              Laser-Thermal Propulsion
         \item[LTTLM]            Laser-Thermal Thruster Laboratory Model
+        \item[NEP]              Nuclear-Electric Propulsion
+        \item[NTP]              Nuclear-Thermal Propulsion 
         \item[OTS]              Off-The-Shelf
+        \item[SEP]              Solar-Electric Propulsion
+        \item[STP]              Solar-Thermal Propulsion
         \item[TTL]              Transistor-to-Transistor Logic
     \end{nomlist}
 
+    
+    % \begin{nomlist}
+    %     \item[$c$]              Speed of light in a vacuum (\qty{2.99792e8}{m.s^{-1}}) 
+    %     \item[$e$]              Elementary charge (\qty{1.60218e-19}{C})
+    %     \item[$g_0$]            Standard gravity (\qty{9.80665}{m.s^{-2}}) 
+    %     \item[$\hbar$]          Reduced Planck constant (\qty{1.05457e-34}{J.s})
+    %     \item[$k_\mathrm{B}$]   Boltzmann constant (\qty{1.38065e-23}{J.K^{-1}})
+    %     \item[$N_\mathrm{A}$]   Avogadro's number (\qty{6.02214e+23}{mol^{-1}})
+    %     \item[$R_\mathrm{u}$]   Universal gas constant (\qty{8.31446}{J.K^{-1}.mol^{-1}})
+    %     \item[$\epsilon_0$]     Permittivity of free space (\qty{8.85419e-12}{F.m^{-1}})
+    % \end{nomlist}
+
     \section*{Latin symbols}
     \begin{nomlist}
-        \item[$A$]              Probability of atomic energy transition [\unit{s^{-1}}]
+        \item[$A$]              Einstein coefficient %[\unit{s^{-1}}]
         \item[$\mathsf{A}$]     Empirically derived parameter A for Paschen's law 
         \item[$\mathsf{B}$]     Empirically derived parameter B for Paschen's law 
-        \item[$c$]              Speed of light in a vacuum (\qty{2.99792e8}{m.s^{-1}}) 
         \item[$c_p$]            Specific heat of enthalpy
         \item[$c_V$]            Specific heat of internal energy
         \item[$D$]              Diameter
         \item[$d$]              Distance
         \item[$E$]              Energy
-        \item[$e$]              Elementary charge (\qty{1.60218e-19}{C})
         \item[$g$]              Degeneracy of atomic energy level
-        \item[$g_0$]            Standard gravity (\qty{9.80665}{m.s^{-2}}) 
         \item[$h$]              Enthalpy
-        \item[$\hbar$]          Reduced Planck constant (\qty{1.05457e-34}{J.s})
-        \item[$I$]              Local laser flux [\unit{W.m^{-2}}]
-        \item[$I_\text{sp}$]    Specific impulse [\unit{s}]
+        \item[$I$]              Local laser flux %[\unit{W.m^{-2}}]
+        \item[$I_\text{sp}$]    Specific impulse %[\unit{s}]
         \item[$K_{\dot{m}}$]    Choked mass flow constant (Argon: \qty{0.0504}{s.K^{1/2}.m^{-1}}) 
-        \item[$k_\mathrm{B}$]   Boltzmann constant (\qty{1.38065e-23}{J.K^{-1}})
         \item[$L$]              Leak rate
         \item[$\ell$]           Relative power loss
         \item[$m$]              Mass
         \item[$\mathcal{M}$]    Molar mass
         \item[$N$]              Number of moles 
-        \item[$N_\mathrm{A}$]   Avogadro's number (\qty{6.02214e+23}{mol^{-1}})
         \item[$n$]              Number density 
         \item[$n_\mathrm{sp}$]  Laser setpoint 
         \item[$P$]              Power 
@@ -70,7 +101,6 @@
         \item[$Q$]              Heat
         \item[$q$]              Charge
         \item[$R_\mathrm{g}$]   Specific gas constant
-        \item[$R_\mathrm{u}$]   Universal gas constant (\qty{8.31446}{J.K^{-1}.mol^{-1}})
         \item[$T$]              Temperature
         \item[$t$]              Time
         \item[$V$]              Volume
@@ -82,11 +112,10 @@
 
     \section*{Greek symbols}
     \begin{nomlist}
-        \item[$\alpha$]         Radiation absorption coefficient [\unit{m^{-1}}]
+        \item[$\alpha$]         Radiation absorption coefficient %[\unit{m^{-1}}]
         \item[$\gamma$]         Specific heat ratio
         \item[$\gamma_\mathrm{se}$]         Secondary-electron-emission coefficient
         \item[$\epsilon$]       Integrated line emission intensity 
-        \item[$\epsilon_0$]     Permittivity of free space (\qty{8.85419e-12}{F.m^{-1}})
         \item[$\eta$]           Efficiency 
         \item[$\Lambda_\mathrm{th}$]        Thermal DeBroglie wavelength
         \item[$\lambda$]        Wavelength

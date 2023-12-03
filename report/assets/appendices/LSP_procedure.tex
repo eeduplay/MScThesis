@@ -1,3 +1,7 @@
+\newcommand{\warningsymbol}{\colorbox{Goldenrod}{\textbf{!}}}
+\renewcommand{\warningsymbol}{\includegraphics[height=1.6ex]{assets/warning.png} }
+\newcommand{\infosymbol}{\includegraphics[height=1.6ex]{assets/info.png} }
+\newcommand{\stopsymbol}{\includegraphics[height=1.6ex]{assets/stop.png} }
 \section*{LSP Shot Procedure}\label{lsp-shot-procedure}
 
 This checklist is used for starting up, using, then shutting down the
@@ -52,7 +56,7 @@ Avoid setting them up if not necessary.
     Adjust camera position and focus to frame the LSP ignition point
     (spark plug tips) at a 300 mm focal length
 
-    {\color{cyan} Use low-light mode, set the lens aperture to f/4, set the ND
+    \infosymbol {\color{cyan} Use low-light mode, set the lens aperture to f/4, set the ND
     Filter to minimum, and use additional lighting if needed}
   \item
     Turn off low-light mode, set the camera frame rate to 10000 fps
@@ -75,7 +79,7 @@ Avoid setting them up if not necessary.
     Connect to the power meter on the PC Gentec-EO software using the
     Bluetooth dongle (attached to blue USB extension cord)
 
-    {\color{cyan} For best results, leave the Bluetooth dongle within the test area}
+    \infosymbol {\color{cyan} For best results, leave the Bluetooth dongle within the test area}
   \item
     Remove the black rubber protective cap and allow the power meter's
     signal to stabilize
@@ -86,7 +90,7 @@ Avoid setting them up if not necessary.
   \item
     Suggested: set the display mode to ``Statistics''
   \item
-    If applicable, set your acquisition settings (filename, etc)
+    If applicable, set your acquisition settings (filename, etc.)
   \end{enumerate}
 \item
   Setup spectrometer
@@ -134,11 +138,11 @@ Avoid setting them up if not necessary.
     flowing test, pressurize the feed lines upstream of the solenoid
     valve, and set the valve's safety switch to the FIRE mode
 
-    {\color{cyan} Before pressurizing to target pressure, evacuate the air in the
+    \infosymbol {\color{cyan} Before pressurizing to target pressure, flush the air from the
     test section by filling it with Argon to 5 bar then venting it to
     1.5 bar, repeating this process three times.}
 
-    \colorbox{Goldenrod}{\textbf{!}} \textbf{The
+    \warningsymbol \textbf{The
     laser windows are rated for a maximum internal pressure of 20 bar.
     Do not exceed this
     pressure.}
@@ -149,7 +153,7 @@ Avoid setting them up if not necessary.
   \item
     Plug in the spark igniter to the mains
 
-    \colorbox{Goldenrod}{\textbf{!}} The igniter is now \textbf{ON} and will spark when receiving a
+    \warningsymbol The igniter is now \textbf{ON} and will spark when receiving a
     signal
   \item
     Exit the area enclosed by the laser safety curtains and close them
@@ -182,7 +186,7 @@ The experiment is now ready to be run.
 
     \texttt{Pulse\ Mode} should be ENABLED
 
-    {\color{cyan}For more information on the web interface, consult the laser user
+    \infosymbol {\color{cyan}For more information on the web interface, consult the laser user
     guide}
   \item
     Set the pulse power setpoint to the desired value
@@ -207,23 +211,23 @@ The experiment is now ready to be run.
   laboratory,}
   regardless of their involvement in the experiment,
   must
-  equip laser safety goggles rated for 1070 nm beyond this
+  be equipped with laser safety goggles rated for 1070 nm beyond this
   step
 \item
   Turn on the laboratory's laser warning light (confirm visually) and
   ensure the door is closed
 
-  {\color{McGillRed}Entering/exiting the laboratory is not permitted beyond this step}
+  \stopsymbol {\color{McGillRed}Entering/exiting the laboratory is not permitted beyond this step}
 \item
   Disengage the laser's front-panel E-stop. Call out ``Safety OFF''.
 \item
   Find the power supply switch wired in the back of the laser. Flick the
   switch ON then OFF. Call out ``Laser is ARMED''.
 
-  {\color{cyan} This starts the laser's main power supply, this is indicated by a
+  \infosymbol {\color{cyan} This starts the laser's main power supply, this is indicated by a
   louder fan volume and the green button on the front panel being lit up}
 
-  \colorbox{Goldenrod}{\textbf{!}} The laser is now \textbf{armed} - it will emit a laser pulse when
+  \warningsymbol The laser is now \textbf{armed} - it will emit a laser pulse when
   the trigger signal is active
 \item
   The experiment is ready to run, go through the following checklist
@@ -265,7 +269,7 @@ The experiment is now ready to be run.
   perform a new shot, resume from step 4
 \end{enumerate}
 
-{\color{cyan} If at any point after step 6, someone must remove their safety
+\infosymbol {\color{cyan} If at any point after step 6, someone must remove their safety
 glasses, enter, or leave the lab, press the E-stop to safe the laser.
 Resume procedure from step 5.}
 
@@ -276,7 +280,7 @@ Resume procedure from step 5.}
 \item
   Press the laser's front-panel E-stop
 
-  {\color{cyan} Laboratory personnel is now free to remove their laser safety
+  \infosymbol {\color{cyan} Laboratory personnel is now free to remove their laser safety
   glasses, and can freely enter/leave the lab}
 \item
   Disable laser warning light

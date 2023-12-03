@@ -105,7 +105,7 @@
                 
 
             \subsubsection*{Pressure transducer} \label{sec:design_pressuresensor}
-                While simple pressure gauges were sufficient for experiment set-up, pressure data with high temporal resolution (minimum \qty{1}{kHz}) was also of interest to study the effect of LSP ignition on the gas pressure, potentially using it as a proxy for temperature change and heat deposition within the test section. PCB Piezotronics 113B28 pressure transducers were sourced within the laboratory. Such transducers are used to detect changes from an initial pressure. With a rise time of less than \qty{1}{\um} and a nominal sensitivity of \qty{14.5}{mV\per kPa}, these sensors are well suited to detect rapid and minute changes in pressure that would be expected in this experiment. The transducer's calibration report can be found in \autoref{chp:app_calibration} page \pageref*{ds:pcbPressure}.
+                While simple pressure gauges were sufficient for experiment set-up, pressure data with high temporal resolution was also of interest to study the effect of LSP ignition on the gas pressure, potentially using it as a proxy for temperature change and heat deposition within the test section. PCB Piezotronics 113B28 pressure transducers were sourced within the laboratory. Such transducers are used to detect changes from an initial pressure. With a rise time of less than \qty{1}{\um}, a usable frequency range of more than \qty{100}{kHz}, and a nominal sensitivity of \qty{14.5}{mV\per kPa}, these sensors are well suited to detect rapid and minute changes in pressure that would be expected in this experiment. The transducer's calibration report can be found in \autoref{chp:app_calibration} page \pageref*{ds:pcbPressure}.
 
                 A possible concern regarding pressure from a safety, design, and measurement standpoint is that the pressure rise resulting from heat deposition would remain within the measurement range of the transducer and would also not exceed the design pressures of the test section. The maximum possible pressure rise can be calculated assuming complete deposition of a laser pulse energy (\qty{30.8}{J}) into the working gas as heat. With the test section parameters seen in \autoref{sec:design_testSection} and \autoref{chp:app_CavitatorDrawings}, the maximum expected pressure rise is \qty{37.5}{kPa}, less than 2\% of the maximum design pressure, and equivalent to a \qty{0.56}{V} rise from the pressure transducer, well within its design range.
 
@@ -223,7 +223,7 @@
             \end{figure}
 
         \subsection{UV-grade side windows}
-            The windows installed on the existing cavitation apparatus were bonded acrylic and polycarbonate. While this was sufficient for observation in the visible spectrum, these materials are less suitable to perform spectroscopy, which would be an integral part of the instrumentation used for the project. Data gathered by \textcite{zimakovInteractionNearIRLaser2016,luCharacteristicDiagnosticsLaserStabilized2022} suggest significant radiation emission both in the near ultraviolet and near infrared. Polycarbonate and acrylic both feature a sharp drop in transmission between 400 and 450~\unit{nm}, along with irregular (although admittedly high) transmission in the near-IR~\cite{gsplasticopticsTransmissionCurvesOptics}. To ensure a complete picture of the plasma's radiation emission was captured, the decision was made to replace these plastic windows with UV-grade fused silica (JGS1). As seen in \autoref{fig:jgs1}, this material features a relatively uniform transmission profile from \qtyrange{210}{1000}{nm}. An added benefit of the new windows was greater optical clarity in the visible spectrum as well. A set of gaskets cut out of Buna-N rubber were used to seal and protect the window, as it is subject to the same failure modes discussed in \autoref{sec:design_lwm}.
+            The windows installed on the existing cavitation apparatus were bonded acrylic and polycarbonate. While this was sufficient for observation in the visible spectrum, these materials are less suitable to perform spectroscopy, which would be an integral part of the instrumentation used for the project. Data gathered by \textcite{zimakovInteractionNearIRLaser2016,luCharacteristicDiagnosticsLaserStabilized2022} suggest significant radiation emission both in the near ultraviolet and near infrared. Polycarbonate and acrylic both feature a sharp drop in transmission between 400 and 450~\unit{nm}, along with irregular (although admittedly high) transmission in the near-IR~\cite{gsplasticopticsTransmissionCurvesOptics}. To ensure a complete picture of the plasma's radiation emission was captured, the decision was made to replace these plastic windows with UV-grade fused silica (JGS1). As seen in \autoref{fig:jgs1}, this material features a relatively uniform transmission profile from \qtyrange{210}{1000}{nm}. An added benefit of the new windows was greater optical clarity in the visible spectrum as well. Windows matching the geometry of the polycarbonate windows were ordered from Dalian Unique Optics Co., Ltd. in China. A set of gaskets cut out of Buna-N rubber were used to seal and protect the window, as it is subject to the same failure modes discussed in \autoref{sec:design_lwm}.
 
             \begin{figure}[h]
                 \centering
@@ -407,7 +407,7 @@
                     \caption{Setpoint percentage to power relation. Blue markers represent experimental tests, the dashed line is a linear fit for the data, excluding points below 30\% of setpoint power.}
                     \label{fig:cw_tests_setpoint}
                 \end{subfigure}
-                \caption{CW power test results}
+                \caption{CW laser output power test results}
                 \label{fig:cw_tests}
             \end{figure}
 
@@ -424,7 +424,7 @@
                 \begin{figure}[h]
                     \centering
                     \includegraphics[]{assets/3 design/sankeyOptics}
-                    \caption[Laser power losses throughout the test section]{Laser power losses throughout the test section. Sankey diagram is qualitative.}
+                    \caption{Qualitative diagram of laser power losses throughout the test section.}
                     \label{fig:sankeyOptics}
                 \end{figure}
 
@@ -508,13 +508,28 @@
 
                 \paragraph{Feed system} Argon gas was provided from a gas cylinder, fitted with a high-pressure regulator, a manual metering valve, and a solenoid valve. Argon was delivered to the test section through 1/4-inch tubing. A second manual metering valve was fitted on the tubing to allow venting of the test section. An Omega digital pressure gauge provided a static pressure reading of the test section.
 
-                The experiment area (contained within laser curtains) is pictured in \autoref{fig:setupPhoto}.
+                The complete experimental setup, including diagnostics and control station, is pictured in \autoref{fig:setupPhoto}.
 
-                \begin{landscape}
-                    \begin{figure}[h]
-                        \centering
-                        \includegraphics[]{assets/3 design/setupPhoto}
-                        \caption[Experimental setup photograph for flowing tests]{Experimental setup photograph for flowing tests. Spark igniter is not present as this used wire ignition.}
-                        \label{fig:setupPhoto}
-                    \end{figure}
-                \end{landscape}
+                \begin{figure}[h]
+                    \centering
+                    \includegraphics[width=\textwidth]{assets/3 design/setup_isometric.png}
+                    \caption[Overview of the experimental setup]{Overview of the experimental setup. Spark igniter is not present as this used wire ignition.}
+                    \label{fig:setupPhoto}
+                \end{figure}
+
+                % \begin{landscape}
+                %     \begin{figure}[h]
+                %         \centering
+                %         \includegraphics[]{assets/3 design/setupPhoto}
+                %         \caption[Experimental setup photograph for flowing tests]{Experimental setup photograph for flowing tests. Spark igniter is not present as this used wire ignition.}
+                %         \label{fig:setupPhoto}
+                %     \end{figure}
+                % \end{landscape}
+                % \begin{landscape}
+                %     \begin{figure}[h]
+                %         \centering
+                %         \includegraphics[]{assets/3 design/setup_isometric.png}
+                %         \caption[Overview of the experimental setup]{Overview of the experimental setup. Spark igniter is not present as this used wire ignition.}
+                %         \label{fig:setupPhoto}
+                %     \end{figure}
+                % \end{landscape}
