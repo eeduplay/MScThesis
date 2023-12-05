@@ -29,7 +29,7 @@
         \subsection{Laser system}
             The laser made available for this project was the most important driver of many design decisions. Whether they are for interstellar-class lightsails as envisioned by \textcite{lubinRoadmapInterstellarFlight2016a}, or interplanetary missions powered by electric propulsion as proposed by \textcite{sheerinFastSolarSystem2021}, fiber lasers operating at the 1064-nm-wavelength are currently favored for many DEP applications. Since LTP is proposed as an additional DEP concept within this ecosystem, this experimental work aimed to match this laser wavelength.
 
-            An IPG Photonics YLR-300/3000-QCW-MM-AC Ytterbium fiber laser (seen in \autoref{fig:laser_laser}) was generously loaned to the IFERG by the Royal Military College of Canada. This is an infrared laser primarily designed for welding, drilling, and cutting. It is capable of operating in both pulsed and continuous modes at a wavelength of \qty{1070}{nm}. Its key specifications are summarized in \autoref{tab:laser_spec}. A complete calibration report for the laser can be found in \autoref{chp:app_YLR}. An IPG Photonics P30-001736 collimator head (seen in \autoref{fig:laser_collimator}) was also acquired for the laser, forming a 13.6-mm-diameter beam at its output. The collimator's calibration report can be found in \autoref{chp:app_Collimator}.
+            An IPG Photonics YLR-300/3000-QCW-MM-AC Ytterbium fiber laser (seen in \autoref{fig:laser_laser}) was generously loaned to the IFERG by the Royal Military College of Canada. This is an infrared laser primarily designed for welding, drilling, and cutting. It is capable of operating in both pulsed and continuous modes at a wavelength of \qty{1070}{nm}. Its key specifications are summarized in \autoref{tab:laser_spec}. A complete calibration report for the laser can be found in \autoref{chp:app_YLR}. An IPG Photonics P30-001736 collimator head (seen in \autoref{fig:laser_collimator}) was also acquired for the laser, forming a 1-in-diameter beam at its output. The collimator's calibration report can be found in \autoref{chp:app_Collimator}.
 
             \begin{table}[h]
                 \centering
@@ -105,7 +105,7 @@
                 
 
             \subsubsection*{Pressure transducer} \label{sec:design_pressuresensor}
-                While simple pressure gauges were sufficient for experiment set-up, pressure data with high temporal resolution was also of interest to study the effect of LSP ignition on the gas pressure, potentially using it as a proxy for temperature change and heat deposition within the test section. PCB Piezotronics 113B28 pressure transducers were sourced within the laboratory. Such transducers are used to detect changes from an initial pressure. With a rise time of less than \qty{1}{\um}, a usable frequency range of more than \qty{100}{kHz}, and a nominal sensitivity of \qty{14.5}{mV\per kPa}, these sensors are well suited to detect rapid and minute changes in pressure that would be expected in this experiment. The transducer's calibration report can be found in \autoref{chp:app_calibration} page \pageref*{ds:pcbPressure}.
+                While simple pressure gauges were sufficient for experiment set-up, pressure data with high temporal resolution was also of interest to study the effect of LSP ignition on the gas pressure, potentially using it as a proxy for temperature change and heat deposition within the test section. PCB Piezotronics 113B28 pressure transducers were sourced within the laboratory. Such transducers are used to detect changes from an initial pressure. With a rise time of less than \qty{1}{\um}\added{, a usable frequency range of more than \qty{100}{kHz}, }and a nominal sensitivity of \qty{14.5}{mV\per kPa}, these sensors are well suited to detect rapid and minute changes in pressure that would be expected in this experiment. The transducer's calibration report can be found in \autoref{chp:app_calibration} page \pageref*{ds:pcbPressure}.
 
                 A possible concern regarding pressure from a safety, design, and measurement standpoint is that the pressure rise resulting from heat deposition would remain within the measurement range of the transducer and would also not exceed the design pressures of the test section. The maximum possible pressure rise can be calculated assuming complete deposition of a laser pulse energy (\qty{30.8}{J}) into the working gas as heat. With the test section parameters seen in \autoref{sec:design_testSection} and \autoref{chp:app_CavitatorDrawings}, the maximum expected pressure rise is \qty{37.5}{kPa}, less than 2\% of the maximum design pressure, and equivalent to a \qty{0.56}{V} rise from the pressure transducer, well within its design range.
 
@@ -133,8 +133,8 @@
                     LTTLM-2     & The thruster shall operate using gaseous argon at room temperature as a propellant & The past experiments used for comparison also used argon \\
                     LTTLM-3     & The thruster shall operate at a maximum design pressure of 2~\unit{MPa} & This should allow the generation of LSP even in continuous-wave laser modes \\
                     LTTLM-4     & The thruster shall allow visible observation of the LSP in the thrust chamber & This enables high-speed imaging of the plasma and the remote measurement of its temperature \\
-                    LTTLM-5     & The thruster shall provide chamber pressure and gas temperature data   & This permits the estimation of stagnation conditions for the heated propellant \\
-                    LTTLM-6     & The thruster shall allow the measurement of absorbed laser power   & This is one of the major energy losses to be determined \\
+                    LTTLM-5     & The thruster shall provide\added{ interfaces to allow for measuring} chamber pressure and gas temperature \deleted{data}  & This permits the estimation of stagnation conditions for the heated propellant \\
+                    LTTLM-6     & The thruster shall \replaced{provide interfaces to allow for measuring}{allow the measurement of} absorbed laser power   & This is one of the major energy losses to be determined \\
                     \bottomrule
                 \end{tabular}
             \end{table}
@@ -156,6 +156,12 @@
                     \caption{Photograph of the test section fitted with a gas feed line}
                     \label{fig:cavitation_photo}
                 \end{subfigure}
+                \begin{subfigure}[t]{\textwidth}
+                    \centering
+                    \includegraphics[]{assets/3 design/testsection_layout.pdf}
+                    \caption{\added{Basic dimensions. Detailed drawings available in \autoref{chp:app_CavitatorDrawings} and \autoref{chp:app_lwmDrawings}}}
+                    \label{fig:cavitation_dimensions}
+                \end{subfigure}
                 \caption{Laser ionization test section}
                 \label{fig:cavitation}
             \end{figure}
@@ -174,8 +180,8 @@
                     LTTLM-2             & The thruster shall operate using gaseous argon at room temperature as a propellant     & Fulfilled                         \\
                     LTTLM-3             & The thruster shall operate at a maximum design pressure of 2 MPa                       & Fulfilled                         \\
                     LTTLM-4             & The thruster shall allow visible observation of the LSP in the thrust chamber          & Fulfilled                         \\
-                    LTTLM-5             & The thruster shall provide chamber pressure and gas temperature data                   & Requires special instrument plugs \\
-                    LTTLM-6             & The thruster shall allow the measurement of absorbed laser power                       & Requires laser windows            \\ \bottomrule
+                    LTTLM-5             & The thruster shall provide\added{ interfaces to allow for measuring} chamber pressure and gas temperature \deleted{data}                   & Requires special instrument plugs \\
+                    LTTLM-6             & The thruster shall \replaced{provide interfaces to allow for measuring}{allow the measurement of} absorbed laser power                       & Requires laser windows            \\ \bottomrule
                 \end{tabular}
             \end{table}
             
@@ -183,7 +189,7 @@
             \begin{enumerate}
                 \item Although its thick stainless-steel construction made it very safe for the operating pressures of the project, it also made it heavy. The superfluous mass would make frictional loads on a thrust bench far more significant than for a custom-designed, lightweight thruster model.
                 \item Its length forces the use of long focal-length lenses to focus the laser into the test section. Such long lenses would create a high {\itshape f}-number beam, which could affect how easily a stable LSP could be achieved, as discussed in \autoref{sec:background_lsp}. While shorter lenses would still be able to focus the laser into the chamber, the beam past the focal point would diverge quickly and hit the test section walls, affecting laser absorption measurements at best, or damaging experimental apparatus at worst.
-                \item Instrumentation ports are available only on one side of the cylinder. The lack of opposing ports constrains the design of certain ignition methods, such as spark igniters.
+                \item Instrumentation ports are available only on one side of the cylinder. The lack of opposing ports constrains the design of certain ignition methods, such as spark-igniters.
             \end{enumerate}
 
             The alternative was to work on a clean-sheet design that would perfectly satisfy the requirements set in \autoref{tab:lttmReq}, without the drawbacks of the existing apparatus listed above. While this may have avoided many difficulties encountered later in this project, opting for a custom design would have introduced significant risks in terms of timeline, compounded by the many uncertainties surrounding the operation of an LSP generator/LTP thruster. In order to quickly move forward with the project, it was decided to retrofit the existing cavitation apparatus into an LSP generator. It was reasoned that the lessons learned in attempting experiments with an unoptimized system would still be valuable to document and would be very effective in informing the design of a custom thruster laboratory model.
@@ -199,7 +205,7 @@
 
             Pressure vessel windows are often needed in the IFERG---the group has thus acquired useful experience on their design, adopting design guidelines from the \textcite{brookhavennationallaboratoryGuideGlassPlastic2005}. In summary, these guidelines provide design formulas, empirically derived properties, and tried-and-tested designs for various applications. The window mount follows the ``free edges'' design (Figure 14 in \cite{brookhavennationallaboratoryGuideGlassPlastic2005}), deemed most appropriate for this application, and having been successfully implemented\footnote{A former laboratory member consulted on this design problem stated: ``Every time I did not follow this guide to the letter, it failed.''} in past experiments. In this design, a peripheral o-ring provides a reliable seal, while two rubber or teflon gaskets support the window and prevent its edges from touching the metal walls. This is the critical design criterion for pressure windows: although glass and crystals often exhibit excellent tensile strength, their brittleness makes them susceptible to localized stress concentrations which ultimately are the source of failure. This occurs at glass-metal contact points, so pressure window designs focus on preventing these contacts by minimizing strain and introducing soft interfaces such as teflon or rubber gaskets.
 
-            The calculation procedure described in \cite{brookhavennationallaboratoryGuideGlassPlastic2005} for elliptical windows was used to size an appropriate window based on different materials and suppliers. Sapphire, borosilicate glass (N-BK7), and quartz were considered as potential materials. Strict application of the guide's mandated safety factor of 10 and the use of the full test section internal diameter (\qty{38.1}{mm} or 1.5~inches) as the aperture size led to window dimensions that could not be sourced from off-the-shelf suppliers. To reduce costs and facilitate supply, a compromise was reached by reducing the effective aperture to 1.4~inches (\qty{35.6}{mm}) to provide more support to the window while accepting a reduced safety factor of about 9.1. The resulting window is 12-mm-thick and \qty{50.8}{mm} in diameter for N-BK7 glass, which is supplied by Thorlabs as WG12012-C~\cite{thorlabsWG12012CO2NBK7}. Other suppliers either could not supply a window matching these specifications or did so for a much higher price. Likewise, other material choices resulted in window dimensions that could not be sourced off-the-shelf.
+            The calculation procedure described in \cite{brookhavennationallaboratoryGuideGlassPlastic2005} for elliptical windows was used to size an appropriate window based on different materials and suppliers. Sapphire, borosilicate glass (N-BK7), and quartz were considered as potential materials. Strict application of the guide's mandated safety factor of 10 and the use of the full test section internal diameter (\qty{38.1}{mm} or 1.5~in) as the aperture size led to window dimensions that could not be sourced from off-the-shelf suppliers. To reduce costs and facilitate supply, a compromise was reached by reducing the effective aperture to 1.4~in (\qty{35.6}{mm}) to provide more support to the window while accepting a reduced safety factor of about 9.1. The resulting window is 12-mm-thick and \qty{50.8}{mm} in diameter for N-BK7 glass, which is supplied by Thorlabs as WG12012-C~\cite{thorlabsWG12012CO2NBK7}. Other suppliers either could not supply a window matching these specifications or did so for a much higher price. Likewise, other material choices resulted in window dimensions that could not be sourced off-the-shelf.
 
             Window mounts (pictured in \autoref{fig:windowMount}) were then designed to interface with the existing apparatus, following the ``free edges'' design. As the existing apparatus had no mounting arrangements, the window mounts also featured a tapped hole allowing the mounting of optical posts (as seen in \autoref{fig:windowMount_empty}) to the assembled test section. This permitted its integration with an optical table system, greatly facilitating experimental setup. Complete drawings for the window mounts can be found in \autoref{chp:app_lwmDrawings}.
 
@@ -232,8 +238,8 @@
                 \label{fig:jgs1}
             \end{figure}
 
-        \subsection{Spark ignition system}
-            As seen in \autoref{sec:background_exp}, several methods were devised to ignite LSP, i.e. create a seed plasma that could initiate the inverse \emph{bremsstrahlung} laser absorption mechanism. These include:
+        \subsection{Spark-ignition system}
+            As seen in \autoref{sec:background_exp}, several methods were devised to ignite LSP, i.e. create a seed plasma that could initiate the inverse bremsstrahlung laser absorption mechanism. These include:
             \begin{itemize}
                 \item Inducing a plasma using a separate high-power laser pulse
                 \item Focusing the laser onto a solid tungsten or titanium target, releasing an electron cloud by thermionic emission (\textcite{schwartzLasersustainedGasPlasmas1989}) that could initiate LSP
@@ -246,16 +252,16 @@
             \end{enumerate}
             The use of a separate high-power laser pulse to induce a seed plasma would likely fulfill both requirements, as this is a non-intrusive ignition method, and such lasers often operate with nanosecond pulses or shorter. However, this would require the purchase of a second laser system at a high cost and a long lead time, so this option was discarded. Solid metal targets offer an easy to implement, reliable, and affordable ignition solution, but was thought to be unable to fulfill the requirements listed above: Placing a solid target in the beam path would prevent the measurement of laser power exiting the plasma. While actuators could be used to remove the target, these would add complexity and likely be unable to operate within the desired timescale.
 
-            This left spark ignition as the preferred solution: spark igniters are easily triggered with precision thanks to their fully electrical, solid-state operation, the lack of moving parts also facilitate sealing, and the electrode spacing can be controlled to avoid intersecting the laser beam path. Furthermore, such systems have been in use in various other projects in the laboratory, so this would build on past experience.
+            This left spark-ignition as the preferred solution: spark-igniters are easily triggered with precision thanks to their fully electrical, solid-state operation, the lack of moving parts also facilitate sealing, and the electrode spacing can be controlled to avoid intersecting the laser beam path. Furthermore, such systems have been in use in various other projects in the laboratory, so this would build on past experience.
 
-            Past work within the laboratory and the Thermodynamics and Combustion Group of Concordia University converged on a design based on the use of ``smart'' high-performance automotive ignition coils. Such coils are charged with a DC power supply and triggered based on a Transistor-to-Transistor Logic (TTL) signal, which can be generated by a wide variety of electronics, including precision digital delay generators commonly used in the laboratory. Reliable spark igniter operation had previously been achieved with the AEM 30-2853 High Output Smart Coil. This coil can output a \qty{40}{kV} voltage and a spark energy of up to \qty{103}{mJ}. Detailed specifications can be found in its instruction manual~\cite{aemperformanceelectronicsInstructionManual302853}.
+            Past work within the laboratory and the Thermodynamics and Combustion Group of Concordia University converged on a design based on the use of ``smart'' high-performance automotive ignition coils. Such coils are charged with a DC power supply and triggered based on a Transistor-to-Transistor Logic (TTL) signal, which can be generated by a wide variety of electronics, including precision digital delay generators commonly used in the laboratory. Reliable spark-igniter operation had previously been achieved with the AEM 30-2853 High Output Smart Coil. This coil can output a \qty{40}{kV} voltage and a spark energy of up to \qty{103}{mJ}. Detailed specifications can be found in its instruction manual~\cite{aemperformanceelectronicsInstructionManual302853}.
             
-            The spark igniter circuit design (illustrated in \autoref{fig:spark_circuit}) was adapted and greatly simplified from previous implementations for other projects, as this experiment only required a single arc discharge at a time. Previous igniter designs featured control electronics to trigger a series of sparks---these electronics were discarded as they introduced complexity and unreliability for the benefit of flexibility that was not needed in this project. In this simplified design, the coil awaits a \qtyrange{3}{9}{ms} 5~V gate signal to charge. This gate signal is generated directly by a delay generator that can be triggered manually or from an external signal. Once the gate signal ends, the coil releases its energy through the high voltage terminal at \qty{40}{kV}. This energy discharges across the spark plug's electrodes, creating a spark. The negative electrode is connected to the coil's spark ground (on pin 3), the test section body, and a real ground wire, to ensure that no residual voltage remains in the system.
+            The spark-igniter circuit design (illustrated in \autoref{fig:spark_circuit}) was adapted and greatly simplified from previous implementations for other projects, as this experiment only required a single arc discharge at a time. Previous igniter designs featured control electronics to trigger a series of sparks---these electronics were discarded as they introduced complexity and unreliability for the benefit of flexibility that was not needed in this project. In this simplified design, the coil awaits a \qtyrange{3}{9}{ms} 5~V gate signal to charge. This gate signal is generated directly by a delay generator that can be triggered manually or from an external signal. Once the gate signal ends, the coil releases its energy through the high voltage terminal at \qty{40}{kV}. This energy discharges across the spark plug's electrodes, creating a spark. The negative electrode is connected to the coil's spark ground (on pin 3), the test section body, and a real ground wire, to ensure that no residual voltage remains in the system.
 
             \begin{figure}[h]
                 \centering
                 \includegraphics[]{assets/3 design/sparkIgniter}
-                \caption[Spark ignition circuit diagram]{Spark ignition circuit diagram. Not pictured are various switches used to safely operate the system.}
+                \caption[spark-ignition circuit diagram]{spark-ignition circuit diagram. Not pictured are various switches used to safely operate the system.}
                 \label{fig:spark_circuit}
             \end{figure}
 
@@ -474,10 +480,10 @@
                         \toprule
                         Time [ms]   & Event \\
                         \midrule
-                        0.0         & Experiment is triggered manually. High-speed camera begins recording. Spark igniter gate signal is opened to charge it. \\
+                        0.0         & Experiment is triggered manually. High-speed camera begins recording. spark-igniter gate signal is opened to charge it. \\
                         6.0         & EMISSION START signal is sent to laser. Oscilloscope begins recording pressure transducer signal. \\
                         8.0         & Laser pulse begins.    \\
-                        9.0         & Spark igniter gate signal closes, spark begins. LSP should begin forming. \\
+                        9.0         & spark-igniter gate signal closes, spark begins. LSP should begin forming. \\
                         10.0        & Spark should have ended. LSP continues growing.   \\
                         11.0        & Spectrometer begins capturing radiation.  \\
                         15.0        & Spectrometer stops capturing radiation.   \\
@@ -506,14 +512,14 @@
 
                 \paragraph{Optics} Control over the laser focus was critical to reliably ignite LSP, avoid losing laser power before it reached the power meter, and avoid specular reflections that could damage instrumentation. Several focusing lenses were purchased of varying focal lengths, although all experiments were performed with a \qty{200}{mm} N-BK7 lens. The longer focal length, although not ideal for LSP stability as discussed in \autoref{sec:background_exp}, made it easier to ensure the entire beam would be allowed through the exit window into the power meter, since the beam divergence was smaller. A diagram showing relevant dimensions for optical alignment can be seen in \autoref{chp:app_lwmDrawings}, page \pageref*{chp:app_optics}. The lens was mounted on a set of leadscrew-operated optical stages, allowing precision adjustments to the lens position with 3 degrees of freedom.
 
-                \paragraph{Feed system} Argon gas was provided from a gas cylinder, fitted with a high-pressure regulator, a manual metering valve, and a solenoid valve. Argon was delivered to the test section through 1/4-inch tubing. A second manual metering valve was fitted on the tubing to allow venting of the test section. An Omega digital pressure gauge provided a static pressure reading of the test section.
+                \paragraph{Feed system} Argon gas was provided from a gas cylinder, fitted with a high-pressure regulator, a manual metering valve, and a solenoid valve. Argon was delivered to the test section through 1/4-in tubing. A second manual metering valve was fitted on the tubing to allow venting of the test section. An Omega digital pressure gauge provided a static pressure reading of the test section.
 
                 The complete experimental setup, including diagnostics and control station, is pictured in \autoref{fig:setupPhoto}.
 
                 \begin{figure}[h]
                     \centering
                     \includegraphics[width=\textwidth]{assets/3 design/setup_isometric.png}
-                    \caption[Overview of the experimental setup]{Overview of the experimental setup. Spark igniter is not present as this used wire ignition.}
+                    \caption[Overview of the experimental setup]{Overview of the experimental setup. spark-igniter is not present as this used wire ignition.}
                     \label{fig:setupPhoto}
                 \end{figure}
 
@@ -521,7 +527,7 @@
                 %     \begin{figure}[h]
                 %         \centering
                 %         \includegraphics[]{assets/3 design/setupPhoto}
-                %         \caption[Experimental setup photograph for flowing tests]{Experimental setup photograph for flowing tests. Spark igniter is not present as this used wire ignition.}
+                %         \caption[Experimental setup photograph for flowing tests]{Experimental setup photograph for flowing tests. spark-igniter is not present as this used wire ignition.}
                 %         \label{fig:setupPhoto}
                 %     \end{figure}
                 % \end{landscape}
@@ -529,7 +535,7 @@
                 %     \begin{figure}[h]
                 %         \centering
                 %         \includegraphics[]{assets/3 design/setup_isometric.png}
-                %         \caption[Overview of the experimental setup]{Overview of the experimental setup. Spark igniter is not present as this used wire ignition.}
+                %         \caption[Overview of the experimental setup]{Overview of the experimental setup. spark-igniter is not present as this used wire ignition.}
                 %         \label{fig:setupPhoto}
                 %     \end{figure}
                 % \end{landscape}

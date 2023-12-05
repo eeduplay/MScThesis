@@ -1,0 +1,28 @@
+\contentsline {added}{Added: \truncate {\Changestruncatewidth }{DEP architecture for an LTP mission to Mars with a 45 day transit time.}}{v}{section*.4}%
+\contentsline {added}{Added: \truncate {\Changestruncatewidth }{The horizontal reflections above and below the event are the edges of the observation window.}}{v}{section*.5}%
+\contentsline {replaced}{Replaced: \truncate {\Changestruncatewidth }{Despite deriving from a design conceived in the late 1950s (\blx@tocontentsinit {0}\textcite {bilsteinFireSmokeThunder1996})}}{1}{section*.9}%
+\contentsline {added}{Added: \truncate {\Changestruncatewidth }{illustrated in \autoref {fig:ltp_architecture}, }}{2}{section*.11}%
+\contentsline {replaced}{Replaced: \truncate {\Changestruncatewidth }{a ground-based 100-MW laser powering an LTP spacecraft}}{2}{section*.12}%
+\contentsline {added}{Added: \truncate {\Changestruncatewidth }{DEP architecture for an LTP mission to Mars with a 45 day transit time.}}{3}{section*.15}%
+\contentsline {added}{Added: \truncate {\Changestruncatewidth }{For instance, \blx@tocontentsinit {0}\textcite {campargueAbsorptionSpectrumH22011} show the absorption bands of \ce {H2} feature a gap in the 917--1090\nobreakspace {}nm range. }}{7}{section*.18}%
+\contentsline {added}{Added: \truncate {\Changestruncatewidth }{ (i.e., 10.6-\unit {\um } wavelength)}}{7}{section*.19}%
+\contentsline {added}{Added: \truncate {\Changestruncatewidth }{, a usable frequency range of more than \qty {100}{kHz}, }}{18}{section*.29}%
+\contentsline {added}{Added: \truncate {\Changestruncatewidth }{ interfaces to allow for measuring}}{20}{section*.31}%
+\contentsline {deleted}{Deleted: \truncate {\Changestruncatewidth }{data}}{20}{section*.32}%
+\contentsline {replaced}{Replaced: \truncate {\Changestruncatewidth }{provide interfaces to allow for measuring}}{20}{section*.33}%
+\contentsline {added}{Added: \truncate {\Changestruncatewidth }{Basic dimensions. Detailed drawings available in \autoref {chp:app_CavitatorDrawings} and \autoref {chp:app_lwmDrawings}}}{21}{section*.36}%
+\contentsline {added}{Added: \truncate {\Changestruncatewidth }{ interfaces to allow for measuring}}{22}{section*.38}%
+\contentsline {deleted}{Deleted: \truncate {\Changestruncatewidth }{data}}{22}{section*.39}%
+\contentsline {replaced}{Replaced: \truncate {\Changestruncatewidth }{provide interfaces to allow for measuring}}{22}{section*.40}%
+\contentsline {added}{Added: \truncate {\Changestruncatewidth }{: \begin {multline} \frac {\symcal {Z}_{\mathrm {Ar}^+}}{\symcal {Z}_\mathrm {Ar}} = -2.3077\times 10^{-29}T^7+2.3474\times 10^{-24}T^6 \\ - 8.8453\times 10^{-20}T^5 + 1.4851\times 10^{-15}T^4 -9.843\times 10^{-12}T^3\\ - 1.2477\times 10^{-8}T^2 + 0.00047534T+3.7971 \end {multline} This approximation is plotted alongside the data directly retrieved from the NIST ASD in \autoref {fig:e_density_partition} for comparison.}}{38}{section*.59}%
+\contentsline {added}{Added: \truncate {\Changestruncatewidth }{All experiments were performed with a 200-mm-focal length lens, focusing the 1-in-wide laser beam to a focus approximately \qty {0.5}{mm} in diameter. These parameters result in an effective \textit {f}\unhbox \voidb@x \toks@ \@emptytoks \def \toks@ {--}\futurelet \@let@token \setbox \z@ \hbox {-\nobreak }\unhbox \z@ 1{\toks@ {--}\futurelet \@let@token \setbox \z@ \hbox {-\nobreak }\unhbox \z@ }\def \setbox \z@ \hbox {-\nobreak }\unhbox \z@ {\setbox \z@ \hbox {-\nobreak }\unhbox \z@ }\futurelet \@let@token \setbox \z@ \hbox {-\nobreak }\unhbox \z@ -number of 7.9 for the laser beam.}}{42}{section*.64}%
+\contentsline {comment}{Commented\nobreakspace {}(AH): \truncate {\Changestruncatewidth }{either: alignment of the target or: target alignment}}{44}{section*.67}%
+\contentsline {comment}{Commented\nobreakspace {}(ED): \truncate {\Changestruncatewidth }{this is a target (subject) \emph {for} alignment (adj?)}}{44}{section*.68}%
+\contentsline {added}{Added: \truncate {\Changestruncatewidth }{The horizontal reflections above and below the event are the edges of the observation window.}}{44}{section*.71}%
+\contentsline {added}{Added: \truncate {\Changestruncatewidth }{At the time of writing, 124 LSPs were successfully ignited, 80\% by wire ignition.}}{46}{section*.73}%
+\contentsline {comment}{Commented\nobreakspace {}(BZ): \truncate {\Changestruncatewidth }{(...) pulse not exactly 10 ms or what?}}{46}{section*.75}%
+\contentsline {comment}{Commented\nobreakspace {}(ED): \truncate {\Changestruncatewidth }{Starts at 1.6\nobreakspace {}ms, ends at 11.6\nobreakspace {}ms, ergo 10\nobreakspace {}ms}}{46}{section*.76}%
+\contentsline {added}{Added: \truncate {\Changestruncatewidth }{(0.1--0.2\nobreakspace {}ms)}}{46}{section*.77}%
+\contentsline {added}{Added: \truncate {\Changestruncatewidth }{To release a seed cloud of electrons, the wire must be heated to a high temperature, enough for heat to overcome the metal's work function. Low laser powers may not raise the temperature of the wire at the ignition point fast enough, as heat will be conducted away from the laser focal point. No calculation was made to determine the minimum laser power required for ignition with this method, although no successful ignition was observed below \qty {1}{kW} of laser power.}}{48}{section*.79}%
+\contentsline {replaced}{Replaced: \truncate {\Changestruncatewidth }{progressively}}{55}{section*.87}%
+\contentsline {added}{Added: \truncate {\Changestruncatewidth }{ and result in a greater measured change in temperature and pressure, as implied by \autoref {eq:heatdep}}}{68}{section*.99}%

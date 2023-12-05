@@ -1,6 +1,8 @@
+\special{pdf:minorversion 7}
 \PassOptionsToPackage{dvipsnames}{xcolor}
 \documentclass[11pt,a4paper]{report}
 
+\usepackage[todonotes={textsize=scriptsize}, draft]{changes}
 \usepackage[left=3cm, right=3cm, top=3cm, bottom=3.5cm]{geometry}
 \usepackage{setspace}
 \usepackage{layout}
@@ -52,7 +54,7 @@
 \usepackage[
     style=ieee,
     citestyle=numeric-comp,
-    urldate=iso8601]{biblatex}
+    urldate=iso]{biblatex}
 % \usepackage{datetime}
 \usepackage{nameref}
 \usepackage{hyperref}
@@ -65,6 +67,10 @@
     filecolor=cyan,
     urlcolor=cyan
 }
+\setdeletedmarkup{\textcolor{McGillRed}{\sout{#1}}}
+\definechangesauthor[color=violet, name={Emmanuel Duplay}]{ED}
+\definechangesauthor[color=cyan, name={Barry Zandbergen}]{BZ}
+\definechangesauthor[color=McGillRed, name={Andrew Higgins}]{AH}
 
 % \input{titlesec.tex}
 \addbibresource{ref.bib}
@@ -84,6 +90,12 @@
 
 \newcommand{\dd}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}}
 \newcommand{\ddi}[2]{\mathrm{d}#1/\mathrm{d}#2}
+
+% Track changes commands
+% \newcommand{\change}[1]{\textcolor{McGillRed}{#1}}
+% \newenvironment{changeblock}{\color{McGillRed}}{}
+% \renewcommand{\change}[1]{#1}  % Comment out to suppress changes
+% \renewenvironment{changeblock}{}{}  % Comment out to suppress changes
 
 \fancypagestyle{fancy}{
     \fancyhf{}

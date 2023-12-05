@@ -13,13 +13,13 @@
         \begin{equation*}
             \Lambda_\mathrm{th} = \sqrt{\frac{2\pi \hbar^2}{m_\mathrm{e}k_\mathrm{B}T}}
         \end{equation*}
-        The ratio $\mathcal{Z}_{\mathrm{Ar}^+}/\mathcal{Z}_\mathrm{Ar}$ is the ratio of the partition function values for Ar$^+$ and Ar (also designated Ar II and Ar I, respectively). These values are also dependent on temperature and can be queried in the NIST Atomic Spectra Database (ASD) (\textcite{kramidaNISTAtomicSpectra2022}) for a given spectrum (e.g., Ar I) and electron temperature $T_\mathrm{e}$. This ratio is plotted in \autoref{fig:e_density_partition}. \citeauthor{nassarInvestigationLasersustainedPlasma2012} fitted a seventh-order polynomial (shown in \autoref{eq:nassar_polynomial}) to approximate this ratio across temperature:
+        The ratio $\mathcal{Z}_{\mathrm{Ar}^+}/\mathcal{Z}_\mathrm{Ar}$ is the ratio of the partition function values for Ar$^+$ and Ar (also designated Ar II and Ar I, respectively). These values are also dependent on temperature and can be queried in the NIST Atomic Spectra Database (ASD) (\textcite{kramidaNISTAtomicSpectra2022}) for a given spectrum (e.g., Ar I) and electron temperature $T_\mathrm{e}$. This ratio is plotted in \autoref{fig:e_density_partition}. \citeauthor{nassarInvestigationLasersustainedPlasma2012} fitted a seventh-order polynomial (shown in \autoref{eq:nassar_polynomial}) to approximate this ratio across temperature\added{:
         \begin{multline} \label{eq:nassar_polynomial}
-            \frac{\mathcal{Z}_{\mathrm{Ar}^+}}{\mathcal{Z}_\mathrm{Ar}} = -2.3077\times 10^{-29}T^7+2.3474\times 10^{-24}T^6 - 8.8453\times 10^{-20}T^5 \\
-            + 1.4851\times 10^{-15}T^4 -9.843\times 10^{-12}T^3 - 1.2477\times 10^{-8}T^2 \\
+            \frac{\mathcal{Z}_{\mathrm{Ar}^+}}{\mathcal{Z}_\mathrm{Ar}} = -2.3077\times 10^{-29}T^7+2.3474\times 10^{-24}T^6 \\ - 8.8453\times 10^{-20}T^5
+            + 1.4851\times 10^{-15}T^4 -9.843\times 10^{-12}T^3\\ - 1.2477\times 10^{-8}T^2
             + 0.00047534T+3.7971
         \end{multline}
-        This approximation is plotted alongside the data directly retrieved from the NIST ASD in \autoref{fig:e_density_partition} for comparison.
+        This approximation is plotted alongside the data directly retrieved from the NIST ASD in \autoref{fig:e_density_partition} for comparison.}
 
         It is important to note that $n_0$ in \autoref{eq:saha} is not constant across temperatures. In the case of LSP, the ionization process occurs at constant pressure, even if the experiment occurs in a closed container, as only a small fraction of the test section volume undergoes ionization. The hotter Argon is free to expand into the cooler surroundings, locally reducing the number density and maintaining a constant pressure. Therefore, $n_0$ must be calculated based on a given pressure $p$ and the varying temperature. This can be done with the ideal gas equation, where $V$ is volume, $N$ is the number of atoms in moles, $R_\mathrm{u}$ is the universal gas constant, and $N_\mathrm{A}$ is Avogadro's number:
         \begin{align*}
