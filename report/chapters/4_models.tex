@@ -49,7 +49,7 @@
             \label{fig:e_density}
         \end{figure}
 
-        Although electron density appears to plateau past \qty{20000}{K}, the caveat of this calculation is that it only considers single-ionization. While this is valid below \qty{20000}{K}, second-degree ionization begins past this temperature. The plot is extended up to \qty{25000}{K} to provide some estimate of plasma properties, although they will not be as accurate as below \qty{20000}{K}.
+        Although electron density appears to plateau past \qty{20000}{K}, the caveat of this calculation is that it only considers single-ionization, i.e., removing a single electron from the atom. While this is valid below \qty{20000}{K}, second-degree ionization (removing a second electron away) begins past this temperature, increasing the number of electrons in the plasma. The plot is extended up to \qty{25000}{K} to provide some estimate of plasma properties, although they will not be as accurate as below \qty{20000}{K}.
 
         The absorption coefficient $\alpha$ can now be calculated with the known electron density. For convenience, the equation for $\alpha$, \autoref{eq:ib_absorption}, is reproduced here:
         \begin{equation*}
@@ -108,4 +108,141 @@
             \label{fig:ib_coeff}
         \end{figure}
 
-        The temperature of peak absorption is of interest, as it correlates to the peak temperature of the LSP (\textcite{keeferLaserSustainedPlasmas1989}). This absorption model thus suggests that a peak temperature of \highlight[id=BZ, comment=Later you show (...) that temperatures remain below true plasma temperatures. What are the alternative heating mechanisms?]{around \qty{20000}{K}}\comment[id=ED]{Now addressed in \autoref{sec:results_spectroscopy}} should be expected.
+        The temperature of peak absorption is of interest, as it correlates to the peak temperature of the LSP (\textcite{keeferLaserSustainedPlasmas1989}). This absorption model thus suggests that a peak temperature of \highlight[id=BZ, comment=Later you show (...) that temperatures remain below true plasma temperatures. What are the alternative heating mechanisms?]{around \qty{20000}{K}}\comment[id=ED]{Now addressed in \autoref{sec:results_spectroscopy}} should be expected. \added{Furthermore, the calculated absorption coefficient provides scale length over which laser radiation will be absorbed by the LSP, by taking the reciprocal of $\alpha$. For instance, at \qty{10}{bar} of pressure and assuming complete absorption, the LSP length can be estimated to be close to the absorption length, i.e., $1/(\qty{67}{m^{-1}}) =$~\qty{15}{mm}. Knowing the fraction of laser power absorbed by the LSP and measuring its length can be used to compute an effective absorption coefficient, which can be compared to the predicted values in \autoref{fig:ib_coeff}, using the Beer-Lambert law.}
+    
+    \section{LSP size estimate}
+        Another avenue for LSP temperature estimate is to relate the average temperature and plasma volume, assuming the laser pulse energy is converted into enthalpy in the plasma volume. This calculation can then provide a range of LSP volumes and their associated average temperature. \autoref{fig:LSP_size_model_diagram} illustrates the simplified model of the LSP. The plasma volume is considered to be perfectly bounded by the laser beam and is approximated as a cone whose tip coincides with the laser focus. Knowing the beam geometry, i.e., the f-number $N_\mathrm{f} = 7.9$, means that the cone's volume is only a function of the LSP length $d$.
+        \begin{equation}
+            \frac{d}{2r} = N_\mathrm{f} \implies V = \pi\frac{d^3}{6N_\mathrm{f}}
+        \end{equation}
+        Starting with an initial temperature $T_1$ of \qty{290}{K}, a final temperature $T_2$ will correspond to a change in enthalpy $\Delta h$. Given a set pulse energy $E_\mathrm{in}$ absorbed with efficiency $\eta_\alpha$, the mass $m$ of gas required to increase in temperature from $T_1$ to $T_2$ can be found with \autoref{eq:deltahtom}:
+        \begin{equation}
+            m = \frac{\eta_\alpha E_\mathrm{in}}{\Delta h(T_1, T_2)} \label{eq:deltahtom}
+        \end{equation}
+        This mass can then be converted to a volume $V$ based on the density $\rho(T_2)$ of the gas at temperature $T_2$.
+
+        \begin{figure}[h]
+            \centering
+            \includegraphics[]{assets/4 models/LSP_sizemodel.pdf}
+            \caption{LSP sizing model}
+            \label{fig:LSP_size_model_diagram}
+        \end{figure}
+
+        Unlike the heat deposition calculations discussed in the following section, the varying specific heat of argon must be considered, as it changes by an order of magnitude between 5000 and \qty{20000}{K}. At these temperatures, the ionization of argon consumes additional heat, so more of it is needed to increase its temperature. The thermodynamic properties of argon were obtained through NASA's CEA software~\cite{gordonComputerProgramCalculation1994} for a range of pressures and temperatures, and interpolated using cubic splines. The resulting specific heat at constant pressure and enthalpy are both plotted in \autoref{fig:argon_thermo} for \qty{10}{bar} of ambient pressure.
+
+        \begin{figure}[h]
+            \centering
+            \begin{subfigure}[t]{0.47\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{assets/4 models/Ar10_cp.pdf}
+                \caption{Specific heat of enthalpy}
+                \label{fig:argon_cp}
+            \end{subfigure}
+            \hfill
+            \begin{subfigure}[t]{0.47\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{assets/4 models/Ar10_h.pdf}
+                \caption{Enthalpy}
+                \label{fig:argon_h}
+            \end{subfigure}
+            \caption{Thermodynamic properties of argon at \qty{10}{bar}}
+            \label{fig:argon_thermo}
+        \end{figure}
+
+        The varying density $\rho(T)$ was also taken from CEA's output. \autoref{fig:LSP_size_model} shows the resulting LSP dimensions based on a range of possible final temperatures. The calculation was performed for two pressures and assuming both complete and 50\% laser absorption by the plasma. The results suggest that in the range where ionization is expected and IB absorption is possible, i.e., above \qty{10000}{K}, the volume of plasma that would contain the energy of a full-power pulse ranges from 10--1000~\unit{mm^3}, corresponding to LSP lengths on the order of \qty{10}{mm}. Although not a perfect match, this loosely corresponds to the scale absorption lengths suggested by the IB absorption calculation in \autoref{sec:models_absorption}, especially at higher temperatures.
+
+        \begin{figure}[h]
+            \centering
+            \includegraphics[]{assets/4 models/volume_est.pdf}
+            \caption{LSP dimension estimate for \qty{30}{J} pulse, assuming conical volume}
+            \label{fig:LSP_size_model}
+        \end{figure}
+
+        This model of LSP sizing does have a few caveats. First, it assumes that the plasma envelope is adiabatic---none of the heat deposited into the plasma is transferred out within the duration of a laser pulse. In reality, heat will likely be lost through radiation and conduction as the plasma grows. Second, the plasma temperature will not be uniform, as seen in the data from \textcite{welleEnergyConversionEfficiency1986} (\autoref{fig:4_LSPTProfile}), and a portion of the plasma will lie outside of the laser-beam boundaries. These effects will likely result in a smaller than estimated plasma volume/length, as less heat will be contained in the plasma envelope at any given time and a portion of this heat will be contained in lower-temperature regions.
+
+    \section{Test-section heating}
+        Some calculations were performed in the interest of safety and selecting appropriate instrumentation to predict the rise in temperature and pressure of the test section during an experiment. As discussed in \autoref{sec:design_pressuresensor}, precise pressure measurements will be taken during the experiment to estimate the heat deposition resulting from successful LSP ignition. The following scenarios are considered:
+        \begin{enumerate}
+            \item Failed ignition
+            \item Successful ignition
+            \begin{enumerate}
+                \item ...in the static case (constant volume)
+                \item ...in the flowing case (constant pressure)
+            \end{enumerate}
+        \end{enumerate}
+        The apparatus used in this project is mostly made of stainless steel and 6061~aluminum, and argon is the working fluid. Some relevant thermodynamic and structural properties are given in \autoref{chp:app_matprops}.
+
+        \subsection{Failed ignition}
+            In the case of failed ignition, most of the laser radiation will be directly incident on the backplate of the test section. This is the worst case scenario---alternatively, a window module could be present, allowing the laser beam to be safely dumped into the power meter, resulting in virtually no heating of the test section itself. The opaque backplate used in this experiment is made of 6061 aluminum. It can be approximated as a disk \qty{3.94}{in} in diameter and 0.39-in thick, giving it a mass of approximately \qty{0.2}{kg} and a heat capacity of \qty{180}{J.K^{-1}}. The worst-case temperature rise can be estimated assuming all the laser energy is absorbed by the plate as heat.
+
+            It is immediately apparent that distributing the energy of a full-power laser pulse (\qty{30.8}{J}) will lead to a negligible temperature rise---less than \qty{0.2}{K}. The portion of the plate directly exposed to the laser beam will likely experience a higher temperature, but the beam diameter is approximately \qty{2}{cm} by the time it reaches the backplate, so local laser intensity will not be sufficient to cause any damage or to raise the surface temperature by more than a few K. In the CW scenario, with up to \qty{350}{W} deposited into the plate, the plate temperature is unlikely to rise by more than 10--20~K in the time it would take to determine that no ignition had occurred and to shut down the laser, i.e., around 10~s.
+
+            In reality, the resulting temperature rise is likely to be much lower, as aluminum will reflect most of the laser radiation: \textcite{pozzobonHouseholdAluminumFoil2020} reported 96--98\% reflectivity in the near-infrared spectrum. The diffuse reflection (up to 75\%) will distribute the laser radiation across several parts of the apparatus, minimizing local temperature rises. Laser damage to the facility in the event of a failed ignition is thus of minimal concern.
+
+        \subsection{Successful ignition}
+            In the case of successful ignition, several scenarios are possible depending on whether the laser is operated in pulsed or CW mode and whether the working fluid is static or flowing through the test section. Two scenarios will be considered: the effect of a laser-pulse-sustained plasma in static argon, as it is the most relevant to the experiments performed in this project, and the effect of continuous LSP in flowing argon, as this is the scenario most relevant to operating a thruster prototype.
+
+            % The use of maximum power/energy settings (i.e., \qty{350}{W}/\qty{30.8}{J}) is assumed, and calculations will be performed assuming 10\% and 100\% heat deposition efficiencies.
+
+            \subsubsection*{Laser-pulse LSP in static argon}\comment[id=ED]{A large part of this subsubsection was originally in Chapter 5}
+                Assuming an even distribution of heat added into a closed system, the resulting pressure change $\Delta p$ can be expressed using the ideal gas equation and the change in temperature $\Delta T$ caused by a constant volume heat addition $Q_\mathrm{in}$. In this case, $Q_\mathrm{in}$ refers to the heat deposition in the working fluid, not the laser-pulse energy entering the test section, which will be defined as $E_\mathrm{in}$. 
+                \begin{gather}
+                    pV = mR_\mathrm{g}T \label{eq:IGL}\\
+                    Q_\mathrm{in} = mc_V\Delta T \label{eq:cvHeatAdd}
+                \end{gather}
+                The change in pressure and temperature of this system can be determined between two states (1 and 2) as follows:
+                \begin{gather*}
+                    \frac{p_1}{T_1} = \frac{mR_\mathrm{g}}{V} = \frac{p_2}{T_2} \\
+                    \implies \frac{T_2}{T_1} = \frac{p_2}{p_1} \\
+                    \implies \frac{T_1+\Delta T}{T_1} = \frac{p_1+\Delta p}{p_1} \\
+                    \implies \frac{\Delta T}{T_1} = \frac{\Delta p}{p_1} \\
+                    \implies \frac{p_1}{T_1}\Delta T = \Delta p
+                \end{gather*}
+                Substituting $p_1/T_1$ with \autoref{eq:IGL} and $\Delta T$ with \autoref{eq:cvHeatAdd}, the static pressure change in the test section can be related to the heat added in the system and vice-versa:
+                \begin{equation}
+                    \Delta p = \frac{R_\mathrm{g}Q_\mathrm{in}}{Vc_V}
+                \end{equation}
+                \added{The specific heat at constant volume $c_V$ is taken to be that of room-temperature-and-pressure argon: \qty{312}{J.kg^{-1}.K^{-1}}~\cite{lemmonThermophysicalPropertiesFluid2023}. Although the specific heats of argon vary significantly as it heats to a plasma state, this analysis considers the final state of the system, whose temperature is not expected to increase to a point where variable specific heats should be considered. }The resulting change in pressure is independent of the gas mass, and therefore, independent of the initial pressure for a set volume. This \added{initial-pressure independence }however \deleted{would} only hold\added{s} as long as the heat deposited in the gas $Q_\mathrm{in}$ is also independent on the initial pressure.
+
+                The heat deposition efficiency can then be defined as $\eta = Q_\mathrm{in}/E_\mathrm{in}$. Approximating the volume $V$ of the test-section as a cylinder matching the internal dimensions annotated in \autoref{fig:cavitation_dimensions} (315$\times$38-\unit{mm} cylinder) allows the prediction of the measured pressure change resulting from an LSP test. These results are shown for a range of laser-pulse energies in \autoref{fig:heatdep_p_static}. Although the pressure rise is independent of the initial pressure, the temperature rise is not. Indeed, lower initial pressures result in a lesser gas mass to absorb the deposited heat, resulting in a greater final temperature. As seen in \autoref{fig:heatdep_T_static}, the same pulse providing a $\sim$1-K temperature rise at \qty{20}{bar} would raise the temperature by almost \qty{10}{K} at \qty{3}{bar}.
+
+                Two assumptions made in this model may not be accurate. First, this model assumes that the heat deposited by the LSP in the working gas is distributed evenly in the test section before it has time to be transferred to the test section walls. This may not be the case, so numerical simulations may be necessary to ascertain the validity of this assumption. Second, this model assumes that the heat deposition efficiency does not change with pressure/density, when a denser gas could contribute to improved heat deposition through more effective heat conduction and/or greater absorption of radiated heat.
+
+                The predicted state changes for this experiment are still low when considering thrust applications. As will be discussed in \autoref{sec:model_thrust}, both thrust and specific impulse depend on $T^{1/2}$. In case of low heat deposition efficiency, a temperature change of a few K will likely only modify thrust and specific impulse by a few \% or less from the cold-flow case. It is thus already apparent that the current test-section design is unoptimized for thruster experiments, and these calculations indicate that thrust chamber volume should be decreased to amplify the changes in pressure and temperature during LSP operation.
+
+                \begin{figure}[h]
+                    \centering
+                    \begin{subfigure}[t]{0.49\textwidth}
+                        \centering
+                        \includegraphics[]{assets/4 models/heatdep_static.pdf}
+                        \caption{Resulting pressure rise}
+                        \label{fig:heatdep_p_static}
+                    \end{subfigure}
+                    \hfill
+                    \begin{subfigure}[t]{0.49\textwidth}
+                        \centering
+                        \includegraphics[]{assets/4 models/heatdep_T_static.pdf}
+                        \caption{Temperature rise dependency on initial pressure}
+                        \label{fig:heatdep_T_static}
+                    \end{subfigure}
+                    \caption{Effect of pulse LSP on test-section conditions}
+                    \label{fig:heatdep_static}
+                \end{figure}
+
+            \subsubsection*{CW LSP in flowing argon}
+                The CW flowing case is most akin to a real thruster operation. In this scenario, the resulting steady-flow temperature rise can be calculated for a range of mass-flow rates and a constant laser power input of \qty{350}{W}. This is a constant-pressure process, unlike the static LSP case. For steady flow, the temperature change from $T_1$ (room temperature) to $T_2$ due to a heat addition rate $\dot{Q}_\mathrm{in}$ can be determined from its change of enthalpy as follows:
+                \begin{equation}
+                    \eta P_\mathrm{in} = \dot{Q}_\mathrm{in} = \dot{m}(h(T_2)-h(T_1))
+                \end{equation}
+                Where $P_\mathrm{in}$ is the laser power and $\eta$ is the heat deposition efficiency. This equation can be solved for $T_2$, the resulting bulk temperature at the inlet of the thruster nozzle. Again, variable specific heat data from NASA CEA~\cite{gordonComputerProgramCalculation1994} will be considered to determine what mass flow rates are necessary to attain temperatures expected in an actual LTP system, i.e., 10$^3$--10$^4$~K.
+
+                \autoref{fig:heatdep_flowing} shows the result of this calculation for mass-flow rates ranging from 0.2 to \qty{20}{g.s^{-1}} and a chamber pressure of \qty{10}{bar}. At this low laser-power level, low mass-flow rates of \qty{2}{g.s^{-1}} or less appear necessary to raise the propellant temperature to those expected in an LTP thruster. In the best case conditions, the theoretical 10~000-K chamber temperature reported by \textcite{duplayDesignRapidTransit2022} for a full-scale thruster can only be replicated in the lab with a 0.3-\unit{g.s^{-1}} flow rate. Temperature increases appear negligible for flow rates beyond \qty{10}{g.s^{-1}}.
+
+                \begin{figure}[h]
+                    \centering
+                    \includegraphics[]{assets/4 models/heat_addition_flowing.pdf}
+                    \caption{Expected flow temperature at nozzle inlet, \qty{10}{bar}, \qty{350}{W} of input laser power $P_\mathrm{in}$.}
+                    \label{fig:heatdep_flowing}
+                \end{figure}
+    
+    \section{Thrust modelling} \label{sec:model_thrust}

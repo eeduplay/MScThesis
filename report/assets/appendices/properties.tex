@@ -1,0 +1,31 @@
+\chapter{Properties of relevant substances} \label{chp:app_matprops}
+\begin{refsection}
+
+    The thermodynamic and mechanical properties (at \qty{290}{K} and \qty{1}{bar}) of substances relevant to this project are tabulated below for convenience. 
+
+    \begin{table}[h]
+        \centering
+        \caption[Thermodynamic and mechanical properties of selected substances]{Thermodynamic and mechanical properties of selected substances. The density $\rho$, specific heats at constant volume $c_V$ and pressure $c_p$, thermal conductivity $k$, molar mass $\mathcal{M}$, yield strength $\sigma_\mathrm{y}$, and melting point $T_\mathrm{melt}$ are provided.}
+        \label{tab:matprops}
+        \begin{tabular}{@{}lrrrrl@{}}
+            \toprule
+                                & Argon                                          & 304 Steel                      & 6061-T6 Aluminum                                      & Tungsten                                                                       & Unit                      \\
+            \midrule
+            $\rho$              & 1.66                                           & 8000                           & 2700                                                  & 19~300                                                                          & \unit{kg.m^{-3}}           \\
+            $c_V$               & 312                                            & -                               & -                                                      & -                                                                               & \unit{J.kg^{-1}.K^{-1}} \\
+            $c_p$               & 522                                            & 500                            & 896                                                   & 132                                                                            & \unit{J.kg^{-1}.K^{-1}} \\
+            $k$                 & 0.0173                                         & 16.2                           & 167                                                   & 163                                                                            & \unit{W.m^{-1}.K^{-1}}  \\
+            $\mathcal{M}$       & 39.9                                           & -                               & -                                                      & 184                                                                            & \unit{kg.kmol^{-1}}     \\
+            $\sigma_\mathrm{y}$ & -                                               & 215                            & 276                                                   & 750                                                                            & \unit{Mpa}              \\
+            $T_\mathrm{melt}$   & 83.8                                           & 1700                           & 890                                                   & 3700                                                                           & \unit{K}                \\
+            Reference           & \cite{lemmonThermophysicalPropertiesFluid2023} & \cite{matweb304StainlessSteel} & \cite{aerospacespecificationmetalsincASMMaterialData} & \cite{royalsocietyofchemistryTungstenElementInformation2023,   matwebTungsten} &                          \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+    \renewcommand{\bibfont}{\small}
+    \printbibliography[
+        heading=none,
+        % block=ragged,
+        prenote=bibmark
+    ]
+\end{refsection}
