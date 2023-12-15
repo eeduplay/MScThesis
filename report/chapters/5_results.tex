@@ -328,7 +328,7 @@
             \begin{equation} \label{eq:heatdep}
                 Q_\mathrm{in} = \frac{\Delta pVc_V}{R_\mathrm{g}}
             \end{equation}
-            The heat deposition efficiency $\eta$ can then be calculated as the ratio $Q_\mathrm{in}/E_\mathrm{in}$, which captures the overall efficiency of converting the incident laser power on the LSP into heat remaining in the propellant. This would include losses from incomplete laser absorption by the LSP, along with heat lost in the form of radiation, which would heat the chamber walls without really affecting the gas temperature.
+            The heat-deposition efficiency $\eta$ can then be calculated as the ratio $Q_\mathrm{in}/E_\mathrm{in}$, which captures the overall efficiency of converting the incident laser power on the LSP into heat remaining in the propellant. This would include losses from incomplete laser absorption by the LSP, along with heat lost in the form of radiation, which would heat the chamber walls without really affecting the gas temperature.
 
             The detailed results of such a calculation are shown for a single LSP test in \autoref{fig:pressure_annotated}.
 
@@ -340,12 +340,12 @@
             \end{figure}
 
 
-            Repeating this efficiency calculation for several LSPs sustained at various pressures and pulse energies yields \autoref{fig:heatEfficiency}. Heat deposition efficiency is seen to be consistent at around 15\%, regardless of laser power or gas pressure. \added{As mentioned in \autoref{sec:exp_absorption}, laser absorption by the LSP is one of the major components of the overall heat deposition efficiency, implying that 20\% of the laser energy does not even enter the plasma. Of the 80\% that does get absorbed and turned into heat, 81\% of it is lost (i.e., 65\% of the laser energy), likely by radiation, to the test section walls. This distribution is illustrated in \autoref{fig:heatdep_sankey}.}
+            Repeating this efficiency calculation for several LSPs sustained at various pressures and pulse energies yields \autoref{fig:heatEfficiency}. Heat-deposition efficiency is seen to be consistent at around 15\%, regardless of laser power or gas pressure. \added{As mentioned in \autoref{sec:exp_absorption}, laser absorption by the LSP is one of the major components of the overall heat-deposition efficiency, implying that 20\% of the laser energy does not even enter the plasma. Of the 80\% that does get absorbed and turned into heat, 81\% of it is lost (i.e., 65\% of the laser energy), likely by radiation, to the test section walls. This distribution is illustrated in \autoref{fig:heatdep_sankey}.}
 
             \begin{figure}[h]
                 \centering
                 \includegraphics[]{assets/5 results/heatEfficiency}
-                \caption[Heat deposition efficiency of LSP]{Heat deposition efficiency of LSP. Left: calculation at 20 and 10~bar; right: consistency across a range of pressures, for two different pulse energies}
+                \caption[Heat-deposition efficiency of LSP]{Heat-deposition efficiency of LSP. Left: calculation at 20 and 10~bar; right: consistency across a range of pressures, for two different pulse energies}
                 \label{fig:heatEfficiency}
             \end{figure}
 
@@ -358,7 +358,7 @@
 
             Although useful to estimate heat deposition, the assumption of uniform distribution of heat in the test section does not accurately reflect the actual processes taking place during LSP growth and shortly afterward. This simplifying assumption does not explain the intermediate rise in pressure followed by a short drop immediately after the end of the laser pulse.
 
-            This simple method of determining heat deposition and its efficiency could also be improved on in a few ways. First, replicating these experiments using (a more reliable) spark-ignition system would likely mitigate any heat transfer (although already estimated to be small) occurring via the ignition system. This would also allow the LSP to extend downstream past the ignition point, which may have implications on both laser absorption and overall heat deposition. Second, heat transfer to the walls should be quantified to determine whether this would explain the observed pressure drop after the (global) maximum, and to correct, if deemed necessary, for heat transfer to the walls as the gas is heating up. These changes would likely improve the calculated heat deposition efficiency.
+            This simple method of determining heat deposition and its efficiency could also be improved on in a few ways. First, replicating these experiments using (a more reliable) spark-ignition system would likely mitigate any heat transfer (although already estimated to be small) occurring via the ignition system. This would also allow the LSP to extend downstream past the ignition point, which may have implications on both laser absorption and overall heat deposition. Second, heat transfer to the walls should be quantified to determine whether this would explain the observed pressure drop after the (global) maximum, and to correct, if deemed necessary, for heat transfer to the walls as the gas is heating up. These changes would likely improve the calculated heat-deposition efficiency.
     
     \clearpage
     \section{Spectroscopic temperature measurement} \label{sec:results_spectroscopy}
@@ -442,7 +442,7 @@
 
             Another possible factor for poor temperature results is that the spectrometer fiber sampled a relatively large area in the test section, and that contrary to the assumption made before this experiment, the emitted radiation of the hottest parts of the LSP do not dominate over colder areas, at least not for the emission lines.  \textcite{nassarInvestigationLasersustainedPlasma2012} used a collimator to sample the spectrum from specific points in the plasma and had better success in determining temperature. 
     
-    \section{Flowing experiments}
+    \section{Flowing experiments} \label{sec:exp_flowing}
         To inform the design and test of dedicated thruster prototypes, the test section of this study was also designed such that it could be configured for flowing/thruster operation, by replacing the downstream end of the system with a backplate featuring an NPT-threaded port onto which various small nozzles could be inserted. Both the effects of forced flow on LSP properties, and the resulting thrust were of interest. Unlike some of the experiments discussed in \autoref{sec:background_exp}, it should be noted no attempt was made at straightening the flow or quantifying its uniformity, as the test section did not provide an easy way to do this. This configuration is illustrated in \autoref{fig:finalsetup_flowing}. Due to the use of an opaque nozzle module, the power meter could no longer be used for absorption measurements. The facility was fitted on a thrust stand to attempt to measure any changes in the thrust of the apparatus due to the LSP.
 
         \begin{figure}[h]
@@ -452,11 +452,13 @@
             \label{fig:finalsetup_flowing}
         \end{figure}
 
-        Flow rate was controlled by a delivery pressure set by a regulator and choked orifice nozzles of varying diameter, made by drilling out blank NPT plugs. The test section static pressure was set such that choking conditions could be guaranteed, i.e., the ambient pressure was lower than the sonic pressure. This allows the calculation of the mass flow rate using \autoref{eq:massflow}\footnote{Equivalent to Equation 6-6 in \citeauthor{zandbergenAE4S01ThermalRocket2020}'s \citetitle*{zandbergenAE4S01ThermalRocket2020} course notes~\cite{zandbergenAE4S01ThermalRocket2020}},\added{ derived from the choked (critical) mass flow rate equation assuming a circular orifice,} with the orifice nozzle throat diameter $D_\mathrm{t}$, stagnation pressure $p_0$, and stagnation temperature $T_0$.
-        \begin{equation} \label{eq:massflow}
-            \dot{m} = \sqrt{\frac{\gamma}{R_\mathrm{g}}\left(\frac{2}{\gamma+1}\right)^\frac{\gamma+1}{\gamma-1}}\frac{\pi D_\mathrm{t}^2p_0}{4\sqrt{T_0}} = K_{\dot{m}}\frac{\pi D_\mathrm{t}^2p_0}{4\sqrt{T_0}}
-        \end{equation}
-        For the temperatures of interest in the overall flow (excluding the LSP), $K_{\dot{m}}$ for argon is \qty{0.0504}{s.K^{1/2}.m^{-1}}. \added{For those familiar with the Vandenkerckhove function $\Gamma$, the mass flow parameter $K_{\dot{m}}$ is equivalent to $\Gamma/R_\mathrm{g}^{1/2}$.} Assuming incompressible conditions in the test section, the bulk fluid velocity $v_\mathrm{c}$ can be determined from \autoref{eq:massflow} and conservation of mass, resulting in \autoref{eq:bulk_fluid_vel}, where $D_\mathrm{c}$ is the test section internal diameter (\qty{1.5}{in}).
+        Flow rate was controlled by a delivery pressure set by a regulator and choked orifice nozzles of varying diameter, made by drilling out blank NPT plugs. The test section static pressure was set such that choking conditions could be guaranteed, i.e., the ambient pressure was lower than the sonic pressure. This allows the calculation of the mass flow rate using \autoref{eq:massflow}.
+        % \footnote{Equivalent to Equation 6-6 in \citeauthor{zandbergenAE4S01ThermalRocket2020}'s \citetitle*{zandbergenAE4S01ThermalRocket2020} course notes~\cite{zandbergenAE4S01ThermalRocket2020}},\added{ derived from the choked (critical) mass flow rate equation assuming a circular orifice,} with the orifice nozzle throat area $D_\mathrm{t}$, stagnation pressure $p_0$, and stagnation temperature $T_0$.
+        % \begin{equation}
+        %     \dot{m} = \sqrt{\frac{\gamma}{R_\mathrm{g}}\left(\frac{2}{\gamma+1}\right)^\frac{\gamma+1}{\gamma-1}}\frac{A_\mathrm{t}p_0}{\sqrt{T_0}} = K_{\dot{m}}\frac{A_\mathrm{t}^2p_0}{\sqrt{T_0}} \tag{\ref{eq:massflow} revisited}
+        % \end{equation}
+        % For the temperatures of interest in the overall flow (excluding the LSP), $K_{\dot{m}}$ for argon is \qty{0.0504}{s.K^{1/2}.m^{-1}}. \added{For those familiar with the Vandenkerckhove function $\Gamma$, the mass flow parameter $K_{\dot{m}}$ is equivalent to $\Gamma/R_\mathrm{g}^{1/2}$.} 
+        Assuming incompressible conditions in the test section, the bulk fluid velocity $v_\mathrm{c}$ can be determined from \autoref{eq:massflow} and conservation of mass, resulting in \autoref{eq:bulk_fluid_vel}, where $D_\mathrm{c}$ is the test section internal diameter (\qty{1.5}{in}).
         \begin{equation} \label{eq:bulk_fluid_vel}
             v_\mathrm{c} = K_{\dot{m}}\frac{D_\mathrm{t}^2}{D_\mathrm{c}^2}R_\mathrm{g}\sqrt{T_0}
         \end{equation}
@@ -488,7 +490,7 @@
 
         Although bulk flow velocities capable of blowing out the LSP were not attained, LSP stability was observed to be susceptible to flow conditions. As seen in \autoref{sec:background_exp}, past LTP facilities such as those of \textcite{toyodaThrustPerformanceCW2002} had features to distribute flow evenly in the test section with little turbulence. This was not the case in this project, as the gas was injected from a single orifice a few inches upstream of the LSP, through the side of the test section rather than co-axially. This likely results in flow with significant, unsteady, rotational and/or radial velocity components by the time it reaches the LSP. Disturbances to the LSP were observed, such as dissipation before the end of the laser pulse, separation of one LSP into two cores, which could sometimes reconnect, and localized variations in plasma brightness during a laser pulse.
 
-        \autoref{fig:flow_pressure} presents the acquired pressure data for some flowing tests, including heat deposition efficiency calculations. The pressure profile matches the same pattern observed in static conditions. Although the data suggests a slightly lower heat deposition compared to the static case, the sample size is small, and the flow velocities remain low, almost comparable to static conditions. Definite conclusions based on this limited data may thus be premature. Nevertheless, one noticeable and consistent difference between the static and flowing cases is the intermediate pressure maximum---it appears to be 40\% greater than in the static case. 
+        \autoref{fig:flow_pressure} presents the acquired pressure data for some flowing tests, including heat-deposition efficiency calculations. The pressure profile matches the same pattern observed in static conditions. Although the data suggests a slightly lower heat deposition compared to the static case, the sample size is small, and the flow velocities remain low, almost comparable to static conditions. Definite conclusions based on this limited data may thus be premature. Nevertheless, one noticeable and consistent difference between the static and flowing cases is the intermediate pressure maximum---it appears to be 40\% greater than in the static case. 
 
         \begin{figure}[h]
             \centering
@@ -502,9 +504,9 @@
             \begin{subfigure}[t]{0.47\textwidth}
                 \centering
                 \includegraphics[width=\textwidth]{assets/5 results/flow_eta}
-                \caption{Calculated heat deposition efficiency}
+                \caption{Calculated heat-deposition efficiency}
                 \label{fig:flow_pressure_efficiency}
             \end{subfigure}
-            \caption[Pressure change and heat deposition efficiency in flowing LSP]{Pressure change and heat deposition efficiency in flowing LSP. \qty{10}{bar}, \qty{30.6}{J} input energy.}
+            \caption[Pressure change and heat-deposition efficiency in flowing LSP]{Pressure change and heat-deposition efficiency in flowing LSP. \qty{10}{bar}, \qty{30.6}{J} input energy.}
             \label{fig:flow_pressure}
         \end{figure}

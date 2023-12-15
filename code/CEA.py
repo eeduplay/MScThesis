@@ -58,7 +58,7 @@ if __name__ == '__main__':
 
     temps = np.linspace(200, 20000, 100)
     for gas in [argon_0p1, argon_1, argon_10]:
-        plt.plot(temps, gas.cp(temps, extrapolate=True)/1000, 
+        plt.plot(temps, gas.gam(temps, extrapolate=True), 
                  label='{:.1f} bar'.format(gas.p*1e-5))
     # plt.plot(temps, argon_10.h(temps, extrapolate=True))
     plt.xlabel('$T$ [K]')
@@ -78,8 +78,8 @@ if __name__ == '__main__':
     ax2.set_xlabel('$T$ [K]')
 
     fig1.tight_layout()
-    fig1.savefig('report/assets/4 models/Ar10_cp.pdf')
+    # fig1.savefig('report/assets/4 models/Ar10_cp.pdf')
     fig2.tight_layout()
-    fig2.savefig('report/assets/4 models/Ar10_h.pdf')
+    # fig2.savefig('report/assets/4 models/Ar10_h.pdf')
 
     plt.show()

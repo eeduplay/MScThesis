@@ -108,12 +108,12 @@
             \label{fig:ib_coeff}
         \end{figure}
 
-        The temperature of peak absorption is of interest, as it correlates to the peak temperature of the LSP (\textcite{keeferLaserSustainedPlasmas1989}). This absorption model thus suggests that a peak temperature of \highlight[id=BZ, comment=Later you show (...) that temperatures remain below true plasma temperatures. What are the alternative heating mechanisms?]{around \qty{20000}{K}}\comment[id=ED]{Now addressed in \autoref{sec:results_spectroscopy}} should be expected. \added{Furthermore, the calculated absorption coefficient provides scale length over which laser radiation will be absorbed by the LSP, by taking the reciprocal of $\alpha$. For instance, at \qty{10}{bar} of pressure and assuming complete absorption, the LSP length can be estimated to be close to the absorption length, i.e., $1/(\qty{67}{m^{-1}}) =$~\qty{15}{mm}. Knowing the fraction of laser power absorbed by the LSP and measuring its length can be used to compute an effective absorption coefficient, which can be compared to the predicted values in \autoref{fig:ib_coeff}, using the Beer-Lambert law.}
+        The temperature of peak absorption is of interest, as it correlates to the peak temperature of the LSP (\textcite{keeferLaserSustainedPlasmas1989}). This absorption model thus suggests that a peak temperature of \highlight[id=BZ, comment=Later you show (...) that temperatures remain below true plasma temperatures. What are the alternative heating mechanisms?]{around \qty{20000}{K}}\comment[id=ED]{Now addressed in \autoref{sec:results_spectroscopy}} should be expected. \added{Furthermore, the calculated absorption coefficient provides a scale length over which laser radiation will be absorbed by the LSP, by taking the reciprocal of $\alpha$. For instance, at \qty{10}{bar} of pressure and assuming complete absorption, the LSP length can be estimated to be close to the absorption length, i.e., $1/(\qty{67}{m^{-1}}) =$~\qty{15}{mm}. Experimental measurements of the fraction of laser power absorbed by the LSP can be used with the measured LSP length to compute an effective absorption coefficient, which can be compared to the predicted values in \autoref{fig:ib_coeff}, using the Beer-Lambert law.}
     
     \section{LSP size estimate}
         Another avenue for LSP temperature estimate is to relate the average temperature and plasma volume, assuming the laser pulse energy is converted into enthalpy in the plasma volume. This calculation can then provide a range of LSP volumes and their associated average temperature. \autoref{fig:LSP_size_model_diagram} illustrates the simplified model of the LSP. The plasma volume is considered to be perfectly bounded by the laser beam and is approximated as a cone whose tip coincides with the laser focus. Knowing the beam geometry, i.e., the f-number $N_\mathrm{f} = 7.9$, means that the cone's volume is only a function of the LSP length $d$.
         \begin{equation}
-            \frac{d}{2r} = N_\mathrm{f} \implies V = \pi\frac{d^3}{6N_\mathrm{f}}
+            \frac{d}{2r} = N_\mathrm{f} \implies V = \pi\frac{d^3}{12N_\mathrm{f}^2}
         \end{equation}
         Starting with an initial temperature $T_1$ of \qty{290}{K}, a final temperature $T_2$ will correspond to a change in enthalpy $\Delta h$. Given a set pulse energy $E_\mathrm{in}$ absorbed with efficiency $\eta_\alpha$, the mass $m$ of gas required to increase in temperature from $T_1$ to $T_2$ can be found with \autoref{eq:deltahtom}:
         \begin{equation}
@@ -204,11 +204,11 @@
                 \end{equation}
                 \added{The specific heat at constant volume $c_V$ is taken to be that of room-temperature-and-pressure argon: \qty{312}{J.kg^{-1}.K^{-1}}~\cite{lemmonThermophysicalPropertiesFluid2023}. Although the specific heats of argon vary significantly as it heats to a plasma state, this analysis considers the final state of the system, whose temperature is not expected to increase to a point where variable specific heats should be considered. }The resulting change in pressure is independent of the gas mass, and therefore, independent of the initial pressure for a set volume. This \added{initial-pressure independence }however \deleted{would} only hold\added{s} as long as the heat deposited in the gas $Q_\mathrm{in}$ is also independent on the initial pressure.
 
-                The heat deposition efficiency can then be defined as $\eta = Q_\mathrm{in}/E_\mathrm{in}$. Approximating the volume $V$ of the test-section as a cylinder matching the internal dimensions annotated in \autoref{fig:cavitation_dimensions} (315$\times$38-\unit{mm} cylinder) allows the prediction of the measured pressure change resulting from an LSP test. These results are shown for a range of laser-pulse energies in \autoref{fig:heatdep_p_static}. Although the pressure rise is independent of the initial pressure, the temperature rise is not. Indeed, lower initial pressures result in a lesser gas mass to absorb the deposited heat, resulting in a greater final temperature. As seen in \autoref{fig:heatdep_T_static}, the same pulse providing a $\sim$1-K temperature rise at \qty{20}{bar} would raise the temperature by almost \qty{10}{K} at \qty{3}{bar}.
+                The heat-deposition efficiency can then be defined as $\eta = Q_\mathrm{in}/E_\mathrm{in}$. Approximating the volume $V$ of the test-section as a cylinder matching the internal dimensions annotated in \autoref{fig:cavitation_dimensions} (315$\times$38-\unit{mm} cylinder) allows the prediction of the measured pressure change resulting from an LSP test. These results are shown for a range of laser-pulse energies in \autoref{fig:heatdep_p_static}. Although the pressure rise is independent of the initial pressure, the temperature rise is not. Indeed, lower initial pressures result in a lesser gas mass to absorb the deposited heat, resulting in a greater final temperature. As seen in \autoref{fig:heatdep_T_static}, the same pulse providing a $\sim$1-K temperature rise at \qty{20}{bar} would raise the temperature by almost \qty{10}{K} at \qty{3}{bar}.
 
-                Two assumptions made in this model may not be accurate. First, this model assumes that the heat deposited by the LSP in the working gas is distributed evenly in the test section before it has time to be transferred to the test section walls. This may not be the case, so numerical simulations may be necessary to ascertain the validity of this assumption. Second, this model assumes that the heat deposition efficiency does not change with pressure/density, when a denser gas could contribute to improved heat deposition through more effective heat conduction and/or greater absorption of radiated heat.
+                Two assumptions made in this model may not be accurate. First, this model assumes that the heat deposited by the LSP in the working gas is distributed evenly in the test section before it has time to be transferred to the test section walls. This may not be the case, so numerical simulations may be necessary to ascertain the validity of this assumption. Second, this model assumes that the heat-deposition efficiency does not change with pressure/density, when a denser gas could contribute to improved heat deposition through more effective heat conduction and/or greater absorption of radiated heat.
 
-                The predicted state changes for this experiment are still low when considering thrust applications. As will be discussed in \autoref{sec:model_thrust}, both thrust and specific impulse depend on $T^{1/2}$. In case of low heat deposition efficiency, a temperature change of a few K will likely only modify thrust and specific impulse by a few \% or less from the cold-flow case. It is thus already apparent that the current test-section design is unoptimized for thruster experiments, and these calculations indicate that thrust chamber volume should be decreased to amplify the changes in pressure and temperature during LSP operation.
+                The predicted state changes for this experiment are still low when considering thrust applications. As will be discussed in \autoref{sec:model_thrust}, both thrust and specific impulse depend on $T^{1/2}$. In case of low heat-deposition efficiency, a temperature change of a few K will likely only modify thrust and specific impulse by a few \% or less from the cold-flow case. It is thus already apparent that the current test-section design is unoptimized for thruster experiments, and these calculations indicate that thrust chamber volume should be decreased to amplify the changes in pressure and temperature during LSP operation.
 
                 \begin{figure}[h]
                     \centering
@@ -234,15 +234,175 @@
                 \begin{equation}
                     \eta P_\mathrm{in} = \dot{Q}_\mathrm{in} = \dot{m}(h(T_2)-h(T_1))
                 \end{equation}
-                Where $P_\mathrm{in}$ is the laser power and $\eta$ is the heat deposition efficiency. This equation can be solved for $T_2$, the resulting bulk temperature at the inlet of the thruster nozzle. Again, variable specific heat data from NASA CEA~\cite{gordonComputerProgramCalculation1994} will be considered to determine what mass flow rates are necessary to attain temperatures expected in an actual LTP system, i.e., 10$^3$--10$^4$~K.
+                Where $P_\mathrm{in}$ is the laser power and $\eta$ is the heat-deposition efficiency. This equation can be solved for $T_2$, the resulting bulk temperature at the inlet of the thruster nozzle. Again, variable specific heat data from NASA CEA~\cite{gordonComputerProgramCalculation1994} will be considered to determine what mass flow rates are necessary to attain temperatures expected in an actual LTP system, i.e., 10$^3$--10$^4$~K.
 
-                \autoref{fig:heatdep_flowing} shows the result of this calculation for mass-flow rates ranging from 0.2 to \qty{20}{g.s^{-1}} and a chamber pressure of \qty{10}{bar}. At this low laser-power level, low mass-flow rates of \qty{2}{g.s^{-1}} or less appear necessary to raise the propellant temperature to those expected in an LTP thruster. In the best case conditions, the theoretical 10~000-K chamber temperature reported by \textcite{duplayDesignRapidTransit2022} for a full-scale thruster can only be replicated in the lab with a 0.3-\unit{g.s^{-1}} flow rate. Temperature increases appear negligible for flow rates beyond \qty{10}{g.s^{-1}}.
+                \autoref{fig:heatdep_flowing} shows the result of this calculation for mass-flow rates ranging from 0.03 to \qty{30}{g.s^{-1}} and a chamber pressure of \qty{10}{bar}. At this low laser-power level, low mass-flow rates of \qty{1}{g.s^{-1}} or less appear necessary to raise the propellant temperature to those expected in an LTP thruster. In the best case conditions, the theoretical 10~000-K chamber temperature reported by \textcite{duplayDesignRapidTransit2022} for a full-scale thruster can only be replicated in the lab with a 0.06-\unit{g.s^{-1}} flow rate. Temperature increases appear negligible for flow rates beyond \qty{20}{g.s^{-1}}.
 
                 \begin{figure}[h]
                     \centering
                     \includegraphics[]{assets/4 models/heat_addition_flowing.pdf}
-                    \caption{Expected flow temperature at nozzle inlet, \qty{10}{bar}, \qty{350}{W} of input laser power $P_\mathrm{in}$.}
+                    \caption[Expected flow temperature at nozzle inlet]{Expected flow temperature at nozzle inlet, \qty{10}{bar}, \qty{350}{W} of input laser power.}
                     \label{fig:heatdep_flowing}
                 \end{figure}
     
     \section{Thrust modelling} \label{sec:model_thrust}
+        Sizing thruster and thrust-stand components requires the calculation of theoretical performance parameters such as the expected thrust and exhaust velocity. These parameters should be calculated for a range of operating conditions, which include the chamber pressure, the laser power, and the mass flow rate. Given the number of factors affecting thrust, a complete study of the operating range and theoretical performance of a prototype thruster could be the subject of its own thesis. Therefore, three specific scenarios (tabulated in \autoref{tab:thruster_scenarios}) will be studied in detail:
+        \begin{itemize}
+            \item \textbf{CW20:} CW laser input at maximum power (\qty{350}{W}). At this power level, the minimum pressure allowing a stable LSP is \qty{20}{bar} according to \textcite{zimakovInteractionNearIRLaser2016}. This is thus the only operating scenario in which the LTTLM could be operated continuously.
+            \item \textbf{P20:} Full-power (\qty{3080}{W}) laser pulse generating LSP at \qty{20}{bar}.
+            \item \textbf{P3:} At \qty{3}{bar}, the LSP power threshold is approximately \qty{3}{kW}. This is the lowest pressure at which the LTTLM could theoretically be operated with the available laser.
+        \end{itemize}
+
+        \begin{table}[h]
+            \centering
+            \caption[Operating scenarios for the LTTLM]{Operating scenarios for the LTTLM, $p_{\mathrm{c,}1}$ is the initial chamber pressure and $\dot{Q}_\mathrm{in}$ is the input power.}
+            \label{tab:thruster_scenarios}
+            \begin{tabular}{@{}lrrl@{}}
+                \toprule
+                Scenario    & $p_{\mathrm{c,}1}$ [\unit{bar}]  & $\dot{Q}_\mathrm{in}$ [W] & Laser mode \\
+                \midrule
+                CW20    & 20    &  350  & CW \\
+                P20     & 20    & 3080  & Pulsed \\
+                P3      &  3    & 3080  & Pulsed \\
+                \bottomrule
+            \end{tabular}
+        \end{table}
+
+        The thrust $F_\mathrm{T}$ of a thermal rocket engine can be determined with \autoref{eq:thrust}, where $T_\mathrm{c}$ is the chamber temperature, $p_\mathrm{ex}$ is the exhaust pressure, $p_\mathrm{c}$ is the chamber pressure, $A_\mathrm{ex}$ is the nozzle exit area, and $p_\mathrm{a}$ is the ambient pressure.
+        \begin{equation}
+            F_\mathrm{T} = \dot{m}\sqrt{\frac{2\gamma}{\gamma-1}R_\mathrm{g}T_\mathrm{c}\left(1-\left(\frac{p_\mathrm{ex}}{p_\mathrm{c}}\right)^\frac{\gamma-1}{\gamma}\right)} + A_\mathrm{ex}(p_\mathrm{ex}-p_\mathrm{a}) \label{eq:thrust}
+        \end{equation}
+        In this case, the thruster will exhaust to atmosphere, so $p_\mathrm{a}$ will be set to \qty{1}{bar}. The following simplifying assumptions will also be made:
+        \begin{enumerate}
+            \item The mass-flow rate $\dot{m}$ into the thruster will be held constant. This is achievable in practice by setting up the system in a \emph{double-choked} configuration, where the inlet port is a choked orifice whose mass-flow rate is only dependent on upstream stagnation conditions.
+            % $p_0$ and $T_0$:
+                % \[\dot{m} = K_{\dot{m}}A_\mathrm{t}\frac{p_0}{\sqrt{T_0}}\]
+                The flow can then choke again at the thruster's nozzle throat, provided a normal shock occurs between the inlet port and the thrust chamber. For the sake of brevity, a complete flow analysis will not be given, but this configuration is theoretically possible and is considered for the next iteration of the LTTLM, which is in development at the time of writing this report.
+            \item The thruster nozzle will be assumed to be a simple orifice with no diverging section, meaning that the exit pressure $p_\mathrm{ex}$ is equal to the flow's sonic pressure $p^*$, i.e., the pressure of the flow as it reaches sonic conditions. The sonic pressure is a function of stagnation pressure $p_\mathrm{c}$ and the specific heat ratio $\gamma$ of the gas:
+            \begin{equation}p^* = p_\mathrm{c}\left(\frac{2}{\gamma+1}\right)^\frac{\gamma}{\gamma-1} \approx 0.5p_\mathrm{c}\;\text{(Argon)}\label{eq:sonicpressure}\end{equation}
+            The choked orifice is the simplest, albeit unoptimized, nozzle configuration. Adding a diverging section would not fundamentally change the flow conditions in the thruster; it would merely improve thrust and specific impulse.
+            \item Finally, argon will be treated as a perfect gas, i.e., $c_p$ and $\gamma$ are constant. This is a valid assumption for argon until $\sim$\qty{5000}{K}~\cite{gordonComputerProgramCalculation1994}. As the intent of the LTTLM is not yet to attain such high temperatures, this is a suitable simplification.
+        \end{enumerate}
+
+        \subsection{Cold-flow conditions}
+            Starting the thruster will involve a cold-thrust stage (denoted with the subscript 1) before the laser is turned on. Flow conditions should stabilize such that the desired chamber pressure is attained. In this case, the chamber temperature remains close to room temperature $T_\mathrm{a}$ (\qty{290}{K}). For a desired mass-flow rate and chamber pressure, the nozzle exit area (i.e., the orifice size) is fully constrained by the \autoref{eq:massflow}\footnote{Equivalent to Equation 6-6 in \citeauthor{zandbergenAE4S01ThermalRocket2020}'s \citetitle*{zandbergenAE4S01ThermalRocket2020} course notes~\cite{zandbergenAE4S01ThermalRocket2020}} for the choked mass-flow rate.\comment[id=ED]{Moved from \autoref{sec:exp_flowing}}
+            \begin{equation} 
+                \dot{m} = \sqrt{\frac{\gamma}{R_\mathrm{g}}\left(\frac{2}{\gamma+1}\right)^\frac{\gamma+1}{\gamma-1}}\frac{A_\mathrm{ex}p_\mathrm{c}}{\sqrt{T_\mathrm{c}}} = K_{\dot{m}}\frac{A_\mathrm{ex}p_\mathrm{c}}{\sqrt{T_\mathrm{c}}} \label{eq:massflow}
+            \end{equation}
+            \begin{equation*}
+                \implies A_\mathrm{ex} = \frac{\dot{m}}{K_{\dot{m}}}\frac{\sqrt{T_\mathrm{a}}}{p_\mathrm{c,1}}
+            \end{equation*}
+            For the temperatures of interest in the overall flow (excluding the LSP), $K_{\dot{m}}$ for argon is \qty{0.0504}{s.K^{1/2}.m^{-1}}. \added{For those familiar with the Vandenkerckhove function $\Gamma$, the mass flow parameter $K_{\dot{m}}$ is equivalent to $\Gamma/R_\mathrm{g}^{1/2}$.}
+
+            The orifice area $A_\mathrm{ex}$ is then assumed to remain constant throughout both cold-flow and hot-fire conditions---no variable geometry nozzles are currently planned for the thruster prototype. The thrust equation \autoref{eq:thrust} can now be evaluated for cold flow conditions. \autoref{fig:cold_thrust} shows the variation in thrust and the nozzle dimension for a mass-flow rate ranging from 1--10~\unit{g.s^{-1}}. The cold thrust appears to remain on the order of \qty{1}{N} regardless of chamber pressure, though the difference between \qty{3}{bar} and \qty{20}{bar} appears to grow at greater mass-flow rates. The nozzle diameter exhibits a more significant difference between both chamber pressures. It should be noted that the CW20 and P20 scenarios are perfectly superposed---this is normal since the only difference between both cases is the laser power, which is not active at this stage.
+
+            \begin{figure}[h]
+                \centering
+                \begin{subfigure}[t]{0.48\textwidth}
+                    \centering
+                    \includegraphics[width=\textwidth]{assets/4 models/cold_thrust.pdf}
+                    \caption{Thrust}
+                    \label{fig:cold_thrust_thrust}
+                \end{subfigure}
+                \hfill
+                \begin{subfigure}[t]{0.48\textwidth}
+                    \centering
+                    \includegraphics[width=\textwidth]{assets/4 models/cold_thrust_nozzle.pdf}
+                    \caption{Nozzle diameter}
+                    \label{fig:cold_thrust_nozzle}
+                \end{subfigure}
+                \caption[Cold gas thruster parameters]{Cold gas thruster parameters. Legend is shared between both plots.}
+                \label{fig:cold_thrust}
+            \end{figure}
+
+            Although the thrust increases with $\dot{m}$, the exhaust velocity $v_\mathrm{ex}$ is unaffected by the mass-flow rate---its value for each scenario is tabulated in \autoref{tab:cold_vexhaust}. The equivalent exhaust velocity $v_\mathrm{eq}$ is also is given. This term combines the true exhaust velocity with the pressure thrust $A_\mathrm{ex}\Delta p_{ex-a}$ normalized by mass-flow rate. The equivalent exhaust velocity is commonly used to simplify calculations for rocket trajectories and mission planning, as no special attention must be given to pressure-thrust effects. The specific impulse $I_\mathrm{sp}$ is also commonly used to report rocket engine exhaust velocities. These various forms of expressing the exhaust velocity are related by the following equations:
+            \begin{gather*}
+                F_\mathrm{T} = \dot{m}v_\mathrm{ex} + A_\mathrm{ex}(p_\mathrm{ex}-p_\mathrm{a}) \\
+                v_\mathrm{eq} = v_\mathrm{ex} + \frac{A_\mathrm{ex}(p_\mathrm{ex}-p_\mathrm{a})}{\dot{m}} \\
+                I_\mathrm{sp} = \frac{v_\mathrm{eq}}{g_0} \\
+                \implies F_\mathrm{T} = \dot{m}v_\mathrm{eq} = \dot{m}I_\mathrm{sp}g_0
+            \end{gather*}
+            Where $g_0$ is the standard gravitational acceleration. For the rest of this analysis, the \emph{equivalent} exhaust velocity $v_\mathrm{eq}$ will be reported, as the true exhaust velocity is of lesser interest.
+
+            \begin{table}[h]
+                \centering
+                \caption[Cold-flow exhaust velocities]{Cold-flow (stage 1) exhaust velocities: $v_\mathrm{ex}$ is the real exit flow velocity, $v_\mathrm{eq}$ is the equivalent exhaust velocity, and $I_\mathrm{sp}$ is the specific impulse based on $v_\mathrm{eq}$.}
+                \label{tab:cold_vexhaust}
+                \begin{tabular}{@{}lrrr@{}}
+                    \toprule
+                    Scenario    & $v_\mathrm{ex,1}$ [\unit{m.s^{-1}}] & $v_\mathrm{eq,1}$ [\unit{m.s^{-1}}] & $I_\mathrm{sp,1}$ [s] \\
+                    \midrule
+                    CW20    & 275   &  422  & 43 \\
+                    P20     & 275   &  422  & 43 \\
+                    P3      & 275   &  327  & 33 \\
+                    \bottomrule
+                \end{tabular}
+            \end{table}
+
+            Again, there is no difference in the resulting exhaust velocity between the CW20 and P20 scenarios. This is not surprising considering the chamber pressure is identical, and the use of an orifice nozzle means that the $p_\mathrm{ex}/p_\mathrm{c}$ ratio reduces to a function of $\gamma$, which is identical in both cases. P3 yields a lesser equivalent exhaust velocity than the other two scenarios as the pressure thrust is decreased.
+
+        \subsection{Hot-fire conditions}
+            Once cold-flow conditions have been established, the laser is turned on and LSP is assumed to be ignited successfully. The flow is expected to adjust to the heat addition, resulting in new, hot-fire flow conditions (stage 2). The heat deposition is assumed to be 100\% efficient and results in a change in chamber temperature as modelled in \autoref{eq:heatdep}. The perfect gas assumption does simplify the model as follows:
+            \begin{equation}
+                T_\mathrm{c,2} = T_\mathrm{c,1} + \frac{\dot{Q}_\mathrm{in}}{\dot{m}c_p}
+            \end{equation}
+            Where $T_\mathrm{c,1}$ is the chamber temperature in state 1, i.e., $T_\mathrm{a}$.
+
+            Under the assumed constant mass-flow rate conditions, this increase in temperature must lead to an increase in chamber pressure $p_\mathrm{c}$. Indeed, by examining conservation of mass:
+            \begin{align*}
+                \dot{m}_1 &= \dot{m}_2 \\
+                \implies K_{\dot{m}}\frac{A_\mathrm{ex}p_\mathrm{c,1}}{\sqrt{T_\mathrm{c,1}}} &= K_{\dot{m}}\frac{A_\mathrm{ex}p_\mathrm{c,2}}{\sqrt{T_\mathrm{c,2}}} \\
+                \implies \frac{p_\mathrm{c,1}}{\sqrt{T_\mathrm{c,1}}} &= \frac{p_\mathrm{c,2}}{\sqrt{T_\mathrm{c,2}}}
+            \end{align*}
+            Since the nozzle area cannot be changed, the only way to maintain the same mass flow is to increase the chamber pressure. \autoref{fig:change_hotThrust_Tp} shows the new chamber temperature and the change in chamber pressure resulting from the heat addition. The chamber temperature is in good agreement with \autoref{fig:heatdep_flowing}, where variable specific heat was considered. Here, both P20 and P3 are perfectly superposed, as they share the same rate of heat addition. Since the increase in temperature is dependent on the mass-flow rate, the order-of-magnitude difference in input power between the CW and pulsed laser results in a similar difference in chamber temperature.
+
+            \begin{figure}[h]
+                \centering
+                \begin{subfigure}[t]{0.48\textwidth}
+                    \centering
+                    \includegraphics[width=\textwidth]{assets/4 models/thermo_hotThrust.pdf}
+                    \caption{Chamber temperature and change in pressure}
+                    \label{fig:change_hotThrust_Tp}
+                \end{subfigure}
+                \hfil
+                \begin{subfigure}[t]{0.48\textwidth}
+                    \centering
+                    \includegraphics[width=\textwidth]{assets/4 models/veRatio_hotThrust.pdf}
+                    \caption{Ratio of equivalent exhaust velocity}
+                    \label{fig:change_hotThrust_veRatio}
+                \end{subfigure}
+                \caption[Change in operating parameters between cold (1) and hot (2) flow]{Change in operating parameters between cold (1) and hot (2) flow. Legend is shared.}
+                \label{fig:change_hotThrust}
+            \end{figure}
+
+            The change in pressure is also significant. A two-fold increase in chamber pressure is observed for a 3-kW input power (P20 and P3) at a 10-\unit{g.s^{-1}}-mass-flow rate, and this pressure ratio increases to above 4 at \qty{1}{g.s^{-1}}. The CW20 case approaches a two-fold increase in pressure at \qty{1}{g.s^{-1}}. This has major implications in the thrust-chamber design: in the P20 and CW20 case, this would mean an operating pressure of around \qty{80}{bar} and \qty{40}{bar}, respectively---significantly greater than the current test section's design pressure. Furthermore, in order to maintain a constant mass-flow rate at the inlet port, the chamber pressure \emph{must} remain below the reservoir's sonic pressure, i.e., around half of the reservoir's stagnation pressure (\autoref{eq:sonicpressure}). This suggests that unless the feed system can be designed to respond to this pressure change, the reservoir's pressure should be an order of magnitude greater than the cold-flow operating pressure $p_\mathrm{c,1}$. The increase in chamber pressure does have a benefit: this moves the thruster operating point further beyond the LSP power threshold, which should facilitate the maintenance of the plasma.
+
+            The change in exhaust velocity is shown in \autoref{fig:change_hotThrust_veRatio}. Although P20 and P3 exhibit the same relative pressure change and have the same $T_\mathrm{c,2}$, a greater relative change in exhaust velocity is observed in the P3 scenario. This is due to a difference in pressure thrust: since P3 uses a larger nozzle for a given mass-flow rate (as seen in \autoref{fig:cold_thrust_nozzle}), the contribution of the pressure thrust to the equivalent exhaust velocity is proportionally greater. The CW20 scenario exhibits a change in exhaust velocity that mirrors its change in chamber pressure. The use of equivalent exhaust velocity over the real exhaust velocity is convenient here: since the thrust is directly proportional to $v_\mathrm{eq}$, the relative change in equivalent exhaust velocity is the same as the relative change in thrust $F_\mathrm{T,2}/F_\mathrm{T,1}$.
+
+            \autoref{fig:thruster_perf} shows the final thrust performance figures of an LTP thruster model powered by the laser used in this project. Ultimately, the thruster-operation mode described here makes a change in pressure from \qtyrange{3}{20}{bar} unimportant compared to a difference in power input: both the P20 and P3 scenarios have similar thrust levels across the given mass-flow-rate range (although, again, the difference grows at greater $\dot{m}$). Although noticeably lower, the thrust level of the CW20 scenario is still somewhat comparable: all three scenarios result in thrust on the order of \qty{1}{N}. Detecting a noticeable change in exhaust velocity and/or thrust between cold and hot flow will however require mass-flow rates closer to \qty{1}{g.s^{-1}}. The expected exhaust velocities range from \qty{500}{m.s^{-1}} for the CW20 case to up to \qty{2}{km.s^{-1}} for the pulse-laser cases. Here again, the pressure difference between P3 and P20 result in only a minor change in exhaust velocity.
+
+            \begin{figure}[h]
+                \centering
+                \begin{subfigure}[t]{0.48\textwidth}
+                    \centering
+                    \includegraphics[width=\textwidth]{assets/4 models/thrust_hotThrust.pdf}
+                    \caption{Thrust}
+                    \label{fig:thruster_perf_thrust}
+                \end{subfigure}
+                \hfill
+                \begin{subfigure}[t]{0.48\textwidth}
+                    \centering
+                    \includegraphics[width=\textwidth]{assets/4 models/ve_hotThrust.pdf}
+                    \caption{Exhaust velocity}
+                    \label{fig:thruster_perf_ve}
+                \end{subfigure}
+                \caption{Thrust and exhaust velocity, hot-fire conditions}
+                \label{fig:thruster_perf}
+            \end{figure}
+
+        \subsection{Limitations}
+            Although this analysis provides some valuable insight into the possible operation of a lab-scale LTP thruster and yields concrete performance estimates, the validity of its assumptions must be discussed to determine to what degree these performance predictions will apply to real tests. The most questionable assumption is likely the 100\% heat-deposition efficiency from the laser to the working fluid. The thruster tests of \textcite{toyodaThrustPerformanceCW2002} suggest that a far lesser heat-deposition efficiency is to be expected in real-world conditions, likely due to significant radiative heat losses to the thruster walls. The use of regenerative cooling could potentially alleviate this issue, but the use of more aggressive heat retention methods, such as gas seeding proposed by \textcite{shojiPerformanceHeatTransfer1976}, may be required to approach this idealized heat-deposition efficiency. If the difference in operating parameters between the P20 and CW20 scenarios is indicative, an order-of-magnitude reduction in exhaust velocity could be expected, along with a $\sim$50\% reduction in thrust. This analysis also does not consider boundary-layer effects, which may be significant based on the expected nozzle sizes---one of their potential effects is an effective reduction in the nozzle area, leading to a greater pressure than expected to achieve the same mass-flow rate.
+
+            The P20 and P3 cases are also idealized in the sense that these calculations assume that a steady flow and heat transfer is established within the span of a 10-ms laser pulse, which is unlikely. Studying these cases does provide some understanding of the effect of increased laser power compared to the CW case, which should be analogous to a difference in heat-deposition efficiency. The CW20 case remains the most representative scenario for thrust testing.
+
+            The takeaway from this analysis is that a well-sized load-cell should likely have a minimum resolution on the order of \qty{0.01}{N} and a maximum load rating of around \qty{1}{N}, much lower than the 10--\qty{20}{N} stated in the TS-2 thrust-stand requirement (\autoref{tab:tsReq}). This was a preliminary requirement set to allow for the use of relatively large nozzles, larger than necessary for dedicated thrust testing. As discussed in \autoref{sec:exp_flowing}, these larger nozzles allowed for bulk flow velocities in the test-section high enough to affect the LSP. In addition, as the project progressed, it quickly became apparent that the selected test-section was unoptimized for thrust testing, as its mass made it difficult to design a thrust stand that could appropriately measure its thrust. The requirements were thus not revised following in-depth thrust modelling. The analysis presented here will however inform the design of a dedicated LTP thruster model and thrust stand, in development at the time of writing.
