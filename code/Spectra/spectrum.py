@@ -231,7 +231,7 @@ def get_filepath_from_ID(shotID):
     return None
 
 if __name__ == '__main__':
-    shot_ID = 'LSP60_S9'
+    shot_ID = 'LSP56_S6'
     # shot_ID = 'LSP87_F9'
     spectrum_path = get_filepath_from_ID(shot_ID)
     # s = Spectrum('rawdata/spectra/calibration/Halogen_Light.txt', trimL=5) 
