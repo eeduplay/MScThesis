@@ -9,7 +9,7 @@
             \frac{n_\mathrm{e}^2}{n_0-n_\mathrm{e}} = \frac{n_\mathrm{e}^2}{n_\mathrm{Ar}} = \frac{2}{\Lambda_\mathrm{th}^3}\frac{\mathcal{Z}_{\mathrm{Ar}^+}}{\mathcal{Z}_\mathrm{Ar}}\exp{\left(-\frac{E_\text{ion, Ar}}{k_\mathrm{B}T}\right)}
             \label{eq:saha}
         \end{equation}
-        Where $n_0$ is the initial number density of neutral atoms, $n_\mathrm{Ar}$ is the number density of un-ionized atoms at a given temperature, $E_\text{ion, Ar}$ is argon's first ionization energy (\qty{15.76}{eV}~\cite{liasIonizationEnergyEvaluation2023}), and $k_\mathrm{B}$ is the Boltzmann constant. \added{In this case, the product $k_\mathrm{B}T$ can be expressed in J or eV depending on the unit of $E_\text{ion, Ar}$. }The thermal DeBroglie wavelength $\Lambda_\mathrm{th}$ is a function of temperature as follows, where $\hbar$ is the reduced Planck constant and $m_\mathrm{e}$ is the mass of an electron:
+        Where $n_0$ is the initial number density of neutral atoms, $n_\mathrm{Ar}$ is the number density of un-ionized atoms at a given temperature, $E_\text{ion, Ar}$ is the first ionization energy of argon (\qty{15.76}{eV}~\cite{liasIonizationEnergyEvaluation2023}), and $k_\mathrm{B}$ is the Boltzmann constant. \added{In this case, the product $k_\mathrm{B}T$ can be expressed in J or eV depending on the unit of $E_\text{ion, Ar}$. }The thermal DeBroglie wavelength $\Lambda_\mathrm{th}$ is a function of temperature as follows, where $\hbar$ is the reduced Planck constant and $m_\mathrm{e}$ is the mass of an electron:
         \begin{equation*}
             \Lambda_\mathrm{th} = \sqrt{\frac{2\pi \hbar^2}{m_\mathrm{e}k_\mathrm{B}T}}
         \end{equation*}
@@ -55,9 +55,9 @@
         \begin{equation*}
             \ibalphaeq \tag{\ref{eq:ib_absorption} revisited}
         \end{equation*}
-        Most parameters have been defined in \autoref{sec:background_lsp}, so the Coulomb logarithm $\ln{\Lambda}$ and the plasma frequency $\nu_\mathrm{p}$ will be of interest here. The Coulomb logarithm is evaluated by \textcite{nassarInvestigationLasersustainedPlasma2012} using a common approximation seen in plasma physics (\textcite{richardson2019NRLPlasma2019}):
+        Most parameters have been defined in \autoref{sec:background_lsp}, so the Coulomb logarithm $\ln{\Lambda}$ and the plasma frequency $\nu_\mathrm{p}$ will be of interest here. The Coulomb logarithm is evaluated by \textcite{nassarInvestigationLasersustainedPlasma2012} using a common approximation seen in plasma physics (\textcite{richardson2019NRLPlasma2019}), with $n_\mathrm{e}$ in \unit{cm^{-3}} and $T_{E,\mathrm{e}}$ being the electron temperature in \unit{eV}, i.e., $T_{E,\mathrm{e}} = k_\mathrm{B}T_\mathrm{e}$.
         \begin{equation}\label{eq:coulombLog_NRL}
-            \ln{\Lambda} \approx 23-\ln{(n_\mathrm{e}^{1/2}ZT_\mathrm{e}^{-3/2})}
+            \ln{\Lambda} \approx 23-\ln{(n_\mathrm{e}^{1/2}ZT_{E,\mathrm{e}}^{-3/2})}
         \end{equation}
         However, alternate evaluations of the logarithm exist, such as the one given by \textcite{johnstonCorrectValuesHighfrequency1973} in the specific context of IB absorption coefficient calculation (\autoref{eq:coulombLog_johnston}). 
         \begin{equation} \label{eq:coulombLog_johnston}
@@ -104,7 +104,7 @@
         \begin{figure}[h]
             \centering
             \includegraphics[]{assets/4 models/absorption}
-            \caption{Inverse bremsstrahlung absorption coefficient of argon at various pressures, \num{1070}-\unit{nm} radiation}
+            \caption{Inverse bremsstrahlung absorption coefficient of argon, \num{1070}-\unit{nm} radiation}
             \label{fig:ib_coeff}
         \end{figure}
 
@@ -149,7 +149,7 @@
             \label{fig:argon_thermo}
         \end{figure}
 
-        The varying density $\rho(T)$ was also taken from CEA's output. \autoref{fig:LSP_size_model} shows the resulting LSP dimensions based on a range of possible final temperatures. The calculation was performed for two pressures and assuming both complete and 50\% laser absorption by the plasma. The results suggest that in the range where ionization is expected and IB absorption is possible, i.e., above \qty{10000}{K}, the volume of plasma that would contain the energy of a full-power pulse ranges from 10--1000~\unit{mm^3}, corresponding to LSP lengths on the order of \qty{10}{mm}. Although not a perfect match, this loosely corresponds to the scale absorption lengths suggested by the IB absorption calculation in \autoref{sec:models_absorption}, especially at higher temperatures.
+        The varying density $\rho(T)$ was also taken from CEA's output. \autoref{fig:LSP_size_model} shows the resulting LSP dimensions based on a range of possible final temperatures. The calculation was performed for two pressures and assuming both complete and 50\% laser absorption by the plasma. The results suggest that in the range where ionization is expected and IB absorption is possible, i.e., above \qty{10000}{K}, the volume of plasma that would contain the energy of a full-power pulse is on the order of 1000~\unit{mm^3}, corresponding to LSP lengths ranging from 70--\qty{140}{mm}. Although not a perfect match, this loosely corresponds to the scale absorption lengths suggested by the IB absorption calculation in \autoref{sec:models_absorption}, especially at higher temperatures.
 
         \begin{figure}[h]
             \centering
