@@ -315,7 +315,7 @@
             While either scenario does ultimately heat up the gas, neither mechanism reflects the ideal operation of a laser-thermal thruster, where the plasma itself should be the dominant heat source. To quantify these effects, the following tests were performed at an initial pressure of \qty{10}{bar} and the resulting pressure rise was recorded:
             \begin{enumerate}
                 \item The laser (\qty{10}{ms}, 100\%) was pointed into an empty test section, such that the laser would be directly incident on an opaque backplate.
-                \item A constant 20\%, \num{19.8}-\unit{ms} pulse (equivalent in energy to a \texttt{1L20\_15} stepped pulse) was focused on the ignition wire. The low constant power pulse is necessary to avoid igniting LSP.
+                \item A constant 20\%, \num{19.8}-\unit{ms} pulse (equivalent in energy to a \texttt{1L20\_15} stepped pulse yet insufficient for ignition) was focused on the ignition wire.
             \end{enumerate}
             The pressure rise of these tests\comment[id=BZ]{Why is pressure rise so limited? Would this lead to recommendations for adaptations to the test facility if you would redo this research again?}\comment[id=ED]{This is now addressed in the Further work section} was then compared to that of a successful LSP at \qty{10}{bar}, sustained with a \texttt{1L20\_15} stepped pulse (\qty{12.1}{J}). This is shown in \autoref{fig:pressure_elim}. Some measurable effect on pressure is detected from both of these mechanisms, however, the pressure rise from LSP is greater by a factor of three compared to direct heating of the ignition wire. Furthermore, the tests mentioned above represent an absolute worst-case scenario for the magnitude of these heat transfer mechanisms. Absorption measurements discussed in \autoref{sec:exp_absorption} show that the majority of the laser power is absorbed by the LSP. This leaves less power for heat transfer by wire or chamber wall heating. Heating via the chamber walls in particular is not expected to significantly contribute to overall heat transfer, as the ignition wire would absorb most of any laser power transmitted through the LSP, and direct irradiation had only a minor effect in the first place.
 
@@ -354,9 +354,7 @@
             \begin{equation} \label{eq:heatdep}
                 Q_\mathrm{in} = \frac{\Delta pVc_V}{R_\mathrm{g}}
             \end{equation}
-            The heat-deposition efficiency $\eta$ can then be calculated as the ratio $Q_\mathrm{in}/E_\mathrm{in}$, which captures the overall efficiency of converting the incident laser power on the LSP into heat remaining in the propellant. This would include losses from incomplete laser absorption by the LSP, along with heat lost in the form of radiation, which would heat the chamber walls without really affecting the gas temperature.
-
-            The detailed results of such a calculation are shown for a single LSP test in \autoref{fig:pressure_annotated}.
+            The heat-deposition efficiency $\eta$ can then be calculated as the ratio $Q_\mathrm{in}/E_\mathrm{in}$, which captures the overall efficiency of converting the incident laser power on the LSP into heat remaining in the propellant. This would include losses from incomplete laser absorption by the LSP, along with heat lost in the form of radiation, which would heat the chamber walls without really affecting the gas temperature. The detailed results of such a calculation are shown for a single LSP test in \autoref{fig:pressure_annotated}.
 
             \begin{figure}[h]
                 \centering
@@ -399,13 +397,13 @@
             \caption{Detection of Ar I emission lines in \texttt{LSP50\_X7} in static argon}
             \label{fig:spectrum_lines}
         \end{figure}
-
+        \newpage
         \subsection{Boltzmann plot method}
             Temperature calculation can be performed from spectral data using the Boltzmann plot method, summarized by \textcite{ohnoValidityElectronTemperature2006} and discussed in further detail by \textcite{griemSpectroscopicTemperatureMeasurements1997}. The transition of an electron from an upper atomic energy level $k$ to a lower level $i$  generates an emission line at wavelength $\lambda_{ki}$ with transition probability $A_{ki}$ and degeneracy for level $k$ of $g_k$. The following equation can be derived to relate these parameters to plasma temperature $T$:
             \begin{equation} \label{eq:transition_energy}
                 \frac{\epsilon_{ki}\lambda_{ki}}{A_{ki}g_k} = \frac{\hbar cn}{2 \mathcal{Z}(T)}\exp{\left(-\frac{E_k}{k_\mathrm{B}T}\right)}
             \end{equation}
-            Where $c$ is the speed of light, $n$ is the atomic number density, and $\mathcal{Z}(T)$ is the partition function. $\epsilon_{ki}$ is the spectrally integrated emission line intensity. This equation can be linearized with respect to $E_k$ by taking the natural log of both sides:
+            Where $c$ is the speed of light, $n$ is the atomic number density, $\mathcal{Z}(T)$ is the partition function, and $\epsilon_{ki}$ is the spectrally integrated emission line intensity. This equation can be linearized with respect to $E_k$ by taking the natural log of both sides:
             \begin{equation} \label{eq:boltzmannplot}
                 \ln{\frac{\epsilon_{ki}\lambda_{ki}}{A_{ki}g_k}} = -\frac{E_k}{k_\mathrm{B}T} + \ln{\frac{\hbar cn}{2 \mathcal{Z}(T)}}
             \end{equation}
@@ -424,7 +422,7 @@
 
             \begin{table}[h]
                 \centering
-                \caption[Ar I transitions used to generate Boltzmann plot]{Ar I transitions used to generate Boltzmann plot. $\lambda_{ki}$ is the transition wavelength, $g_k$ is the degeneracy of the energy level $k$, $A_{ki}$ the transition probability from level $k$ to $i$, $\Delta A_{ki}/A_{ki}$ is the relative uncertainty of $A_{ki}$, and $E_k$ is the energy of level $k$. Taken from \textcite{kramidaNISTAtomicSpectra2022}.}
+                \caption[Ar I transitions used to generate Boltzmann plot]{Ar I transitions used to generate Boltzmann plot. The transition wavelength is $\lambda_{ki}$, $g_k$ is the degeneracy of the energy level $k$, $A_{ki}$ the transition probability from level $k$ to $i$, $\Delta A_{ki}/A_{ki}$ is the relative uncertainty of $A_{ki}$, and $E_k$ is the energy of level $k$. Taken from \textcite{kramidaNISTAtomicSpectra2022}.}
                 \label{tab:ArI_transitions}
                 \begin{tabular}{@{}Srrr@{}}
                     \toprule
