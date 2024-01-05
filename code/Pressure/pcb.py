@@ -129,13 +129,13 @@ class PressureData:
             LTP project. This method is included for use in projects using the 
             following file structure:
             ```
-            DATAPATH/  # Full path of the experimental data directory
-            └── Pressure Data/
-                ├── LSP1_PS1/  # Directory named with shot identifier
-                │   ├── WaveData1111.csv  # Channel 1 data
-                │   └── WaveData1112.csv  # Channel 2 data
-                ├── LSP2_PS2
-                ├── LSP3_PS3
+            📂 DATAPATH/  # Full path of the experimental data directory
+            └── 📂 Pressure Data/
+                ├── 📂 LSP1_PS1/  # Directory named with shot identifier
+                │   ├── 📄 WaveData1111.csv  # Channel 1 data
+                │   └── 📄 WaveData1112.csv  # Channel 2 data
+                ├── 📁 LSP2_PS2
+                ├── 📁 LSP3_PS3
                 └── ...
             ```
             This assumes the WaveDataXXXX.csv files are exported from a Hantek scope, 
