@@ -1,7 +1,6 @@
 {
     "latex-workshop.latex.recipe.default": "latexmk (xelatex)",
     "cSpell.enabled": true,
-    "cSpell.language": "en-US",
     "cSpell.words": [
         "Delrin",
         "endcap",
@@ -227,5 +226,6 @@
             ],
             "env": {}
         }
-    ]
+    ],
+    "cSpell.language": "en-US"
 }

@@ -1,0 +1,2 @@
+{"rule":"SOME_OF_THE","sentence":"^\\QHowever, they do not feature some of the additional flow control devices seen in the other facilities, such as the converging gas inlet channel.\\E$"}
+{"rule":"PAST_EXPERIENCE_MEMORY","sentence":"^\\QFurthermore, such systems have been in use in various other projects in the laboratory, so this would build on past experience.\\E$"}
