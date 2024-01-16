@@ -1,0 +1,24 @@
+font.family:        sans-serif
+font.serif:         XCharter, XCharter Roman, Charter, Computer Modern Roman
+font.sans-serif:    IBM Plex Sans
+font.monospace:     IBM Plex Mono, DM Mono, Consolas, DejaVu Sans Mono, Courier
+
+legend.framealpha:  1.0
+legend.facecolor:   "#1C222A"
+legend.fancybox:    False
+
+mathtext.fontset: custom
+mathtext.bf:  serif:bold
+mathtext.it:  serif:italic
+mathtext.rm:  serif
+mathtext.sf:  serif
+
+axes.prop_cycle : cycler(color=["#ED1B2F", "#00A6D6", "#FFB81C", "#6F1D77", "#6CC24A", "#A50034", "#009B77", "#EC6842", "#0C2340"])
+axes.facecolor: none
+axes.labelsize: x-large
+
+grid.alpha:         0.3
+
+figure.facecolor:   "#1C222A"
+
+savefig.facecolor: none
