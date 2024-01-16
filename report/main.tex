@@ -1,6 +1,6 @@
 \special{pdf:minorversion 7}
 \PassOptionsToPackage{dvipsnames}{xcolor}
-\documentclass[11pt,a4paper]{report}
+\documentclass[11pt,a4paper,twoside]{report}
 
 \usepackage[todonotes={textsize=scriptsize}, final]{changes}
 \usepackage[left=3cm, right=3cm, top=3cm, bottom=3.5cm]{geometry}
@@ -27,6 +27,7 @@
 \usepackage{multirow}
 \usepackage{pdfpages}
 \usepackage{pdflscape}
+\usepackage{afterpage}
 \usepackage{graphicx}
 % \DeclareGraphicsExtensions{.png,.pdf}
 \DeclareGraphicsExtensions{.pdf,.png}
@@ -92,6 +93,12 @@
 \newcommand{\dd}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}}
 \newcommand{\ddi}[2]{\mathrm{d}#1/\mathrm{d}#2}
 
+\newcommand{\blankpage}{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
+
 % Track changes commands
 % \newcommand{\change}[1]{\textcolor{McGillRed}{#1}}
 % \newenvironment{changeblock}{\color{McGillRed}}{}
@@ -103,8 +110,10 @@
     \fancyhfinit{\sffamily}
     \lhead{\leftmark}
     \rhead{\rightmark}
-    \lfoot{AE5050}
-    \rfoot{\thepage}
+    % \lfoot{AE5050}
+    % \rfoot{\thepage}
+    \fancyfoot[LE,RO]{\thepage}
+    \fancyfoot[RE,LO]{AE5050}
 }
 
 \fancypagestyle{plain}{
@@ -127,7 +136,7 @@
 \begin{document}
     \setlength{\parindent}{0pt}
     \setlength{\headheight}{13.6pt}
-    \includepdf{assets/cover.pdf}
+    % \includepdf{assets/cover.pdf}
     \input{title.tex}
 
     \newpage
@@ -149,7 +158,7 @@
         Cover image: Composite photograph approximating (with some artistic license) the appearance of the laser-thermal thruster model operating in the laboratory.
     }
     \pagenumbering{roman}
-
+    
     \input{chapters/0_0_preface.tex}
     \hypersetup{linkcolor=black}
     \tableofcontents
@@ -165,7 +174,7 @@
 
     \newpage
     \input{chapters/0_2_abstract.tex}
-
+    \afterpage{\blankpage}
     \newpage
     \pagenumbering{arabic}
 
