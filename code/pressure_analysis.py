@@ -9,6 +9,8 @@ from datamanager import shotlist
 from Pressure.pcb import PressureData
 from Laser import util
 
+plt.style.use(['dark_background', './code/presentationPlots.mplstyle'])
+
 # Thermo constants
 Ar_cv = 312  # J/kg K
 Ar_cp = 520  # J/kg K

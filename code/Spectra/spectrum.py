@@ -15,6 +15,9 @@ import matplotlib.pyplot as plt
 from scipy import constants, signal, integrate, optimize, special
 from os import listdir, getenv
 
+# plt.style.use(['dark_background', './code/presentationPlots.mplstyle'])
+
+FIGTARGET = getenv('PPTASSETPATH')
 DATAPATH = getenv('DATAPATH')
 
 wien_constant = 2.897771955e-3  # m K, proportionality constant for Wien's law
@@ -231,7 +234,7 @@ def get_filepath_from_ID(shotID):
     return None
 
 if __name__ == '__main__':
-    shot_ID = 'LSP56_S6'
+    shot_ID = 'LSP50_X7'
     # shot_ID = 'LSP87_F9'
     spectrum_path = get_filepath_from_ID(shot_ID)
     # s = Spectrum('rawdata/spectra/calibration/Halogen_Light.txt', trimL=5) 
@@ -240,7 +243,7 @@ if __name__ == '__main__':
     s.calibrate_irradiance(2800, 
                            'rawdata/spectra/calibration/Halogen_Light.txt',
                            'rawdata/spectra/calibration/Halogen_Dark.txt') 
-    fig, ax = s.plot(metadata=True, semilog=False)
+    fig, ax = s.plot()
     print('Resolution: {:.3f} nm'.format(s.resolution))
     # planck2800 = planck(s.wavelengths*1e-9, 2800)
     # planck4800 = planck(s.wavelengths*1e-9, 4800)

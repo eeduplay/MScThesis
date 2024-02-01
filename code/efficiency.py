@@ -7,6 +7,12 @@ import matplotlib.pyplot as plt
 from matplotlib.axes import Axes
 from scipy.optimize import curve_fit
 
+from dotenv import load_dotenv
+load_dotenv()
+from os import getenv
+plt.style.use(['dark_background', 'code/presentationPlots.mplstyle'])
+FIGTARGET = getenv('PPTASSETPATH')
+
 SAVE = True
 
 PulseEnergy_shots = {
@@ -49,7 +55,7 @@ Pressure_shots_33 = [
 ]
 
 # Effect of changing pulse energy on heat transfer efficiency
-fig, axes = plt.subplots(1, 2, figsize=(5.8,4))
+fig, axes = plt.subplots(1, 2, figsize=(6,4.5))
 ax1, ax2 = axes
 # fig1, ax1 = plt.subplots(figsize=(5.8, 4))
 model = lambda E, a: a*E
@@ -71,7 +77,7 @@ for nom_pressure, shot_ids in PulseEnergy_shots.items():
     popt, pcov = curve_fit(model, energies, heats)
     print('Average efficiency {} bar: {:.2f} %'.format(nom_pressure, popt[0]*100))
     energies_model = np.array([energies[0], energies[-1]])
-    ax1.errorbar(energies, heats, yerr, fmt=cn+'o', ecolor=(0,0,0,0.5), 
+    ax1.errorbar(energies, heats, yerr, fmt=cn+'o', ecolor=(1,1,1,0.5), 
                  elinewidth=1.0, capsize=3, label=str(nom_pressure)+' bar')
     ax1.plot(energies_model, model(energies_model, popt[0]), cn+':', 
              label=str(nom_pressure)+' bar, fit')
@@ -101,7 +107,7 @@ for pshotseries in [Pressure_shots_100, Pressure_shots_33]:
         yerr.append(data['eta']*data['uncertainty'])
         pressures.append(shotlist.loc[shot]['Pressure [bar]'])
     ax2.errorbar(pressures, np.array(efficiencies)*100, np.array(yerr)*100, 
-                 fmt='o', ecolor=(0,0,0,0.5), elinewidth=1.0, capsize=3)
+                 fmt='o', ecolor=(1,1,1,0.5), elinewidth=1.0, capsize=3)
 ax2.set_ylim(0, 20)
 ax2.legend(['30.6 J pulse', '16.4 J pulse'])
 # ax1.legend()
@@ -112,6 +118,6 @@ fig.tight_layout()
 if SAVE:
     # fig1.savefig('report/assets/5 results/heatEfficiency.pdf')
     # fig2.savefig('report/assets/5 results/heatEfficiency.pdf')
-    fig.savefig('report/assets/5 results/heatEfficiency.pdf')
-    fig.savefig('report/assets/5 results/heatEfficiency.png', dpi=72)
+    fig.savefig(FIGTARGET+'heatEfficiency.svg')
+    # fig.savefig('report/assets/5 results/heatEfficiency.png', dpi=72)
 plt.show()

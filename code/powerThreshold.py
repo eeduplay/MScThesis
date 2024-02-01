@@ -10,6 +10,7 @@ from scipy.optimize import curve_fit
 
 # custom_cycler = cycler(color=['#ED1B2F', 'c', '#EC6842'])
 # plt.rc('axes', prop_cycle=custom_cycler)
+# plt.style.use(['dark_background', './code/presentationPlots.mplstyle'])
 
 class Gas(Enum):
     Argon = {
@@ -86,16 +87,16 @@ if __name__ == '__main__':
     #     extent=(0, 16e5, 1e2, 1e4)
     #     )
     plt.figure(figsize=(5.8,5))
-    plt.semilogy(ps/1e5, threshold_power(ps, Gas.Argon.value), '--k',
+    plt.semilogy(ps/1e5, threshold_power(ps, Gas.Argon.value), '--w',
                  label='Zimakov et al. Model', linewidth=1)
-    plt.semilogy(zimakovData[:,0], zimakovData[:,1], 'ok', 
-                 mfc=(0,0,0,0), mec='black', markersize=5,
+    plt.semilogy(zimakovData[:,0], zimakovData[:,1], 'ow', 
+                 mfc=(0,0,0,0), mec='white', markersize=5,
                  label='Zimakov et al. (2016) Data')
-    plt.semilogy(matsuiData[:,0], matsuiData[:,1], '^k', 
-                 mfc=(0,0,0,0), mec='black', markersize=5,
+    plt.semilogy(matsuiData[:,0], matsuiData[:,1], '^w', 
+                 mfc=(0,0,0,0), mec='white', markersize=5,
                  label='Matsui et al. (2019) Data')
-    plt.semilogy(luData[:,0], luData[:,1], 'sk', 
-                 mfc=(0,0,0,0), mec='black', markersize=5,
+    plt.semilogy(luData[:,0], luData[:,1], 'sw', 
+                 mfc=(0,0,0,0), mec='white', markersize=5,
                  label='Lu et al. (2022) Data')
     plt.semilogy(unique_pressures, success_front, 
                  'o', label='Arc Ignition')
@@ -103,7 +104,7 @@ if __name__ == '__main__':
                  color='#00A6D6', linewidth=1)
     plt.errorbar(STI_successes[front_mask]['Pressure [bar]'], 
                  STI_successes[front_mask]['Laser Setpoint']*3080, fmt='o', 
-                 yerr=y_e, ecolor=(0,0,0,0.5), elinewidth=1.0, capsize=3,
+                 yerr=y_e, ecolor=(1,1,1,0.7), elinewidth=1.0, capsize=3,
                  label='Wire Ignition', linewidth=1)
 
     # plt.semilogy(exp_success[:,0], exp_success[:,1], 
@@ -117,8 +118,8 @@ if __name__ == '__main__':
     # plt.yscale('log')
     # ax = plt.gca()
     # ax.set_aspect(((1e4-1e2)/16e5)*622/426)
-    convertAxis('x', (bar2psi, psi2bar), 'Pressure $p$ [psi]')
+    # convertAxis('x', (bar2psi, psi2bar), 'Pressure $p$ [psi]')
     plt.legend()
-    plt.grid(which='both')
-    plt.savefig('report/assets/5 results/powerthreshold.pdf')
+    # plt.grid(which='both')
+    # plt.savefig('report/assets/5 results/powerthreshold.pdf')
     plt.show()

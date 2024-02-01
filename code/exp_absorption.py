@@ -5,6 +5,12 @@ import pandas as pd
 from scipy.optimize import curve_fit
 import numpy as np
 
+from dotenv import load_dotenv
+load_dotenv()
+from os import getenv
+plt.style.use(['dark_background', 'code/presentationPlots.mplstyle'])
+FIGTARGET = getenv('PPTASSETPATH')
+
 SAVE = True
 
 pulse_buffer_width = 1  # ms, laser pulse duration BEFORE spark
@@ -53,10 +59,10 @@ plt.xlabel('Pressure $p$ [bar]')
 plt.ylabel('Absorption $a$ [-]')
 plt.tight_layout()
 if SAVE:
-    plt.savefig('report/assets/5 results/absorption_ia.pdf')
-    plt.savefig('report/assets/5 results/absorption_ia.png', dpi=72)
+    plt.savefig(FIGTARGET+'absorption_ia.svg')
+    # plt.savefig(FIGTARGET+'report/assets/5 results/absorption_ia.png', dpi=72)
 
-plt.figure(figsize=(2.9,3))
+plt.figure(figsize=(4.5,4.5))
 model = lambda Ein, a: a*Ein
 Espan = np.array([10, 28])
 popt, pcov = curve_fit(model, input_energy[mask20bar], 
@@ -66,12 +72,12 @@ plt.plot(input_energy[mask20bar],
 plt.plot(Espan, model(Espan, popt[0]), '--')
 plt.xlabel(r'Input energy $E_\mathrm{in}$ [J]')
 plt.ylabel('Absorbed energy $E_a$ [J]')
-plt.annotate(r'$E_a = aE_\mathrm{in}$', (0.49, 0.5), xycoords='axes fraction',
-             ha='right')
-plt.annotate(r'$a = $'+'{:.2f}'.format(popt[0]), (0.51, 0.45), 
-             xycoords='axes fraction', color='C1')
+plt.annotate(r'$E_a = aE_\mathrm{in}$', (0.47, 0.5), xycoords='axes fraction',
+             ha='right', fontsize='xx-large')
+plt.annotate(r'$a = $'+'{:.2f}'.format(popt[0]), (0.51, 0.43), 
+             xycoords='axes fraction', color='C1', fontsize='xx-large')
 plt.tight_layout()
 if SAVE:
-    plt.savefig('report/assets/5 results/absorption_20bar.pdf')
-    plt.savefig('report/assets/5 results/absorption_20bar.png', dpi=72)
+    plt.savefig(FIGTARGET+'absorption_20bar.svg')
+    # plt.savefig('report/assets/5 results/absorption_20bar.png', dpi=72)
 plt.show()

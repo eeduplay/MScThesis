@@ -4,7 +4,13 @@ import matplotlib.pyplot as plt
 import numpy as np
 from Laser import util
 
-SAVE = True
+from dotenv import load_dotenv
+load_dotenv()
+from os import getenv
+plt.style.use(['dark_background', 'code/presentationPlots.mplstyle'])
+FIGTARGET = getenv('PPTASSETPATH')
+
+SAVE = False
 
 # Comparison of raw vs filtered signal
 fig0, ax0 = plt.subplots(figsize=(2.9, 3))
@@ -45,7 +51,7 @@ identifiers = [
 
 linestyles = [':', '-.', '--', '-']
 
-fig1, ax1 = plt.subplots(figsize=(5.8, 4))
+fig1, ax1 = plt.subplots(figsize=(4.5, 4.5))
 for shot in identifiers:
     nominal_pressure = shotlist.loc[shot]['Pressure [bar]']
     pressure = PressureData()
@@ -58,9 +64,10 @@ ax1.legend()
 ax1.set_xlabel('Time $t$ [ms]')
 ax1.set_ylabel(r'Pressure change $\Delta p$ [kPa]')
 ax1.set_xlim(175, 350)
-if SAVE: 
-    plt.savefig('report/assets/5 results/pressure_pressures.pdf')
-    plt.savefig('report/assets/5 results/pressure_pressures.png', dpi=72)
+# if SAVE: 
+fig1.tight_layout()
+plt.savefig(FIGTARGET+'pressure_pressures.svg')
+    # plt.savefig('report/assets/5 results/pressure_pressures.png', dpi=72)
 
 # Comparison of pressure profiles at different laser powers
 # indices_20b = [*range(51, 56), 57]

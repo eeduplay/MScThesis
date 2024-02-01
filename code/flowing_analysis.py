@@ -9,7 +9,13 @@ import pressure_analysis as pa
 from Spectra.spectrum import Spectrum, get_filepath_from_ID
 from IdealThrust import mass_flow_constant
 
-SAVE = False
+from dotenv import load_dotenv
+load_dotenv()
+from os import getenv
+plt.style.use(['dark_background', 'code/presentationPlots.mplstyle'])
+FIGTARGET = getenv('PPTASSETPATH')
+
+SAVE = True
 chamber_diameter = 1.5*25.4  # mm
 Rg = 208.1  # J kg^-1 K^-1, Argon gas constant
 gamma = 1.667
@@ -39,7 +45,7 @@ spectra_shots = [
     'LSP87_F9',
 ]
 
-fig0, ax0 = plt.subplots(figsize=(2.9,3))
+fig0, ax0 = plt.subplots(figsize=(4.5,3.5))
 fig1, ax1 = plt.subplots(figsize=(2.9,3))
 vees = []
 etas = []
@@ -59,7 +65,7 @@ for s in pressure_shots:
     # u_eta_cp.append(data['uncertainty']*data['eta'])
     pressure.load_from_wavedata(s)
     pressure.filter_data()
-    fmt = 'k--' if s == 'LSP60_S9' else '-'
+    fmt = 'w--' if s == 'LSP60_S9' else '-'
     ax0.plot(pressure.time[:-250]*1000, pressure.pressure[:-250], fmt, 
              label='{:.2f} m/s'.format(v_i))
 
@@ -79,10 +85,10 @@ ax1.set_ylim(0)
 fig1.tight_layout()
 
 if SAVE:
-    fig0.savefig('report/assets/5 results/flow_deltap.pdf')
-    fig0.savefig('report/assets/5 results/flow_deltap.png', dpi=72)
-    fig1.savefig('report/assets/5 results/flow_eta.pdf')
-    fig1.savefig('report/assets/5 results/flow_eta.png', dpi=72)
+    fig0.savefig(FIGTARGET+'flow_deltap.svg')
+    # fig0.savefig('report/assets/5 results/flow_deltap.png', dpi=72)
+    # fig1.savefig('report/assets/5 results/flow_eta.pdf')
+    # fig1.savefig('report/assets/5 results/flow_eta.png', dpi=72)
 
 fig2, ax2 = plt.subplots()
 for s in spectra_shots:
@@ -95,7 +101,7 @@ for s in spectra_shots:
                         'rawdata/spectra/calibration/Halogen_Dark.txt')
     scaleFactor = 100/spectrum.counts.max()
     scaleFactor = 1
-    ax2.plot(spectrum.wavelengths, spectrum.counts*scaleFactor, linewidth=1, 
+    ax2.plot(spectrum.wavelengths, spectrum.counts*scaleFactor, linewidth=0.5, 
              label='{:.2f} m/s'.format(v_i))
 
 ax2.set_xlabel(r'Wavelength $\lambda$ [nm]')

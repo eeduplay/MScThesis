@@ -11,6 +11,8 @@ import warnings
 import os
 import sys
 
+plt.style.use(['dark_background', 'code/presentationPlots.mplstyle'])
+FIGTARGET = os.getenv('PPTASSETPATH')
 DATAPATH = os.getenv('DATAPATH')
 
 entryFactor = 0.99414

@@ -13,9 +13,12 @@ mathtext.it:  serif:italic
 mathtext.rm:  serif
 mathtext.sf:  serif
 
-axes.prop_cycle : cycler(color=["#ED1B2F", "#00A6D6", "#FFB81C", "#6F1D77", "#6CC24A", "#A50034", "#009B77", "#EC6842", "#0C2340"])
+axes.prop_cycle : cycler(color=["#ED1B2F", "#00A6D6", "#FFB81C", "#b824c7", "#6CC24A", "#A50034", "#009B77", "#EC6842", "#0C2340"])
 axes.facecolor: none
 axes.labelsize: x-large
+
+xtick.labelsize:    large
+ytick.labelsize:    large
 
 grid.alpha:         0.3
 
